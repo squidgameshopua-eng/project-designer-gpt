@@ -1,0 +1,56 @@
+{
+  "package_name": "project-designer-gpt",
+  "repository_name": "project-designer-gpt",
+  "status": "stable",
+  "active_source_of_truth": "current/",
+  "instruction_file": "current/instructions/Instructions.md",
+  "project_sources_folder": "current/source_files/",
+  "manifest_file": "current/package_manifest/package_manifest.json",
+  "active_source_files": [
+    "architecture_domain_rules.md",
+    "delivery_protocol.md",
+    "gpt_action_discovery_protocol.md",
+    "instruction_governance.md",
+    "openai_gpt_project_sources.md",
+    "output_templates.md",
+    "package_state_protocol.md",
+    "patch_lock_protocol.md",
+    "project_operating_protocol.md",
+    "protected_behavior_registry.md",
+    "regression_smoke_tests.md",
+    "source_safety_policy.md",
+    "testing_protocol.md"
+  ],
+  "non_active_folders": {
+    "archive/old_packages/": "Old packages. Evidence only. Never treat as active unless the user explicitly asks for comparison, restoration, or rollback.",
+    "archive/rejected_versions/": "Rejected versions. Never active unless explicitly restored by the user.",
+    "deliveries/final_outputs/": "Delivery history only. Never treat as active source of truth.",
+    "deliveries/zip_packages/": "ZIP delivery history only. Never treat ZIPs as active source of truth.",
+    "external_sources/notes/": "Reference notes only. Do not treat as behavioral rules unless copied into current/source_files/.",
+    "external_sources/openai_sources/": "OpenAI/reference source evidence only. Do not treat as behavioral rules unless copied into current/source_files/.",
+    "tests/audit_reports/": "Audit evidence only. Do not treat audit reports as active rules.",
+    "tests/smoke_tests/": "Testing evidence only. Use for tests; do not treat as active package rules."
+  },
+  "rules": [
+    "Use current/ as the only active package by default.",
+    "Use archive/ only for comparison, restoration, rollback, or historical audit when the user explicitly asks.",
+    "Use deliveries/ only to inspect what was delivered, not as active truth.",
+    "Use external_sources/ only as reference/source evidence, not as active behavior rules.",
+    "Use tests/ only for audit and regression evidence, not as active behavior rules.",
+    "If current/ conflicts with archive/, deliveries/, external_sources/, tests/, or chat history, current/ wins unless the user explicitly overrides it.",
+    "If package_manifest.json conflicts with chat history, package_manifest.json wins unless the user explicitly overrides it.",
+    "Do not infer active status from file names outside current/.",
+    "Do not mix files across current/, archive/, deliveries/, external_sources/, and tests/ without reporting the reason.",
+    "If GitHub is unavailable, inaccessible, or not indexed, state the limitation and ask for ZIP/files instead of inventing repository contents."
+  ],
+  "chatgpt_project_upload_rule": {
+    "project_instructions": "Paste the content of current/instructions/Instructions.md into the Project Instructions field.",
+    "project_sources": "Upload only files from current/source_files/ into Project Sources. Do not upload archive/, deliveries/, external_sources/, or tests/ as active Project Sources."
+  },
+  "github_connector_rule": {
+    "repository_access": "Allow ChatGPT access only to the selected repository project-designer-gpt.",
+    "memory_and_chats_toggle": "Keep off by default to reduce risk of mixing old chats with GitHub current/.",
+    "default_folder": "current/",
+    "archive_access": "Use archive/ only when explicitly requested."
+  }
+}
