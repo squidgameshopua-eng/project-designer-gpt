@@ -50,3 +50,5 @@ When ChatGPT is connected to this repository:
 - Use `archive/` only when explicitly requested.
 - Treat candidate or experimental material as non-active unless explicitly promoted.
 - Keep “memory and chats” connector context off by default when working with package truth, to avoid mixing old chat branches with the active GitHub package.
+
+Delegation setup smoke test.
