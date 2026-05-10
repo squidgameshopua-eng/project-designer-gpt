@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CURRENT_DIR = ROOT / "current"
 SOURCE_DIR = CURRENT_DIR / "source_files"
 MANIFEST_PATH = CURRENT_DIR / "package_manifest/package_manifest.json"
-REQUIRED_ACTIVE_SOURCE = "delegation_access_policy.md"
+REQUIRED_ACTIVE_SOURCES = ["delegation_access_policy.md", "autonomous_workflow_router.md"]
 PROTECTED_FILES = [
     CURRENT_DIR / "instructions/Instructions.md",
     CURRENT_DIR / "package_manifest/package_manifest.json",
@@ -57,8 +57,9 @@ def main() -> int:
     if not isinstance(active_files, list) or not active_files:
         return fail("active_source_files must be a non-empty list")
 
-    if REQUIRED_ACTIVE_SOURCE not in active_files:
-        return fail("delegation_access_policy.md must be listed in active_source_files")
+    for required in REQUIRED_ACTIVE_SOURCES:
+        if required not in active_files:
+            return fail(f"{required} must be listed in active_source_files")
 
     for item in active_files:
         if not isinstance(item, str) or not item:
