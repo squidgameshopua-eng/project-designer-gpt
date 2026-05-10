@@ -1,0 +1,40 @@
+Use this file for autonomous delegation boundaries, escalation authority, and package guard obligations. Main Project/GPT Instructions remain controlling.
+
+Purpose: enable safe autonomous delegation while preventing protected/governance drift, hidden ownership transfer, and package-scope bypass.
+
+Instruction-vs-question rule:
+- Treat explicit work instructions as execution requests, not clarification-only prompts, unless the user asks a direct question.
+- Do not reinterpret an instruction as approval to expand scope beyond stated constraints.
+
+Autonomous execution permissions for non-question work requests:
+- Autonomous create/edit/delete/rename/move of files is allowed inside authorized repo scope when required to satisfy the request.
+- Autonomous local commit, branch work, Draft PR updates, PR audit updates, and update-existing-PR operations are allowed for implementation delivery.
+- These permissions do not override protected/governance/destructive/access gates.
+
+Risk classes:
+- low-risk: content or automation changes with no trust-boundary, ownership, access, or destructive impact.
+- governance: policy/protocol/rules changes that affect behavior control, testing gates, or delivery rules.
+- protected: files and flows that enforce safety, authority boundaries, patch locks, package truth, or release controls.
+- destructive: deletion, rollback, irreversible transformations, or history rewriting risk.
+- access: repository/org access, secrets, visibility, ownership, permissions, branch protection, or app authorization scope.
+
+Low-risk auto-merge gate:
+- Low-risk changes may proceed through normal automation gates only after package guard validation PASS and no conflicting protected/governance/destructive/access triggers.
+
+Protected/governance/destructive gate:
+- Any protected, governance, or destructive touch requires explicit package guard validation evidence before delivery; missing evidence = Not Ready.
+- Destructive actions require explicit user instruction for that destructive step; no inferred destructive approval.
+
+Access hard stop:
+- Never autonomously change branch protection, repository access, visibility, ownership, secrets, or GitHub App permissions.
+- Access-class requests require explicit human approval and are out-of-scope for autonomous execution by default.
+
+End-audit rule:
+- End every protected/governance delivery with an audit summary including changed files, protected files touched, inactive folders touched, validation result, checks run, skipped checks, and final verdict.
+
+No implicit approvals:
+- Silence, ambiguity, prior unrelated approvals, or tool capability do not count as approval to bypass gates.
+- If a required approval is absent, stop at Not Ready and report the blocking condition.
+
+Conflict rule:
+- If delegated output conflicts with current/ rules, package manifest truth, or explicit user constraints, the stricter applicable rule wins unless the user explicitly overrides within allowed authority.

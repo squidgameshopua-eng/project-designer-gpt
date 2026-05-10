@@ -8,6 +8,7 @@
   "manifest_file": "current/package_manifest/package_manifest.json",
   "active_source_files": [
     "architecture_domain_rules.md",
+    "delegation_access_policy.md",
     "delivery_protocol.md",
     "gpt_action_discovery_protocol.md",
     "instruction_governance.md",
