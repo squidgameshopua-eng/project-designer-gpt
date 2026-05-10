@@ -4,13 +4,17 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST_PATH = ROOT / "current/package_manifest/package_manifest.json"
-REQUIRED_FILES = [
-    ROOT / "current/source_files/delegation_access_policy.md",
+CURRENT_DIR = ROOT / "current"
+SOURCE_DIR = CURRENT_DIR / "source_files"
+MANIFEST_PATH = CURRENT_DIR / "package_manifest/package_manifest.json"
+REQUIRED_ACTIVE_SOURCE = "delegation_access_policy.md"
+PROTECTED_FILES = [
+    CURRENT_DIR / "instructions/Instructions.md",
+    CURRENT_DIR / "package_manifest/package_manifest.json",
+    CURRENT_DIR / "source_files/delegation_access_policy.md",
     ROOT / ".github/workflows/package_guard.yml",
     ROOT / "scripts/validate_package_guard.py",
 ]
-REQUIRED_ACTIVE_SOURCE = "delegation_access_policy.md"
 
 
 def fail(msg: str) -> int:
@@ -18,30 +22,64 @@ def fail(msg: str) -> int:
     return 1
 
 
-def main() -> int:
-    for file_path in REQUIRED_FILES:
-        if not file_path.exists():
-            return fail(f"Missing required file: {file_path.relative_to(ROOT)}")
+def assert_exists(path: Path, label: str) -> str | None:
+    if not path.exists():
+        return f"{label} missing: {path.relative_to(ROOT)}"
+    return None
 
+
+def main() -> int:
     if not MANIFEST_PATH.exists():
         return fail("Missing manifest file")
 
     try:
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
-    except Exception as exc:
-        return fail(f"Unable to parse manifest JSON: {exc}")
+    except json.JSONDecodeError as exc:
+        return fail(f"Invalid manifest JSON: {exc}")
 
     if manifest.get("active_source_of_truth") != "current/":
         return fail("active_source_of_truth must be 'current/'")
 
+    non_active = manifest.get("non_active_folders")
+    if not isinstance(non_active, dict):
+        return fail("non_active_folders must be an object")
+    if "current/" in non_active:
+        return fail("inactive folders must not promote current/ as inactive")
+
+    instruction_file = manifest.get("instruction_file")
+    if not isinstance(instruction_file, str) or not instruction_file:
+        return fail("instruction_file must be a non-empty string")
+    instruction_path = ROOT / instruction_file
+    if not instruction_path.exists():
+        return fail(f"instruction_file does not exist: {instruction_file}")
+
     active_files = manifest.get("active_source_files")
-    if not isinstance(active_files, list):
-        return fail("active_source_files must be a list")
+    if not isinstance(active_files, list) or not active_files:
+        return fail("active_source_files must be a non-empty list")
 
     if REQUIRED_ACTIVE_SOURCE not in active_files:
-        return fail(
-            "delegation_access_policy.md must be listed in active_source_files"
-        )
+        return fail("delegation_access_policy.md must be listed in active_source_files")
+
+    for item in active_files:
+        if not isinstance(item, str) or not item:
+            return fail("active_source_files entries must be non-empty strings")
+        p = Path(item)
+        if p.name != item:
+            return fail(f"active_source_files must contain filenames only: {item}")
+        if p.is_absolute() or ".." in p.parts:
+            return fail(f"active source file points outside source folder: {item}")
+        resolved = (SOURCE_DIR / item).resolve()
+        try:
+            resolved.relative_to(SOURCE_DIR.resolve())
+        except ValueError:
+            return fail(f"active source file escapes current/source_files/: {item}")
+        if not resolved.exists():
+            return fail(f"active source file missing under current/source_files/: {item}")
+
+    for protected in PROTECTED_FILES:
+        err = assert_exists(protected, "Protected file")
+        if err:
+            return fail(err)
 
     print("PASS: package guard validation succeeded")
     return 0
