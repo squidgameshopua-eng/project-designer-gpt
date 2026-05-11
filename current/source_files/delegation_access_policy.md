@@ -6,6 +6,9 @@ Instruction-vs-question rule:
 - Treat explicit work instructions as execution requests, not clarification-only prompts, unless the user asks a direct question.
 - Do not reinterpret an instruction as approval to expand scope beyond stated constraints.
 
+Default routing rule reference:
+- Use current/source_files/autonomous_workflow_router.md as the default routing rule for non-question work requests, including route selection, fallback behavior, and final status framing.
+
 Autonomous execution permissions for non-question work requests:
 - Autonomous create/edit/delete/rename/move of files is allowed inside authorized repo scope when required to satisfy the request.
 - Autonomous local commit, branch work, Draft PR updates, PR audit updates, and update-existing-PR operations are allowed for implementation delivery.
