@@ -8,6 +8,23 @@ CURRENT_DIR = ROOT / "current"
 SOURCE_DIR = CURRENT_DIR / "source_files"
 MANIFEST_PATH = CURRENT_DIR / "package_manifest/package_manifest.json"
 REQUIRED_ACTIVE_SOURCES = ["delegation_access_policy.md", "autonomous_workflow_router.md"]
+FORBIDDEN_VERSION_MARKERS = (
+    "corrected_",
+    "final_",
+    "draft_",
+    "v2_",
+    "backup_",
+    "old_",
+    "superseded",
+)
+FORBIDDEN_ACTIVE_PATH_SEGMENTS = (
+    "archive/",
+    "deliveries/",
+    "external_sources/",
+    "tests/",
+    ".github/",
+    "scripts/",
+)
 PROTECTED_FILES = [
     CURRENT_DIR / "instructions/Instructions.md",
     CURRENT_DIR / "package_manifest/package_manifest.json",
@@ -53,6 +70,12 @@ def main() -> int:
     instruction_path = ROOT / instruction_file
     if not instruction_path.exists():
         return fail(f"instruction_file does not exist: {instruction_file}")
+    instruction_text = instruction_path.read_text(encoding="utf-8")
+    instruction_len = len(instruction_text)
+    if instruction_len > 8000:
+        return fail("current/instructions/Instructions.md exceeds 8000 characters")
+    if instruction_len > 7800:
+        print("WARN: current/instructions/Instructions.md exceeds 7800 characters")
 
     active_files = manifest.get("active_source_files")
     if not isinstance(active_files, list) or not active_files:
@@ -68,6 +91,14 @@ def main() -> int:
         p = Path(item)
         if p.name != item:
             return fail(f"active_source_files must contain filenames only: {item}")
+        if "/" in item or "\\" in item:
+            return fail(f"active_source_files must contain filenames only, not paths: {item}")
+        for forbidden_segment in FORBIDDEN_ACTIVE_PATH_SEGMENTS:
+            if forbidden_segment in item:
+                return fail(f"active_source_files entry must not target restricted paths: {item}")
+        for marker in FORBIDDEN_VERSION_MARKERS:
+            if marker in item.lower():
+                return fail(f"active_source_files contains forbidden version marker '{marker}': {item}")
         if p.is_absolute() or ".." in p.parts:
             return fail(f"active source file points outside source folder: {item}")
         resolved = (SOURCE_DIR / item).resolve()
@@ -88,6 +119,33 @@ def main() -> int:
         return fail(
             'delegation_access_policy.md contains deprecated phrase "Low-risk auto-merge gate"'
         )
+
+    registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 23)]
+    for pb_id in required_pb_ids:
+        if pb_id not in registry_text:
+            return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
+
+    required_kernel_phrases = [
+        "Patch Lock",
+        "Patch State Machine",
+        "Builder/Auditor split",
+        "Current package truth",
+        "Right-sized architecture",
+        "Child-system inheritance",
+        "Final gate",
+    ]
+    for phrase in required_kernel_phrases:
+        if phrase not in instruction_text:
+            return fail(f'current/instructions/Instructions.md missing required phrase: "{phrase}"')
+
+    router_text = (SOURCE_DIR / "autonomous_workflow_router.md").read_text(encoding="utf-8").lower()
+    for trigger in ["ready", "check", "done", "готово", "проверь"]:
+        if trigger not in router_text:
+            return fail(
+                "autonomous_workflow_router.md missing PR verification trigger "
+                f'for "{trigger}"'
+            )
 
     print("PASS: package guard validation succeeded")
     return 0
