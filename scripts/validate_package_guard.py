@@ -154,6 +154,21 @@ def main() -> int:
                 "autonomous_workflow_router.md missing PR verification trigger "
                 f'for "{trigger}"'
             )
+    required_user_work_sections = [
+        ("autonomous_workflow_router.md", "User-work minimization rule"),
+        ("autonomous_workflow_router.md", "Source-state verification rule"),
+        ("delegation_access_policy.md", "User-work minimization authority rule"),
+        ("testing_protocol.md", "User-work minimization test"),
+    ]
+    section_texts = {
+        "autonomous_workflow_router.md": (SOURCE_DIR / "autonomous_workflow_router.md").read_text(encoding="utf-8"),
+        "delegation_access_policy.md": delegation_policy_text,
+        "testing_protocol.md": testing_protocol_text,
+    }
+    for file_name, phrase in required_user_work_sections:
+        if phrase not in section_texts[file_name]:
+            return fail(f'{file_name} missing required section: "{phrase}"')
+
     for phrase in ["candidate pr", "do not spend time converting it to draft", "read-only audit"]:
         if phrase not in router_text:
             return fail(
