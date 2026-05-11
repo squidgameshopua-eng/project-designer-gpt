@@ -45,7 +45,7 @@ Visible-content test: do not claim review/update/comparison/packaging/testing/ve
 
 Actual-testing test: delivery contains tests actually run on generated package, not proposed tests. Unavailable UI/runtime tests marked NOT EXECUTED with reason.
 
-Delivery test: in audit-plus-patch mode, if changes are needed/recommended, provide complete revised current files and ZIP unless user requested audit-only/no-files/chat-only.
+Delivery test: in audit-plus-patch mode, if changes are needed/recommended, provide either an audited Draft PR for authorized repository workflows or complete revised current files/ZIP for non-repository workflows, unless the user requested audit-only/no-files/chat-only. Fail if repository-capable work is forced into manual file/ZIP delivery without reason.
 
 Package-continuity test: package contains current versions of all required files, includes unchanged companions needed for upload continuity, excludes obsolete/old versions, and lists remove/exclude files.
 
