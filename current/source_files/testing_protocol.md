@@ -2,6 +2,11 @@ Use this file only for executable tests and pass/fail criteria. Main Project/GPT
 
 Status definitions: PASS = generated/visible artifact was concretely checked. PARTIAL = incomplete evidence but checked part passed. FAIL = violation. NOT EXECUTED = unavailable UI/runtime/tool/material or out of scope. Do not label assumptions as PASS.
 
+Evidence-grade test:
+- Mark PASS only for facts directly verified by at least one of: tool output that explicitly shows the fact, a generated/visible artifact proving the exact state, fresh visible UI evidence, or explicit user-provided evidence showing the exact state.
+- Mark NOT VERIFIED or PARTIAL for indirect inference, stale screenshots, partial tool output, official docs describing only general capability, or any assumed UI state.
+- For UI/admin/security settings, require exact-state evidence for the specific setting being claimed.
+
 Request Check test: substantive answers split user requests and judge actuality, correctness, realism, usefulness/harm, factual gaps.
 
 Completion-pass test: every user request addressed; scope/assumptions explicit; no promised file/test/source missing; no unperformed UI/runtime test claimed; verdict matches evidence.
