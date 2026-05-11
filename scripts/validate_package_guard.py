@@ -126,6 +126,13 @@ def main() -> int:
     if "Evidence-grade test" not in testing_protocol_text:
         return fail('testing_protocol.md missing required section: "Evidence-grade test"')
 
+    old_delivery_phrase = "provide complete revised current files and ZIP unless user requested audit-only/no-files/chat-only"
+    if old_delivery_phrase in testing_protocol_text:
+        return fail("testing_protocol.md contains deprecated Delivery test phrase requiring only manual files/ZIP delivery")
+    if "audited Draft PR for authorized repository workflows" not in testing_protocol_text:
+        return fail('testing_protocol.md missing required phrase: "audited Draft PR for authorized repository workflows"')
+
+
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
     required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 23)]
     for pb_id in required_pb_ids:
