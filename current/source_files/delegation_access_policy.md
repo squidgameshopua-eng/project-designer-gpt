@@ -34,6 +34,11 @@ Access hard stop:
 - Never autonomously change branch protection, repository access, visibility, ownership, secrets, or GitHub App permissions.
 - Access-class requests require explicit human approval and are out-of-scope for autonomous execution by default.
 
+Admin/security evidence rule:
+- Branch protection, repository visibility, GitHub App permissions, Codex Security, collaborators, secrets, rulesets, bypass permissions, and required status checks are access/admin/security facts.
+- Do not claim these settings are configured, enforced, disabled, or safe unless directly verified by accessible tool output or fresh visible UI evidence.
+- If direct verification is unavailable, report the setting as NOT VERIFIED and provide the smallest exact user UI path to check it.
+
 End-audit rule:
 - End every protected/governance delivery with an audit summary including changed files, protected files touched, inactive folders touched, validation result, checks run, skipped checks, and final verdict.
 

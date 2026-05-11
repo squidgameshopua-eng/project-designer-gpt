@@ -119,6 +119,12 @@ def main() -> int:
         return fail(
             'delegation_access_policy.md contains deprecated phrase "Low-risk auto-merge gate"'
         )
+    if "Admin/security evidence rule" not in delegation_policy_text:
+        return fail('delegation_access_policy.md missing required section: "Admin/security evidence rule"')
+
+    testing_protocol_text = (SOURCE_DIR / "testing_protocol.md").read_text(encoding="utf-8")
+    if "Evidence-grade test" not in testing_protocol_text:
+        return fail('testing_protocol.md missing required section: "Evidence-grade test"')
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
     required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 23)]
@@ -140,6 +146,8 @@ def main() -> int:
             return fail(f'current/instructions/Instructions.md missing required phrase: "{phrase}"')
 
     router_text = (SOURCE_DIR / "autonomous_workflow_router.md").read_text(encoding="utf-8").lower()
+    if "verification fallback" not in router_text:
+        return fail('autonomous_workflow_router.md missing required section: "Verification fallback"')
     for trigger in ["ready", "check", "done", "готово", "проверь"]:
         if trigger not in router_text:
             return fail(
