@@ -70,3 +70,8 @@ User-work minimization test:
 - FAIL if already-visible uploaded files, manifest entries, PR state, or tool output are ignored and converted into manual user work.
 - PASS only when the answer separates work completed by the system from genuinely user-only actions and gives the smallest exact user action only when necessary.
 
+
+Repository-first delivery test:
+- FAIL if implementation/patch work with an authorized GitHub repository is delivered as manual copy/upload work without first considering Draft PR delivery.
+- FAIL if the assistant continues a blocked/hanging chat write route instead of switching to Codex-ready or PR-first delivery.
+- PASS only when repository-capable work uses Draft PR or explains why repository delivery is unavailable, unsafe, or explicitly not requested.

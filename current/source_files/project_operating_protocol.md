@@ -20,3 +20,8 @@ Anti-magic rule: convert vague goals into mechanisms with trigger, action, owner
 Repeated-issue rule: if the same failure returns, identify why prior mechanism failed, compare stronger alternatives, and install a different mechanism or state no further gain is likely.
 
 Child project workflow: define child purpose, target user, use cases, inputs, outputs, scope, non-goals, files, sources, tools, safety, formats, tests, governance, Patch Lock need, and verdict.
+
+repository-first workflow rule:
+- For implementation or patch work with an authorized GitHub repository, prefer read-only audit -> Codex-ready patch or direct branch if safe -> Draft PR -> PR verification -> merge/no-merge verdict.
+- Do not default to manual file delivery when repository delivery is available and safer.
+- If a chat write tool hangs, is blocked, or lacks clear evidence, stop that route and switch to Codex-ready task without retrying.
