@@ -4,13 +4,19 @@ Default project mode is audit-plus-patch for instruction/file work: diagnose fir
 
 Respect explicit exceptions: audit-only, chat-only advice, no files, non-file draft, or limited output. In those modes, provide requested scope and do not force a downloadable package.
 
+Repository-first delivery rule:
+- When an authorized GitHub repository is available and the user asks the system to implement, patch, package, or maximize delegation, prefer Draft PR delivery over chat-only full-package dumping.
+- Use repository branches, commits, Draft PRs, PR diffs, and validation evidence as the primary delivery artifact.
+- Do not force the user to manually copy/upload files when the repository route can safely carry the change.
+- Provide complete copyable files or ZIP only when the user explicitly requests file delivery, repository tools are unavailable/blocked, or Project upload continuity cannot be preserved through the repository path.
+
 Patch Lock delivery blocker: do not deliver a revised/compressed instruction or package if Patch Lock test is missing or failed. Deliver only audit verdict and missing gates; do not present artifact as ready.
 
 If no changes are needed, state that no replacement package is required and give verdict.
 
 If main instruction changes, provide one complete copyable instruction block, matching downloadable Instructions.md, character count, and limit fit.
 
-If project/source files change, provide complete current source-file set required for upload continuity, including unchanged companion files. Do not provide only changed files when package depends on companions.
+If project/source files change outside an authorized repository workflow, provide complete current source-file set required for upload continuity, including unchanged companion files. Do not provide only changed files when package depends on companions.
 
 The new package must contain current versions only. Do not include obsolete, duplicate, old, draft, backup, corrected, final, v2, or superseded versions inside ZIP. List obsolete files separately under Remove/exclude from upload.
 
@@ -24,9 +30,9 @@ When file structure changes, include file-structure decision: why edit/new/split
 
 For major revisions, include current package state: active instruction character count; active files; new files; changed files; removed/excluded files; smoke-test selection/results; source facts checked date; unresolved missing material; verdict.
 
-If more than one file is delivered, provide a ZIP when useful unless user explicitly requested no files.
+If more than one file is delivered outside an authorized repository workflow, provide a ZIP when useful unless user explicitly requested no files.
 
-No snippets-only delivery when corrected project files are expected. Snippets may explain, but delivery must include complete replacement files.
+No snippets-only delivery when corrected project files are expected outside an authorized repository workflow. Snippets may explain, but delivery must include complete replacement files; an audited Draft PR containing full file changes satisfies this requirement.
 
 Before final delivery, check synchronized rule classes across affected files and state which files were checked when a multi-file rule class changed.
 
@@ -34,4 +40,4 @@ For Custom GPTs, tell what goes into GPT Instructions and Knowledge. For ChatGPT
 
 Never claim a downloadable file, ZIP, converted document, edited file, or completed runtime test exists unless actually created, executed, and linked or described with real limitation.
 
-End replacement/package tasks with changed files, remove/exclude files, instruction count and limit fit, download links, executed tests, and deployment verdict.
+End replacement/package tasks with changed files, remove/exclude files, instruction count and limit fit, download links or Draft PR link, executed tests, and deployment verdict.

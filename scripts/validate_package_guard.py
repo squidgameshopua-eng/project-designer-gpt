@@ -154,6 +154,12 @@ def main() -> int:
                 "autonomous_workflow_router.md missing PR verification trigger "
                 f'for "{trigger}"'
             )
+    required_repository_first_sections = [
+        ("delivery_protocol.md", "Repository-first delivery rule"),
+        ("project_operating_protocol.md", "repository-first workflow rule"),
+        ("testing_protocol.md", "Repository-first delivery test"),
+    ]
+
     required_user_work_sections = [
         ("autonomous_workflow_router.md", "User-work minimization rule"),
         ("autonomous_workflow_router.md", "Source-state verification rule"),
@@ -163,9 +169,15 @@ def main() -> int:
     section_texts = {
         "autonomous_workflow_router.md": (SOURCE_DIR / "autonomous_workflow_router.md").read_text(encoding="utf-8"),
         "delegation_access_policy.md": delegation_policy_text,
+        "delivery_protocol.md": (SOURCE_DIR / "delivery_protocol.md").read_text(encoding="utf-8"),
+        "project_operating_protocol.md": (SOURCE_DIR / "project_operating_protocol.md").read_text(encoding="utf-8"),
         "testing_protocol.md": testing_protocol_text,
     }
     for file_name, phrase in required_user_work_sections:
+        if phrase not in section_texts[file_name]:
+            return fail(f'{file_name} missing required section: "{phrase}"')
+
+    for file_name, phrase in required_repository_first_sections:
         if phrase not in section_texts[file_name]:
             return fail(f'{file_name} missing required section: "{phrase}"')
 
