@@ -146,6 +146,12 @@ def main() -> int:
                 "autonomous_workflow_router.md missing PR verification trigger "
                 f'for "{trigger}"'
             )
+    for phrase in ["candidate pr", "do not spend time converting it to draft", "read-only audit"]:
+        if phrase not in router_text:
+            return fail(
+                "autonomous_workflow_router.md missing required PR-state fallback phrase "
+                f'"{phrase}"'
+            )
 
     print("PASS: package guard validation succeeded")
     return 0

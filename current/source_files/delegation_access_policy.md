@@ -8,6 +8,7 @@ Instruction-vs-question rule:
 
 Default routing rule reference:
 - Use current/source_files/autonomous_workflow_router.md as the default routing rule for non-question work requests, including route selection, fallback behavior, and final status framing.
+- Apply the router PR-state fallback rule, including Candidate PR handling and immediate read-only audit fallback when write/status-change routes are stuck.
 
 Autonomous execution permissions for non-question work requests:
 - Autonomous create/edit/delete/rename/move of files is allowed inside authorized repo scope when required to satisfy the request.

@@ -28,6 +28,15 @@ PR verification rule:
 - When a PR number, Codex task, or “готово/проверь” is present, automatically inspect PR state, changed files, diff, merge status, workflow status, active package effects, and whether the result matches the requested goal.
 - Do not ask the user to tell you what to check if the repository and PR are identifiable.
 
+PR-state fallback rule:
+- When a new pull request is needed, create a Draft PR by default.
+- If a normal PR already exists, do not spend time converting it to Draft.
+- Treat an existing normal PR as Candidate PR and continue verification.
+- Verify PR state, diff, changed files, workflow status, active package effects, and provide a merge/no-merge verdict.
+- Never retry the same stuck write/status-change route more than once.
+- If a write/status-change tool hangs, is blocked, or lacks clear evidence, switch immediately to read-only audit, Codex-ready task, or the smallest user UI action.
+- A normal PR is not a failure if it remains unmerged and is fully audited before merge.
+
 Admin/security routing:
 - Branch protection, repository access, visibility, secrets, ownership, GitHub App permissions, deployment permissions, and bypass controls are admin/security class.
 - The system may explain and provide exact click-path instructions for these steps.
