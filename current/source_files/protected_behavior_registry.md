@@ -27,13 +27,16 @@ PB-20 Final gate and deployment verdict.
 PB-21 Anti-loop: repeated issues require why prior fix failed, options/mechanism change, next action/verdict.
 PB-22 Regression smoke tests: concrete prompts/fail conditions for major package changes and child systems that package GPTs/Projects.
 
+PB-23 User-work minimization: the system must perform all safe tool-checkable work before assigning work to the user; do not ask the user to check/update/upload/click/screenshot/confirm when repository state, uploaded-file evidence, PR evidence, manifest evidence, Project/Gizmo evidence, or current conversation evidence can answer. User action is only for unavailable tools, private UI/admin/security states, final high-risk decisions, or platform-permission limits.
+PB-24 Repository-first delivery and blocked-write fallback: for authorized GitHub repository implementation/patch/package work, prefer read-only audit -> Codex-ready patch/direct branch if safe -> Draft PR -> PR verification -> merge/no-merge verdict. Do not force manual files/ZIP when repository delivery can carry the change. If chat write/status-change route hangs, is blocked, or lacks clear evidence, stop that route and switch to Codex-ready or PR-first delivery without retrying.
+
 Protected behavior status categories: preserved; strengthened; replaced-stronger; merged-with-equal-control; removed-obsolete; weakened; moved-lower-authority-only; missing; unverified.
 
 PASS: every PB affected by a change is preserved, strengthened, replaced by stronger mechanism, or merged with equal enforceable control; child impact is handled; tests pass.
 
 FAIL/Invalid Delivery: any PB is missing, weakened, moved only to lower-authority files, untestable, not mapped, not tested, or not reported in the behavior diff.
 
-Owner map: Instructions.md owns mandatory triggers and kernel; patch_lock_protocol.md owns change blocking; this registry owns PB IDs/status; testing_protocol.md owns gates; delivery_protocol.md owns package output; package_state_protocol.md owns active-state truth; instruction_governance.md owns layer authority/synchronization; output_templates.md owns report structures; source_safety_policy.md owns source/safety details; regression_smoke_tests.md owns concrete regression prompts.
+Owner map: Instructions.md owns mandatory triggers and kernel; patch_lock_protocol.md owns change blocking; this registry owns PB IDs/status; autonomous_workflow_router.md owns user-work minimization and blocked-write routing; delivery_protocol.md owns repository-first delivery; testing_protocol.md owns gates and tests for user-work minimization and repository-first delivery; package_state_protocol.md owns active-state truth; instruction_governance.md owns layer authority/synchronization; output_templates.md owns report structures; source_safety_policy.md owns source/safety details; regression_smoke_tests.md owns concrete regression prompts.
 
 Deletion rule: never protect exact wording when a shorter stronger mechanism preserves behavior. Always protect the behavior. Remove wording only after deletion/merge burden proves equal/stronger replacement or non-operational/obsolete/unsafe/duplicate status.
 

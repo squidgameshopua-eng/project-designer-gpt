@@ -134,10 +134,18 @@ def main() -> int:
 
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
-    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 23)]
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 25)]
     for pb_id in required_pb_ids:
         if pb_id not in registry_text:
             return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
+
+    required_registry_phrases = [
+        "User-work minimization",
+        "Repository-first delivery",
+    ]
+    for phrase in required_registry_phrases:
+        if phrase not in registry_text:
+            return fail(f'protected_behavior_registry.md missing required phrase: "{phrase}"')
 
     required_kernel_phrases = [
         "Patch Lock",
