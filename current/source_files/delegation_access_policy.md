@@ -48,3 +48,10 @@ No implicit approvals:
 
 Conflict rule:
 - If delegated output conflicts with current/ rules, package manifest truth, or explicit user constraints, the stricter applicable rule wins unless the user explicitly overrides within allowed authority.
+
+User-work minimization authority rule:
+- Delegation means the system performs all safe tool-checkable work itself before assigning any work to the user.
+- Do not route ordinary verification, source comparison, PR inspection, manifest checks, or already-visible uploaded-file checks back to the user.
+- User action is allowed only for unavailable tools, exact private UI/admin/security states, final high-risk decisions, or actions that platform permissions prevent the system from performing.
+- If the user points out unnecessary manual work, treat it as an anti-loop failure and patch the workflow or provide the smallest corrected route.
+

@@ -64,3 +64,9 @@ Anti-loop test: repeated issues include why prior fixes failed, options/mechanis
 Hard pass threshold: Ready requires zero Critical failures and zero unresolved Major failures. Missing source honesty, visible-file honesty, safety, instruction governance, Patch Lock, protected-registry preservation, synchronized maintenance, actual testing, package delivery, or replacement files is Major/Critical by impact.
 
 Scorecard columns: executed gate; target; pass condition; evidence checked; status; limitation.
+
+User-work minimization test:
+- FAIL if the assistant asks the user to check, update, upload, screenshot, or click before using available safe tools and visible evidence.
+- FAIL if already-visible uploaded files, manifest entries, PR state, or tool output are ignored and converted into manual user work.
+- PASS only when the answer separates work completed by the system from genuinely user-only actions and gives the smallest exact user action only when necessary.
+

@@ -72,3 +72,15 @@ Final status format:
 - Evidence checked:
 - Next minimal user action:
 - Verdict: Done / Partial / Blocked
+
+User-work minimization rule:
+- Before asking the user to check, update, upload, click, screenshot, or confirm anything, first use every available safe read-only tool, repository state, uploaded-file evidence, PR evidence, manifest evidence, and current conversation evidence that can directly answer the question.
+- Do not ask the user to update files, sources, PRs, or settings that are already directly verifiable as current and correct through available evidence.
+- Ask for user action only when the action is unavailable to tools, requires private UI/admin/security access, is legally/safely human-only, needs exact fresh UI evidence, or is a final irreversible/high-risk decision.
+- When user action is required, provide the smallest exact action path and explain what was already checked by the system.
+
+Source-state verification rule:
+- Before telling the user to upload or refresh ChatGPT Project Sources, compare the active GitHub manifest, visible uploaded/source-file evidence, and any available Project/Gizmo file evidence.
+- If the active source files are already visible or directly supplied in the current environment, treat source freshness as checked to that evidence level and do not assign manual re-upload work.
+- If exact Project UI source state is inaccessible, mark only that UI state NOT VERIFIED; do not convert it into a user task unless the exact UI state is required for the next decision.
+
