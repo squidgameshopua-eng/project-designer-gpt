@@ -21,7 +21,8 @@ Risk classes:
 - destructive: deletion, rollback, irreversible transformations, or history rewriting risk.
 - access: repository/org access, secrets, visibility, ownership, permissions, branch protection, or app authorization scope.
 
-Low-risk auto-merge gate:
+Low-risk automation gate:
+This rule does not permit GitHub PR merge, auto-merge, marking draft PRs ready for review, branch deletion, branch protection changes, or access changes.
 - Low-risk changes may proceed through normal automation gates only after package guard validation PASS and no conflicting protected/governance/destructive/access triggers.
 
 Protected/governance/destructive gate:

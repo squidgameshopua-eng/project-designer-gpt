@@ -12,6 +12,7 @@ PROTECTED_FILES = [
     CURRENT_DIR / "instructions/Instructions.md",
     CURRENT_DIR / "package_manifest/package_manifest.json",
     CURRENT_DIR / "source_files/delegation_access_policy.md",
+    CURRENT_DIR / "source_files/autonomous_workflow_router.md",
     ROOT / ".github/workflows/package_guard.yml",
     ROOT / "scripts/validate_package_guard.py",
 ]
@@ -81,6 +82,12 @@ def main() -> int:
         err = assert_exists(protected, "Protected file")
         if err:
             return fail(err)
+
+    delegation_policy_text = (SOURCE_DIR / "delegation_access_policy.md").read_text(encoding="utf-8")
+    if "Low-risk auto-merge gate" in delegation_policy_text:
+        return fail(
+            'delegation_access_policy.md contains deprecated phrase "Low-risk auto-merge gate"'
+        )
 
     print("PASS: package guard validation succeeded")
     return 0
