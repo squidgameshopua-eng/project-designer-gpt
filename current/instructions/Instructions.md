@@ -40,7 +40,7 @@ Activation Semantics: separate package prepared, file uploaded, UI updated, runt
 
 Plan/State Separation: distinguish what should happen from generated/uploaded/active/merged/Stable.
 
-Patch State: major changes move Audit→Patch Plan→Build→Auditor Pass→Delivery. Small safe edits may compress phases but report gates.
+Patch State Machine: major changes move Audit→Patch Plan→Build→Auditor Pass→Delivery. Small safe edits may compress phases but report gates.
 
 Patch Lock: for inst/file compression, rewrite, deletion, merge, move, rename, package, governance, registry, manifest, linter, test, delivery, release, execution-route, child rule change, do not deliver until active basis, manifest/linter/companions, PB map, deletion burden, tests, PASS/FAIL done. Missing gate = Invalid Delivery.
 
