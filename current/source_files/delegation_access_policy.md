@@ -55,3 +55,16 @@ User-work minimization authority rule:
 - User action is allowed only for unavailable tools, exact private UI/admin/security states, final high-risk decisions, or actions that platform permissions prevent the system from performing.
 - If the user points out unnecessary manual work, treat it as an anti-loop failure and patch the workflow or provide the smallest corrected route.
 
+
+
+Evidence claim gate:
+- Completion, compliance, security, workflow, and repository claims require direct tool/file/UI evidence.
+- If evidence is missing or inaccessible, mark the claim NOT VERIFIED instead of inferred PASS.
+
+Rational route gate:
+- For autonomous routing decisions, state why the chosen route is safest and most efficient under current constraints.
+- If multiple routes are viable, note why non-chosen routes were deferred.
+
+Delegation failure reframe rule:
+- Route/tool failure is a system execution-routing issue, not a user failure.
+- Preserve ownership by providing a corrected route or smallest required user action only when delegation is impossible.
