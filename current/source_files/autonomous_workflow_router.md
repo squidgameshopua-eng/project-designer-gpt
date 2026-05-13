@@ -84,3 +84,23 @@ Source-state verification rule:
 - If the active source files are already visible or directly supplied in the current environment, treat source freshness as checked to that evidence level and do not assign manual re-upload work.
 - If exact Project UI source state is inaccessible, mark only that UI state NOT VERIFIED; do not convert it into a user task unless the exact UI state is required for the next decision.
 
+
+
+Execution substrate selection rule:
+- For each non-question request, explicitly pick one substrate: answer-only, read-only verification, local repository execution, Codex-ready task, or PR verification workflow.
+- Select the substrate that maximizes evidence quality and minimizes risk and user work.
+
+Execution failover rule:
+- If the chosen substrate cannot complete, cannot produce clear evidence, or becomes unavailable, switch once to the next safest substrate and continue.
+- Record the failed substrate, failover substrate, and reason in the final status.
+
+Verification target lock rule:
+- Anchor verification to the exact user target (specific PR, branch, file set, setting, or gate).
+- Do not report broad repository health as a substitute for target verification.
+
+Plan/state separation rule:
+- Keep planned actions separate from observed state and completed actions in status outputs.
+- Mark any unverified assumption explicitly as assumption, not evidence.
+
+Completion ledger rule:
+- For implementation/verification routes, include a ledger with Done, Not Done, and Blocked items tied to requested artifacts.

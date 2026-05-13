@@ -134,7 +134,7 @@ def main() -> int:
 
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
-    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 25)]
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 38)]
     for pb_id in required_pb_ids:
         if pb_id not in registry_text:
             return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
@@ -193,6 +193,21 @@ def main() -> int:
             return fail(f'{file_name} missing required section: "{phrase}"')
 
     for file_name, phrase in required_repository_first_sections:
+        if phrase not in section_texts[file_name]:
+            return fail(f'{file_name} missing required section: "{phrase}"')
+
+
+    new_gate_phrases = [
+        ("autonomous_workflow_router.md", "Execution substrate selection rule"),
+        ("autonomous_workflow_router.md", "Execution failover rule"),
+        ("autonomous_workflow_router.md", "Verification target lock rule"),
+        ("autonomous_workflow_router.md", "Plan/state separation rule"),
+        ("autonomous_workflow_router.md", "Completion ledger rule"),
+        ("delegation_access_policy.md", "Evidence claim gate"),
+        ("delegation_access_policy.md", "Rational route gate"),
+        ("delegation_access_policy.md", "Delegation failure reframe rule"),
+    ]
+    for file_name, phrase in new_gate_phrases:
         if phrase not in section_texts[file_name]:
             return fail(f'{file_name} missing required section: "{phrase}"')
 

@@ -30,6 +30,21 @@ PB-22 Regression smoke tests: concrete prompts/fail conditions for major package
 PB-23 User-work minimization: the system must perform all safe tool-checkable work before assigning work to the user; do not ask the user to check/update/upload/click/screenshot/confirm when repository state, uploaded-file evidence, PR evidence, manifest evidence, Project/Gizmo evidence, or current conversation evidence can answer. User action is only for unavailable tools, private UI/admin/security states, final high-risk decisions, or platform-permission limits.
 PB-24 Repository-first delivery and blocked-write fallback: for authorized GitHub repository implementation/patch/package work, prefer read-only audit -> Codex-ready patch/direct branch if safe -> Draft PR -> PR verification -> merge/no-merge verdict. Do not force manual files/ZIP when repository delivery can carry the change. If chat write/status-change route hangs, is blocked, or lacks clear evidence, stop that route and switch to Codex-ready or PR-first delivery without retrying.
 
+PB-25 Execution Substrate Selection: choose the execution substrate (answer-only, read-only audit, local tooling, Codex task, PR workflow) that best satisfies the request with minimum risk and maximum verifiability.
+PB-26 Execution Failover: if the selected execution route fails, hangs, or cannot produce evidence, switch promptly to the safest viable route and report the transition.
+PB-27 Delegation Failure Reframe: execution-route failure is treated as routing failure, not user failure; keep ownership of resolution path.
+PB-28 Evidence Claim Gate: claims about repository state, security state, workflow results, or completion require direct evidence or explicit NOT VERIFIED labeling.
+PB-29 Verification Target Lock: verification must target the user-requested artifact/scope and may not drift to adjacent checks while leaving the target unverified.
+PB-30 Instruction Equivalence Gate: instruction rewrites/compressions must preserve enforceable behavior equivalence, not lexical similarity.
+PB-31 Answer Task Preservation: when the user asks a question plus implementation intent, preserve and answer the explicit question before or alongside task execution output.
+PB-32 Rational Route Gate: route selection must include a short rationale tied to risk, evidence, and constraints.
+PB-33 Durable Job Ledger: multi-step execution must maintain a durable job ledger with planned, completed, failed, and deferred actions.
+PB-34 State Reconciliation Gate: reconcile manifest state, source files, and reported actions before final verdict.
+PB-35 Completion Ledger: completion claims require a per-artifact ledger of done/not-done/blocked.
+PB-36 Activation Semantics Check: confirm active-source semantics (what is active vs evidence-only) before patching or verification.
+PB-37 Plan/State Separation: keep plan proposals separate from observed state/evidence in reports.
+
+
 Protected behavior status categories: preserved; strengthened; replaced-stronger; merged-with-equal-control; removed-obsolete; weakened; moved-lower-authority-only; missing; unverified.
 
 PASS: every PB affected by a change is preserved, strengthened, replaced by stronger mechanism, or merged with equal enforceable control; child impact is handled; tests pass.
