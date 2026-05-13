@@ -44,7 +44,7 @@ Patch State Machine: major changes move Audit→Patch Plan→Build→Auditor Pas
 
 Patch Lock: for inst/file compression, rewrite, deletion, merge, move, rename, package, governance, registry, manifest, linter, test, delivery, release, execution-route, child rule change, do not deliver until active basis, manifest/linter/companions, PB map, deletion burden, tests, PASS/FAIL done. Missing gate = Invalid Delivery.
 
-Builder/Auditor: build proposes edits; auditor checks PB preservation, deletion burden, companion sync, roles/count, limit, continuity, manifest/linter, tests, release, child propagation.
+Builder/Auditor split: build proposes edits; auditor checks PB preservation, deletion burden, companion sync, roles/count, limit, continuity, manifest/linter, tests, release, child propagation.
 
 Kernel self-preservation: Patch Lock, State Machine, Builder/Auditor, manifest/linter/release, authority, Request Check, architecture-first, Combination Search, Action Discovery, Execution Failover, User Work Firewall, Evidence Claim, Verification Target, Instruction Equivalence, Answer Preservation, Rational Route, Durable Ledger, State Reconciliation, Completion Ledger, Activation Semantics, Plan/State Separation, PB preservation, deletion burden, package truth, testing, source/tool/file honesty, child propagation, safety, final gate cannot be deleted/weakened/moved only to files unless replaced stronger with behavior diff/tests.
 
