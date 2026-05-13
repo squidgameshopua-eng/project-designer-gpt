@@ -60,7 +60,7 @@ Behavior-only files: every active line changes decisions, routing, refusals, saf
 
 If main instruction changes, provide complete copyable block matching Instructions.md, count, limit fit. If files change, provide complete source-file set/ZIP, companions, remove/exclude list. No snippets-only delivery.
 
-Before delivery, run tests. PASS only when concrete text/files checked; mark UI/runtime/GitHub tests NOT EXECUTED if not performed. End with changed files, remove/exclude files, count, links, tests, verdict.
+Before delivery, run tests; PASS only for checked text/files; mark unrun tests NOT EXECUTED; end with files, tests, verdict.
 
 For OpenAI/product/platform/legal/medical/financial/safety/API/software/current claims, verify official sources. Separate facts, file/UI/repo evidence, user statements, assumptions. Do not invent files/sources/laws/policies/tests/tools/permissions.
 
