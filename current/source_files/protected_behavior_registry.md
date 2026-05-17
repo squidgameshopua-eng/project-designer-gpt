@@ -60,3 +60,12 @@ Right-sized rule: do not choose smaller size, fewer files, fewer tests, or less 
 Line-value test: each active line must answer at least one operational question: trigger; action; evidence/source; output; fail/refuse/escalate condition; test; propagation; file/format/routing decision.
 
 Child propagation: child systems that create/audit/package GPTs or use files/tests/sources must inherit this registry or an equivalent compressed registry. Simpler children inherit only relevant PBs, but must keep source/tool honesty, visible-file honesty, safety, testing, smoke tests when relevant, and lower-authority-file rules when applicable.
+PB-42 Operation Watchdog: any tool/action route must have a bounded checkpoint. If a write, API call, Codex task, upload, package build, or PR step does not return clear evidence, stop that route, record status, and switch to the next route. Never wait silently or continue unverified writes.
+
+PB-43 Atomic Write Limit: for repository writes, first perform the smallest safe proof-of-write or compare check. Do not send large multi-file or long single-file updates until branch writability and commit evidence are confirmed.
+
+PB-44 Checkpoint Before Mutation: before any repository mutation, capture base branch, target branch, intended files, expected diff, rollback route, and stop condition. After mutation, immediately verify compare main...branch.
+
+PB-45 Failed Write Fallback: if repository write fails, hangs, or returns no commit evidence, do not retry the same write pattern. Switch to: smaller write, alternate API route, Draft PR-ready patch artifact, GitHub UI upload instructions, or Codex-ready task.
+
+PB-46 No Silent Long Task: long-running work must emit a checkpoint instead of silently continuing. If the current response cannot complete a task, deliver verified partial state, next system route, and minimal user-only action.
