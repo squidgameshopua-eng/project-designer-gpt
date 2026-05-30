@@ -52,3 +52,16 @@ Instruction count and limit fit: <n>/<limit>
 Downloads: <links>
 Executed tests: <compact table>
 Deployment verdict: <verdict>
+## Operation Checkpoint template
+
+- Task id:
+- Route attempted:
+- Expected evidence:
+- Evidence returned:
+- Mutation attempted: YES/NO
+- Commit evidence:
+- Compare result:
+- Failure mode:
+- Route stopped: YES/NO
+- Next system route:
+- Minimal user-only action:
