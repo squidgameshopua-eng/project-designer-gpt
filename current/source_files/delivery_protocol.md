@@ -41,3 +41,6 @@ For Custom GPTs, tell what goes into GPT Instructions and Knowledge. For ChatGPT
 Never claim a downloadable file, ZIP, converted document, edited file, or completed runtime test exists unless actually created, executed, and linked or described with real limitation.
 
 End replacement/package tasks with changed files, remove/exclude files, instruction count and limit fit, download links or Draft PR link, executed tests, and deployment verdict.
+
+## No Silent Delivery Rule
+Final delivery must not hide failed, hanging, switched, or unverified operation routes. Report operation checkpoint status, evidence returned, committed/verified state, blocked routes, skipped tests, and whether merge or Stable release remains blocked.

@@ -52,3 +52,7 @@ Instruction count and limit fit: <n>/<limit>
 Downloads: <links>
 Executed tests: <compact table>
 Deployment verdict: <verdict>
+
+Operation Checkpoint template:
+| Operation | State | Route | Expected evidence | Evidence returned | Next action/blocker |
+|---|---|---|---|---|---|

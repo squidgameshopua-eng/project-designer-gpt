@@ -134,7 +134,7 @@ def main() -> int:
 
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
-    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 38)]
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 38)] + [f"PB-{n:02d}" for n in range(42, 47)]
     for pb_id in required_pb_ids:
         if pb_id not in registry_text:
             return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
@@ -187,6 +187,9 @@ def main() -> int:
         "delivery_protocol.md": (SOURCE_DIR / "delivery_protocol.md").read_text(encoding="utf-8"),
         "project_operating_protocol.md": (SOURCE_DIR / "project_operating_protocol.md").read_text(encoding="utf-8"),
         "testing_protocol.md": testing_protocol_text,
+        "package_state_protocol.md": (SOURCE_DIR / "package_state_protocol.md").read_text(encoding="utf-8"),
+        "output_templates.md": (SOURCE_DIR / "output_templates.md").read_text(encoding="utf-8"),
+        "protected_behavior_registry.md": registry_text,
     }
     for file_name, phrase in required_user_work_sections:
         if phrase not in section_texts[file_name]:
@@ -217,6 +220,30 @@ def main() -> int:
                 "autonomous_workflow_router.md missing required PR-state fallback phrase "
                 f'"{phrase}"'
             )
+
+    required_operation_watchdog_phrases = [
+        ("protected_behavior_registry.md", "PB-42"),
+        ("protected_behavior_registry.md", "PB-43"),
+        ("protected_behavior_registry.md", "PB-44"),
+        ("protected_behavior_registry.md", "PB-45"),
+        ("protected_behavior_registry.md", "PB-46"),
+        ("autonomous_workflow_router.md", "Operation Watchdog"),
+        ("autonomous_workflow_router.md", "Atomic Write Limit"),
+        ("autonomous_workflow_router.md", "Checkpoint Before Mutation"),
+        ("autonomous_workflow_router.md", "Failed Write Fallback"),
+        ("autonomous_workflow_router.md", "No Silent Long Task"),
+        ("autonomous_workflow_router.md", "Operation Checkpoint"),
+        ("testing_protocol.md", "Silent hang test"),
+        ("testing_protocol.md", "Repeated route failure test"),
+        ("testing_protocol.md", "Atomic write test"),
+        ("testing_protocol.md", "Checkpoint before mutation test"),
+        ("delivery_protocol.md", "No Silent Delivery Rule"),
+        ("package_state_protocol.md", "Operation State"),
+        ("delegation_access_policy.md", "Failed write delegation rule"),
+    ]
+    for file_name, phrase in required_operation_watchdog_phrases:
+        if phrase not in section_texts[file_name]:
+            return fail(f'{file_name} missing required Operation Watchdog phrase: "{phrase}"')
 
     print("PASS: package guard validation succeeded")
     return 0

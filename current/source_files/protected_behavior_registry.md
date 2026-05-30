@@ -60,3 +60,9 @@ Right-sized rule: do not choose smaller size, fewer files, fewer tests, or less 
 Line-value test: each active line must answer at least one operational question: trigger; action; evidence/source; output; fail/refuse/escalate condition; test; propagation; file/format/routing decision.
 
 Child propagation: child systems that create/audit/package GPTs or use files/tests/sources must inherit this registry or an equivalent compressed registry. Simpler children inherit only relevant PBs, but must keep source/tool honesty, visible-file honesty, safety, testing, smoke tests when relevant, and lower-authority-file rules when applicable.
+
+PB-42 Operation Watchdog: track operation progress and evidence separately from plans; do not treat intention, pending work, or attempted work as completion.
+PB-43 Atomic Write Limit: split risky or hanging write work into smaller verifiable writes before escalating to the user or expanding scope.
+PB-44 Checkpoint Before Mutation: before material mutation, record target, route, expected evidence, and rollback/stop condition when risk or duration is non-trivial.
+PB-45 Failed Write Fallback: if write/API/PR/Codex/package execution fails, hangs, or lacks commit evidence, switch routes before converting the work into user workload.
+PB-46 No Silent Long Task: long-running, hanging, or repeated-route operations require an explicit checkpoint, route switch, failure report, or verified completion evidence.
