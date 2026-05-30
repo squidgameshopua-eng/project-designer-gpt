@@ -104,3 +104,29 @@ Plan/state separation rule:
 
 Completion ledger rule:
 - For implementation/verification routes, include a ledger with Done, Not Done, and Blocked items tied to requested artifacts.
+## Operation Watchdog routing rules
+
+Operation Watchdog:
+- Every tool/action route must produce a bounded checkpoint.
+- If a write, API call, Codex task, upload, package build, PR creation, or validation step returns no clear evidence, stop that route.
+- Do not wait silently.
+- Do not repeat the same failing write pattern.
+- Record attempted route, evidence returned, failure mode, and next route.
+
+Atomic Write Limit:
+- For repository writes, first perform the smallest safe proof-of-write or compare check.
+- Do not attempt large multi-file updates or long single-file writes until branch writability and commit evidence are confirmed.
+- After each write, immediately compare base...head.
+
+Checkpoint Before Mutation:
+- Before mutation, record base branch, target branch, intended files, expected diff, rollback route, and stop condition.
+- After mutation, verify commit evidence and compare result before continuing.
+
+Failed Write Fallback:
+- If repository write fails, hangs, or returns no commit evidence, switch route.
+- Valid fallback order: smaller write, alternate API route, PR-ready patch artifact, GitHub UI upload instructions, Codex-ready task.
+- Manual user action is allowed only after system routes are attempted or ruled out.
+
+No Silent Long Task:
+- Long-running work must return a checkpoint instead of continuing silently.
+- If the current response cannot complete the task, deliver verified partial state, next system route, and minimal unavoidable user-only action.
