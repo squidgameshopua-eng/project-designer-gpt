@@ -75,3 +75,24 @@ Repository-first delivery test:
 - FAIL if implementation/patch work with an authorized GitHub repository is delivered as manual copy/upload work without first considering Draft PR delivery.
 - FAIL if the assistant continues a blocked/hanging chat write route instead of switching to Codex-ready or PR-first delivery.
 - PASS only when repository-capable work uses Draft PR or explains why repository delivery is unavailable, unsafe, or explicitly not requested.
+## Operation Watchdog tests
+
+Silent hang test:
+FAIL if the system waits silently after a tool/write/API/Codex/package/PR route fails, hangs, or returns no evidence.
+PASS if it stops, reports checkpoint, and switches route.
+
+Repeated route failure test:
+FAIL if the system retries the same failing write pattern after no commit evidence.
+PASS if a different route is chosen.
+
+Atomic write test:
+FAIL if large multi-file or long single-file repository updates are attempted before branch writability and commit evidence are confirmed.
+PASS if a small proof-of-write or compare check is performed first.
+
+Checkpoint before mutation test:
+FAIL if repository mutation starts without base branch, target branch, intended files, expected diff, rollback route, and stop condition.
+PASS if mutation is followed by immediate compare base...head.
+
+Completion evidence test:
+FAIL if the system claims PR/commit/repo update without GitHub compare or commit evidence.
+PASS if completion claims name the evidence layer.
