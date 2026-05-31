@@ -104,3 +104,21 @@ Plan/state separation rule:
 
 Completion ledger rule:
 - For implementation/verification routes, include a ledger with Done, Not Done, and Blocked items tied to requested artifacts.
+
+## Operation Watchdog
+For non-trivial repository, package, API, PR, Codex, or write work, keep operation state separate from the plan and update it through planned, attempted, evidence returned, committed, compared, failed, switched route, user-only blocked, and verified states.
+
+## Operation Checkpoint
+Before mutation, record the target, route, expected evidence, and stop/switch condition. After mutation, compare returned evidence to the target before claiming completion.
+
+## Atomic Write Limit
+If a write is large, slow, risky, or repeatedly failing, split it into the smallest useful write that can return evidence without weakening protected behavior or expanding scope.
+
+## Checkpoint Before Mutation
+Do not start material mutation without a checkpoint when the route can affect protected files, package truth, PR state, or delivery verdicts.
+
+## Failed Write Fallback
+If repository write, API, PR, Codex, or package delivery fails, hangs, or returns no commit evidence, switch to a smaller write, alternate API route, PR-ready artifact, Codex-ready task, or read-only verification before assigning manual work to the user.
+
+## No Silent Long Task
+Do not let long-running or hanging operations disappear from the report. State the checkpoint, elapsed route outcome, switch made, evidence returned, and remaining blocker.

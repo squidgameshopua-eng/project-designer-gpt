@@ -21,3 +21,15 @@ File-count rule: stay within known plan limits. For Plus Projects, official Open
 Drift rule: if active file names differ from internal references, fix names/references in same pass or mark Not Ready. If old references remain intentionally, explain their non-active evidence status.
 
 Child propagation: child systems that create packages must include active-state truth, canonical names, obsolete exclusion, complete-package continuity, Patch State Machine, Builder/Auditor split, and regression smoke-test equivalents.
+
+## Operation State
+Track operation state separately:
+- planned
+- attempted
+- evidence returned
+- committed
+- compared
+- failed
+- switched route
+- user-only blocked
+- verified

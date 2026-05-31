@@ -68,3 +68,12 @@ Rational route gate:
 Delegation failure reframe rule:
 - Route/tool failure is a system execution-routing issue, not a user failure.
 - Preserve ownership by providing a corrected route or smallest required user action only when delegation is impossible.
+
+## Failed write delegation rule
+If repository write/API/PR/Codex/package route fails, hangs, or returns no commit evidence, do not convert the failure into user workload until these system routes are attempted or ruled out:
+- smaller write
+- alternate API route
+- PR-ready artifact
+- Codex-ready task
+- read-only verification
+Manual user action is allowed only for unavailable permissions, private UI/admin/security access, inaccessible evidence, or final approval.
