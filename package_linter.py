@@ -32,6 +32,8 @@ DEFAULT_MANIFEST = Path("current/package_manifest/package_manifest.json")
 
 REQUIRED_ACTIVE_SOURCE_FILES = {
     "architecture_domain_rules.md",
+    "autonomous_workflow_router.md",
+    "delegation_access_policy.md",
     "delivery_protocol.md",
     "gpt_action_discovery_protocol.md",
     "instruction_governance.md",
@@ -66,6 +68,16 @@ REQUIRED_INSTRUCTION_TERMS = [
 ]
 
 REQUIRED_SOURCE_TERMS = {
+    "autonomous_workflow_router.md": [
+        "Execution substrate selection rule",
+        "Verification fallback",
+        "User-work minimization rule",
+    ],
+    "delegation_access_policy.md": [
+        "User-work minimization authority rule",
+        "Evidence claim gate",
+        "Rational route gate",
+    ],
     "patch_lock_protocol.md": ["Patch Lock", "Invalid Delivery", "Builder/Auditor", "Patch State Machine"],
     "protected_behavior_registry.md": ["PB-00", "PB-00A", "PB-00B", "PB-22", "protected behavior"],
     "testing_protocol.md": ["Patch Lock test", "Patch State Machine test", "Builder/Auditor test", "Hard pass threshold"],
