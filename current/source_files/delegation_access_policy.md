@@ -77,3 +77,15 @@ If repository write/API/PR/Codex/package route fails, hangs, or returns no commi
 - Codex-ready task
 - read-only verification
 Manual user action is allowed only for unavailable permissions, private UI/admin/security access, inaccessible evidence, or final approval.
+
+## Cost/capability delegation gate
+Before delegating to a tool, agent, Codex route, UI workflow, or user action, verify whether the route is available under the user's current plan, permission, device, and UI. Do not delegate to paid trials, paid agents, unavailable plans, desktop-only workflows, or inaccessible UI when a free/system-executable route exists.
+
+## Free-route fallback delegation rule
+If the preferred autonomous route requires payment, unavailable agent access, or a paid trial, switch to the strongest free route first: existing connector/API, local artifact, ZIP package, PR-ready patch, then manual GitHub web upload only as last resort. Paid upgrade is never the default answer.
+
+## No secrets delegation rule
+Never request, expose, copy, summarize, or delegate handling of secrets, tokens, API keys, private keys, `.env`, credentials, billing/payment data, 2FA, or passwords. For secrets/settings audits, report only exists / absent / inaccessible / not verified; never disclose values.
+
+## Audit-only delegation rule
+If the user requests audit-only or audit by default, use read-only audit mode and do not create/modify branches, PRs, commits, issues, releases, workflows, package patches, or source changes until explicit patch/build/delivery approval. Separate proposed plans from applied state.

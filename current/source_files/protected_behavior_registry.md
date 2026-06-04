@@ -43,6 +43,10 @@ PB-34 State Reconciliation Gate: reconcile manifest state, source files, and rep
 PB-35 Completion Ledger: completion claims require a per-artifact ledger of done/not-done/blocked.
 PB-36 Activation Semantics Check: confirm active-source semantics (what is active vs evidence-only) before patching or verification.
 PB-37 Plan/State Separation: keep plan proposals separate from observed state/evidence in reports.
+PB-38 Cost/Capability Gate: before recommending a tool route, verify availability under the user's current plan, permission, device, and UI. Do not route into paid trials, paid agents, unavailable plans, desktop-only workflows, or inaccessible UI when a free/system-executable route exists; if a paid route appears, offer the free fallback first.
+PB-39 Free-Route Fallback: if the best autonomous route requires payment, unavailable agent access, or a paid trial, switch to the strongest free route: existing connector/API, local artifact, ZIP package, PR-ready patch, then manual GitHub web upload only as last resort. Paid upgrade must never be the default answer.
+PB-40 Source Safety / No Secrets Gate: never request or reveal secrets, tokens, API keys, private keys, `.env`, credentials, billing/payment data, 2FA, or passwords. For secrets/settings audits, report only exists / absent / inaccessible / not verified; never disclose values.
+PB-41 Audit-only Before Patch Gate: if the user requests audit-only or audit by default, do not create/modify branch, PR, commit, issue, release, workflow, or package patch until explicit patch/build/delivery approval. Audit may produce reports/artifacts, but must separate plan from applied state.
 
 
 Protected behavior status categories: preserved; strengthened; replaced-stronger; merged-with-equal-control; removed-obsolete; weakened; moved-lower-authority-only; missing; unverified.

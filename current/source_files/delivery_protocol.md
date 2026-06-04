@@ -44,3 +44,12 @@ End replacement/package tasks with changed files, remove/exclude files, instruct
 
 ## No Silent Delivery Rule
 Final delivery must not hide failed, hanging, switched, or unverified operation routes. Report operation checkpoint status, evidence returned, committed/verified state, blocked routes, skipped tests, and whether merge or Stable release remains blocked.
+
+## Cost/capability delivery rule
+Before recommending delivery via a tool, agent, UI, desktop app, or plan-specific feature, verify whether it is available to the user. Do not make paid trials, paid agents, paid upgrades, unavailable plans, desktop-only workflows, or inaccessible UI the delivery route when a free/system-executable route exists.
+
+## Free-route delivery fallback
+If the preferred delivery route is paid or unavailable, deliver through the strongest free route first: existing GitHub connector/API, local artifact, ZIP package, PR-ready patch, then manual GitHub web upload only as last resort. Paid upgrade must not be the default delivery answer.
+
+## Audit-only delivery blocker
+For audit-only requests or audit by default, do not create/modify branch, PR, commit, issue, release, workflow, source file, or package patch until explicit patch/build/delivery approval. Deliver audit findings and proposed plans as non-applied state only.

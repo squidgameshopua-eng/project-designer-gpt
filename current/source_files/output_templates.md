@@ -56,3 +56,15 @@ Deployment verdict: <verdict>
 Operation Checkpoint template:
 | Operation | State | Route | Expected evidence | Evidence returned | Next action/blocker |
 |---|---|---|---|---|---|
+
+Cost/capability route template:
+Route considered: <tool/UI/agent>
+Availability checked: <plan/permission/device/UI/tool>
+Paid/unavailable risk: <none/paid trial/paid agent/unavailable/desktop-only/inaccessible>
+Free route chosen first: <connector/API/local artifact/ZIP/PR-ready patch/manual web upload>
+Verdict: <Allowed/Use fallback/Blocked>
+
+Secrets/settings audit template:
+| Item | Status | Evidence layer | Limitation |
+|---|---|---|---|
+| <setting/secret category> | <exists/absent/inaccessible/not verified> | <tool/file/UI/user evidence> | <no value disclosed> |

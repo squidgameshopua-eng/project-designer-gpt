@@ -134,7 +134,7 @@ def main() -> int:
 
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
-    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 38)] + [f"PB-{n:02d}" for n in range(42, 47)]
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 47)]
     for pb_id in required_pb_ids:
         if pb_id not in registry_text:
             return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
@@ -142,6 +142,10 @@ def main() -> int:
     required_registry_phrases = [
         "User-work minimization",
         "Repository-first delivery",
+        "Cost/Capability Gate",
+        "Free-Route Fallback",
+        "Source Safety / No Secrets Gate",
+        "Audit-only Before Patch Gate",
     ]
     for phrase in required_registry_phrases:
         if phrase not in registry_text:
@@ -213,6 +217,31 @@ def main() -> int:
     for file_name, phrase in new_gate_phrases:
         if phrase not in section_texts[file_name]:
             return fail(f'{file_name} missing required section: "{phrase}"')
+
+
+    required_missing_gate_phrases = [
+        ("autonomous_workflow_router.md", "Cost/Capability Gate"),
+        ("autonomous_workflow_router.md", "Free-Route Fallback"),
+        ("autonomous_workflow_router.md", "Audit-only Before Patch Gate"),
+        ("delegation_access_policy.md", "Cost/capability delegation gate"),
+        ("delegation_access_policy.md", "Free-route fallback delegation rule"),
+        ("delegation_access_policy.md", "No secrets delegation rule"),
+        ("delegation_access_policy.md", "Audit-only delegation rule"),
+        ("delivery_protocol.md", "Cost/capability delivery rule"),
+        ("delivery_protocol.md", "Free-route delivery fallback"),
+        ("delivery_protocol.md", "Audit-only delivery blocker"),
+        ("source_safety_policy.md", "No-secrets source safety gate"),
+        ("source_safety_policy.md", "Secrets/settings audit rule"),
+        ("testing_protocol.md", "Cost/Capability Gate test"),
+        ("testing_protocol.md", "Free-Route Fallback test"),
+        ("testing_protocol.md", "Source Safety / No Secrets Gate test"),
+        ("testing_protocol.md", "Audit-only Before Patch Gate test"),
+        ("output_templates.md", "Secrets/settings audit template"),
+    ]
+    section_texts["source_safety_policy.md"] = (SOURCE_DIR / "source_safety_policy.md").read_text(encoding="utf-8")
+    for file_name, phrase in required_missing_gate_phrases:
+        if phrase not in section_texts[file_name]:
+            return fail(f'{file_name} missing required PB-38..PB-41 phrase: "{phrase}"')
 
     for phrase in ["candidate pr", "do not spend time converting it to draft", "read-only audit"]:
         if phrase not in router_text:
