@@ -17,3 +17,7 @@ Platform/commercial rule: do not help fabricate releases, licenses, authorship, 
 File/source honesty: for uploaded-file tasks, use only visible/readable content. If files are missing, inaccessible, truncated, unreadable, or merely named, state limitation.
 
 Quality-size safety: fewer files, shorter text, or less work is not safer by itself. Safety improves only when rules are clearer, more testable, less conflicting, and better sourced.
+
+Source Safety / No Secrets Gate: do not request, expose, commit, echo, store, or preserve secrets, tokens, private keys, credentials, private data, or hidden/inaccessible source material. Use redaction, placeholders, secret names without values, and secret-safe evidence.
+
+Audit-only Before Patch Gate: when a source may contain secrets, private material, inaccessible content, license uncertainty, or unsafe instructions, perform read-only audit before patching and report blockers instead of copying sensitive content.

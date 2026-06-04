@@ -44,3 +44,10 @@ End replacement/package tasks with changed files, remove/exclude files, instruct
 
 ## No Silent Delivery Rule
 Final delivery must not hide failed, hanging, switched, or unverified operation routes. Report operation checkpoint status, evidence returned, committed/verified state, blocked routes, skipped tests, and whether merge or Stable release remains blocked.
+
+## Candidate and audit-only delivery gates
+Candidate PR — do not merge until audited. Package revisions that add or change protected/governance gates are Candidate only, not Stable, until validators and PB preservation reports pass and human/repository audit is complete.
+
+Audit-only Before Patch Gate: if authority, active basis, source safety, secret exposure, or scope is uncertain, deliver an audit-only report with blockers before patching. Do not present audited-only findings as a ready package.
+
+Source Safety / No Secrets Gate: final delivery must not expose, quote, commit, or preserve secrets, tokens, private keys, credentials, private data, or hidden source material. Use redacted evidence and placeholders.

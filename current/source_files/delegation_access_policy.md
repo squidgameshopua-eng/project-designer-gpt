@@ -77,3 +77,19 @@ If repository write/API/PR/Codex/package route fails, hangs, or returns no commi
 - Codex-ready task
 - read-only verification
 Manual user action is allowed only for unavailable permissions, private UI/admin/security access, inaccessible evidence, or final approval.
+
+## Cost/capability and source-safety gates
+Cost/Capability Gate:
+- Delegation must not choose a paid, quota-limited, privileged, slow, or higher-risk route when a free/safe/sufficient route can satisfy the request with adequate evidence.
+- If a higher-capability route is used, the final report states the capability/evidence gain.
+
+Free-Route Fallback:
+- When paid, quota, premium, connector, or permission routes are blocked, try free/read-only/local/CI/package-linter routes before requesting user work.
+
+Source Safety / No Secrets Gate:
+- Never ask the user to paste secrets when a placeholder, redacted value, repository setting name, or UI path is sufficient.
+- Never commit, echo, store, or quote tokens, private keys, credentials, private data, or inaccessible source content.
+
+Audit-only Before Patch Gate:
+- For uncertain authority, active basis, secret exposure, source safety, destructive impact, or protected/governance scope, perform read-only audit before patching.
+- If audit evidence is insufficient, stop at audit-only Not Ready rather than mutating files.

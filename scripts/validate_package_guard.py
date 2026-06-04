@@ -134,7 +134,7 @@ def main() -> int:
 
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
-    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 38)] + [f"PB-{n:02d}" for n in range(42, 47)]
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 47)]
     for pb_id in required_pb_ids:
         if pb_id not in registry_text:
             return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
@@ -190,6 +190,7 @@ def main() -> int:
         "package_state_protocol.md": (SOURCE_DIR / "package_state_protocol.md").read_text(encoding="utf-8"),
         "output_templates.md": (SOURCE_DIR / "output_templates.md").read_text(encoding="utf-8"),
         "protected_behavior_registry.md": registry_text,
+        "source_safety_policy.md": (SOURCE_DIR / "source_safety_policy.md").read_text(encoding="utf-8"),
     }
     for file_name, phrase in required_user_work_sections:
         if phrase not in section_texts[file_name]:
@@ -209,6 +210,21 @@ def main() -> int:
         ("delegation_access_policy.md", "Evidence claim gate"),
         ("delegation_access_policy.md", "Rational route gate"),
         ("delegation_access_policy.md", "Delegation failure reframe rule"),
+        ("autonomous_workflow_router.md", "Cost/Capability Gate"),
+        ("autonomous_workflow_router.md", "Free-Route Fallback"),
+        ("autonomous_workflow_router.md", "Audit-only Before Patch Gate"),
+        ("autonomous_workflow_router.md", "Source Safety / No Secrets Gate"),
+        ("delegation_access_policy.md", "Cost/Capability Gate"),
+        ("delegation_access_policy.md", "Free-Route Fallback"),
+        ("delegation_access_policy.md", "Source Safety / No Secrets Gate"),
+        ("delegation_access_policy.md", "Audit-only Before Patch Gate"),
+        ("source_safety_policy.md", "Source Safety / No Secrets Gate"),
+        ("source_safety_policy.md", "Audit-only Before Patch Gate"),
+        ("testing_protocol.md", "Cost/Capability Gate test"),
+        ("testing_protocol.md", "Free-Route Fallback test"),
+        ("testing_protocol.md", "Source Safety / No Secrets Gate test"),
+        ("testing_protocol.md", "Audit-only Before Patch Gate test"),
+        ("output_templates.md", "Candidate PR report fields"),
     ]
     for file_name, phrase in new_gate_phrases:
         if phrase not in section_texts[file_name]:

@@ -122,3 +122,20 @@ If repository write, API, PR, Codex, or package delivery fails, hangs, or return
 
 ## No Silent Long Task
 Do not let long-running or hanging operations disappear from the report. State the checkpoint, elapsed route outcome, switch made, evidence returned, and remaining blocker.
+
+## Cost/Capability and audit-first routing
+Cost/Capability Gate:
+- Before using a paid, quota-limited, privileged, slow, or higher-risk route, choose the free, read-only, local, CI, linter, or repository-evidence route when it is sufficient.
+- Use a higher-cost route only when it materially improves capability, evidence quality, safety, or delivery reliability, and report why.
+
+Free-Route Fallback:
+- If a paid, quota, permission, premium-tool, or connector route is unavailable or blocked, switch to free/read-only/local/CI/package-linter evidence before assigning work to the user.
+- Do not treat premium-tool failure as proof that verification or delivery is impossible while a safe free route remains.
+
+Audit-only Before Patch Gate:
+- If authority, active package basis, requested scope, source safety, secret exposure, or patch risk is uncertain, run read-only audit before mutation.
+- Patch only after the audit identifies the target files, blockers, and safe route; otherwise report audit-only findings and Not Ready.
+
+Source Safety / No Secrets Gate:
+- Do not request, expose, commit, quote, or preserve secrets, tokens, private keys, credentials, private data, or hidden source material.
+- Use redaction/placeholders and secret-safe evidence when proving source or repository state.

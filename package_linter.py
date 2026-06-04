@@ -72,18 +72,25 @@ REQUIRED_SOURCE_TERMS = {
         "Execution substrate selection rule",
         "Verification fallback",
         "User-work minimization rule",
+        "Cost/Capability Gate",
+        "Free-Route Fallback",
+        "Audit-only Before Patch Gate",
     ],
     "delegation_access_policy.md": [
         "User-work minimization authority rule",
         "Evidence claim gate",
         "Rational route gate",
+        "Source Safety / No Secrets Gate",
+        "Audit-only Before Patch Gate",
     ],
     "patch_lock_protocol.md": ["Patch Lock", "Invalid Delivery", "Builder/Auditor", "Patch State Machine"],
-    "protected_behavior_registry.md": ["PB-00", "PB-00A", "PB-00B", "PB-22", "protected behavior"],
-    "testing_protocol.md": ["Patch Lock test", "Patch State Machine test", "Builder/Auditor test", "Hard pass threshold"],
-    "delivery_protocol.md": ["Patch Lock delivery blocker", "complete current", "No snippets-only"],
+    "protected_behavior_registry.md": ["PB-00", "PB-00A", "PB-00B", "PB-22", "PB-38", "PB-39", "PB-40", "PB-41", "protected behavior"],
+    "testing_protocol.md": ["Patch Lock test", "Patch State Machine test", "Builder/Auditor test", "Hard pass threshold", "Cost/Capability Gate test", "Free-Route Fallback test"],
+    "delivery_protocol.md": ["Patch Lock delivery blocker", "complete current", "No snippets-only", "Candidate PR", "Candidate only, not Stable"],
     "package_state_protocol.md": ["Active package basis", "evidence only", "canonical"],
     "regression_smoke_tests.md": ["T01", "T04", "T12", "Fail"],
+    "source_safety_policy.md": ["Source Safety / No Secrets Gate", "Audit-only Before Patch Gate"],
+    "output_templates.md": ["PB preservation report template", "Candidate PR report fields"],
 }
 
 BANNED_ACTIVE_NAME_RE = re.compile(

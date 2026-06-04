@@ -43,7 +43,10 @@ PB-34 State Reconciliation Gate: reconcile manifest state, source files, and rep
 PB-35 Completion Ledger: completion claims require a per-artifact ledger of done/not-done/blocked.
 PB-36 Activation Semantics Check: confirm active-source semantics (what is active vs evidence-only) before patching or verification.
 PB-37 Plan/State Separation: keep plan proposals separate from observed state/evidence in reports.
-
+PB-38 Cost/Capability Gate: before using paid, quota-limited, slow, privileged, or higher-risk tools/delegation, choose the free/safe/sufficient route unless the higher route materially improves capability or evidence; report the rationale.
+PB-39 Free-Route Fallback: if a paid, quota, permission, or premium-capability route is blocked, prefer free/read-only/local/CI/package-linter evidence before asking the user or stopping.
+PB-40 Source Safety / No Secrets Gate: do not request, expose, commit, echo, or preserve secrets, tokens, private keys, credentials, private data, or hidden source material; use redaction, placeholders, and secret-safe evidence.
+PB-41 Audit-only Before Patch Gate: when authority, active basis, source safety, secret exposure, request scope, or patch risk is uncertain, perform read-only audit before mutation and report blockers before patching.
 
 Protected behavior status categories: preserved; strengthened; replaced-stronger; merged-with-equal-control; removed-obsolete; weakened; moved-lower-authority-only; missing; unverified.
 
@@ -51,7 +54,7 @@ PASS: every PB affected by a change is preserved, strengthened, replaced by stro
 
 FAIL/Invalid Delivery: any PB is missing, weakened, moved only to lower-authority files, untestable, not mapped, not tested, or not reported in the behavior diff.
 
-Owner map: Instructions.md owns mandatory triggers and kernel; patch_lock_protocol.md owns change blocking; this registry owns PB IDs/status; autonomous_workflow_router.md owns user-work minimization and blocked-write routing; delivery_protocol.md owns repository-first delivery; testing_protocol.md owns gates and tests for user-work minimization and repository-first delivery; package_state_protocol.md owns active-state truth; instruction_governance.md owns layer authority/synchronization; output_templates.md owns report structures; source_safety_policy.md owns source/safety details; regression_smoke_tests.md owns concrete regression prompts.
+Owner map: Instructions.md owns mandatory triggers and kernel; patch_lock_protocol.md owns change blocking; this registry owns PB IDs/status; autonomous_workflow_router.md owns user-work minimization and blocked-write routing; delivery_protocol.md owns repository-first delivery; testing_protocol.md owns gates and tests for user-work minimization and repository-first delivery; package_state_protocol.md owns active-state truth; instruction_governance.md owns layer authority/synchronization; output_templates.md owns report structures; source_safety_policy.md owns source/safety/no-secrets details; regression_smoke_tests.md owns concrete regression prompts.
 
 Deletion rule: never protect exact wording when a shorter stronger mechanism preserves behavior. Always protect the behavior. Remove wording only after deletion/merge burden proves equal/stronger replacement or non-operational/obsolete/unsafe/duplicate status.
 

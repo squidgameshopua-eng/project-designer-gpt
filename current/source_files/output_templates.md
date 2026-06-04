@@ -56,3 +56,13 @@ Deployment verdict: <verdict>
 Operation Checkpoint template:
 | Operation | State | Route | Expected evidence | Evidence returned | Next action/blocker |
 |---|---|---|---|---|---|
+
+PB preservation report template:
+| PB ID | Status | Evidence | Risk |
+|---|---|---|---|
+| PB-38 Cost/Capability Gate | <preserved/strengthened/weakened> | <evidence> | <risk> |
+| PB-39 Free-Route Fallback | <preserved/strengthened/weakened> | <evidence> | <risk> |
+| PB-40 Source Safety / No Secrets Gate | <preserved/strengthened/weakened> | <evidence> | <risk> |
+| PB-41 Audit-only Before Patch Gate | <preserved/strengthened/weakened> | <evidence> | <risk> |
+
+Candidate PR report fields: validator output; package_linter output; instruction character count; PB preservation report; deletion burden; changed files; verdict: Candidate only, not Stable.
