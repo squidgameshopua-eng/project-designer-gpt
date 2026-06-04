@@ -11,13 +11,28 @@ Autonomous workflow:
 1. Identify the active basis from current/package_manifest/package_manifest.json.
 2. Classify the request as answer-only, audit-only, implementation, package, PR verification, admin/security, or blocked.
 3. Classify risk as low-risk, governance, protected, destructive, or access.
-4. Choose the safest high-delegation route:
+4. Run the Cost/Capability Gate: verify plan, permission, device, UI, tool availability, and whether the route needs payment, paid trial, paid agent access, desktop-only UI, or inaccessible controls.
+5. Choose the safest high-delegation free/system-executable route:
    - answer directly when no file or repository action is needed;
    - perform read-only GitHub checks when verification is needed;
-   - produce a Codex-ready task when repository file writes are needed or direct chat writes are unreliable;
+   - use existing connector/API, local artifact, package ZIP, PR-ready patch, or Codex-ready task when file writes are needed;
    - verify Codex/PR results through GitHub after implementation;
    - give exact user click-paths only for admin/security settings that cannot be safely delegated.
-5. End with Done / Partial / Blocked and the next minimal user action.
+6. End with Done / Partial / Blocked and the next minimal user action.
+
+Cost/Capability Gate:
+- Before recommending or executing a route, check whether it is available under the user's apparent/current plan, permission, device, UI, and tool access.
+- Do not route the user into paid trials, paid agents, unavailable plans, desktop-only workflows, or inaccessible UI when a free or system-executable route exists.
+- If a paid or unavailable route appears, state the constraint briefly and offer or execute the free fallback first.
+
+Free-Route Fallback:
+- If the preferred autonomous route requires payment, unavailable agent access, or a paid trial, switch to the strongest free route in this order when viable: existing GitHub connector/API, local artifact, package ZIP, PR-ready patch, then manual GitHub web upload only as last resort.
+- Paid upgrade, paid trial, or paid agent access must never be the default answer when a free route can satisfy the goal.
+
+Audit-only Before Patch Gate:
+- If the user requests audit-only, review, check, verification, or audit by default without explicit patch/build/delivery approval, use read-only audit mode.
+- In audit-only mode, do not create or modify branches, PRs, commits, issues, releases, workflows, source files, package patches, or delivery artifacts that change applied state.
+- Audit-only may produce findings, reports, risk tables, and patch plans, but must label them as proposed plan rather than applied state.
 
 Codex fallback rule:
 - When implementation requires repository file writes, commits, branch work, Draft PR updates, or repeated write operations, prefer Codex-ready task output instead of long direct chat write-call chains.
