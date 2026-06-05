@@ -98,3 +98,7 @@ Minimal User Action / Action Compression authority rule:
 User-Facing Russian Output delegation rule:
 - User-facing delegation reports, status, next steps, and verdicts to this user must be in Russian.
 - English is allowed for code, filenames, exact gate names, branch/PR names, exact quotes, and command output when needed, but the surrounding explanation must be Russian.
+
+Target Placement and Result Lock delegation rule:
+- User-facing Codex/GitHub/UI delegation instructions must include the exact paste/click place, exact target object to modify, expected result, and forbidden side effects.
+- If the target object is inaccessible to the system or user route, report the blocker instead of creating a parallel artifact or alternate target without explicit authorization.

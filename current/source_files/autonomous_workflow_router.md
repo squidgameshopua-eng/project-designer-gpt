@@ -147,3 +147,8 @@ Minimal User Action / Action Compression rule:
 User-Facing Russian Output routing rule:
 - Route all user-facing conclusions, explanations, next steps, status reports, and verdicts for this user through Russian output.
 - Keep English only for technical identifiers, filenames, code, exact gate names, GitHub branch names, PR titles, quoted source text, and command output when needed; add Russian explanation around technical English.
+
+Target Placement and Result Lock rule:
+- Before any Codex/GitHub/UI instruction, state the exact paste/click place, exact target object to modify, expected result, and forbidden side effects.
+- If the named target object is inaccessible or not verified, stop that route and report the blocker; do not silently create a parallel package, branch, PR, file, upload target, or substitute artifact.
+- If an alternate artifact is safer, label it as a proposed fallback and require explicit authorization unless the user already authorized that exact alternate target.

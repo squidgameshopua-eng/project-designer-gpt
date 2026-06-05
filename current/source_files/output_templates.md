@@ -99,3 +99,12 @@ PB-49 Minimal User Action / Action Compression template:
 - Why this route has the fewest user actions without lowering quality:
 - Rejected higher-user-work routes:
 - User-only action, if unavoidable:
+
+PB-50 Target Placement and Result Lock template:
+- Instruction route: Codex / GitHub / UI
+- Exact paste/click place:
+- Exact target object to modify:
+- Expected result:
+- Forbidden side effects:
+- Target access status: accessible / inaccessible / not verified
+- Blocker if inaccessible:

@@ -136,7 +136,7 @@ def main() -> int:
 
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
-    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 50)]
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 51)]
     for pb_id in required_pb_ids:
         if pb_id not in registry_text:
             return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
@@ -151,6 +151,7 @@ def main() -> int:
         "GitHub Instruction/Knowledge Delivery Format",
         "User-Facing Russian Output Gate",
         "Minimal User Action / Action Compression Gate",
+        "Target Placement and Result Lock",
     ]
     for phrase in required_registry_phrases:
         if phrase not in registry_text:
@@ -308,36 +309,44 @@ def main() -> int:
         if phrase not in section_texts[file_name]:
             return fail(f'{file_name} missing required Operation Watchdog phrase: "{phrase}"')
 
-    required_pb48_pb49_phrases = [
+    required_pb48_pb49_pb50_phrases = [
         ("protected_behavior_registry.md", "PB-48 User-Facing Russian Output Gate"),
         ("protected_behavior_registry.md", "PB-49 Minimal User Action / Action Compression Gate"),
+        ("protected_behavior_registry.md", "PB-50 Target Placement and Result Lock"),
         ("current/instructions/Instructions.md", "User-Facing Russian Output"),
         ("current/instructions/Instructions.md", "Minimal User Action"),
+        ("current/instructions/Instructions.md", "Target Placement and Result Lock"),
         ("autonomous_workflow_router.md", "Minimal User Action / Action Compression rule"),
         ("autonomous_workflow_router.md", "User-Facing Russian Output routing rule"),
+        ("autonomous_workflow_router.md", "Target Placement and Result Lock rule"),
         ("delegation_access_policy.md", "Minimal User Action / Action Compression authority rule"),
         ("delegation_access_policy.md", "User-Facing Russian Output delegation rule"),
+        ("delegation_access_policy.md", "Target Placement and Result Lock delegation rule"),
         ("testing_protocol.md", "PB-48 User-Facing Russian Output Gate tests"),
         ("testing_protocol.md", "PB-49 Minimal User Action / Action Compression tests"),
+        ("testing_protocol.md", "PB-50 Target Placement and Result Lock tests"),
         ("testing_protocol.md", "Russian user-facing output test"),
         ("testing_protocol.md", "Minimal user action test"),
+        ("testing_protocol.md", "Target placement test"),
         ("output_templates.md", "PB-48 User-facing Russian output template"),
         ("output_templates.md", "PB-49 Minimal User Action / Action Compression template"),
+        ("output_templates.md", "PB-50 Target Placement and Result Lock template"),
         ("output_templates.md", "User-facing language: Russian"),
         ("output_templates.md", "User actions required per route"),
+        ("output_templates.md", "Exact target object to modify"),
     ]
     section_texts["current/instructions/Instructions.md"] = instruction_text
-    for file_name, phrase in required_pb48_pb49_phrases:
+    for file_name, phrase in required_pb48_pb49_pb50_phrases:
         if phrase not in section_texts[file_name]:
-            return fail(f'{file_name} missing required PB-48/PB-49 phrase: "{phrase}"')
+            return fail(f'{file_name} missing required PB-48/PB-49/PB-50 phrase: "{phrase}"')
 
     kernel_line_exact = next((line for line in instruction_text.splitlines() if line.startswith("Kernel self-preservation:")), "")
     final_gate_line_exact = next((line for line in instruction_text.splitlines() if line.startswith("Final gate:")), "")
-    for phrase in ["User-Facing Russian Output", "Minimal User Action"]:
+    for phrase in ["User-Facing Russian Output", "Minimal User Action", "Target Placement and Result Lock"]:
         if phrase not in kernel_line_exact:
-            return fail(f'Kernel self-preservation missing PB-48/PB-49 phrase: "{phrase}"')
+            return fail(f'Kernel self-preservation missing PB-48/PB-49/PB-50 phrase: "{phrase}"')
         if phrase not in final_gate_line_exact:
-            return fail(f'Final gate missing PB-48/PB-49 phrase: "{phrase}"')
+            return fail(f'Final gate missing PB-48/PB-49/PB-50 phrase: "{phrase}"')
 
     required_pb47_phrases = [
         ("protected_behavior_registry.md", "PB-47"),
