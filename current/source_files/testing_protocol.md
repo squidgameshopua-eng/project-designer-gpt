@@ -101,8 +101,8 @@ Audit-only Before Patch Gate test:
 
 PB-47 GitHub Instruction/Knowledge Delivery Format tests:
 - Build Knowledge Package test: PASS only if `python scripts/build_knowledge_package.py --output <zip>` exits 0 and produces a ZIP containing `Instructions.md`, `Knowledge/` active source files from the manifest, `package_manifest.json`, and `UPLOAD_GUIDE.md`.
-- Instruction/Knowledge separation test: FAIL if source files are merged into Project Instructions, if `Instructions.md` exceeds 8000 characters, or if upload guidance treats Knowledge files as higher authority than Project Instructions.
-- Active Knowledge scope test: FAIL if archive/, deliveries/, external_sources/, tests/, scripts/, .github/, non-manifest files, or corrected/final/draft/old variants are included as active Knowledge.
+- Instruction/Knowledge separation test: FAIL if source files are merged into Project Instructions, if `Instructions.md` exceeds 8000 characters, if upload guidance treats Knowledge files as higher authority than Project Instructions, or if delivery evidence files are described as active Knowledge.
+- Active Knowledge scope test: FAIL if archive/, deliveries/, external_sources/, tests/, scripts/, .github/, package manifest, upload guide, package linter, non-manifest files, or corrected/final/draft/old variants are included as active Knowledge.
 - Deterministic package test: PASS only when the package builder writes stable sorted entries and verifies every manifest-listed source file exists before creating the artifact.
 
 PB-48 User-Facing Russian Output Gate tests:

@@ -2,6 +2,8 @@ Use this file only for active package state, continuity, obsolete-file handling,
 
 Active package basis: current Project/GPT Instructions plus active upload/source files from the latest delivered package. Old chats, ZIPs, manifests, changelogs, screenshots, and superseded files are evidence only unless explicitly reactivated by the user.
 
+Repository current precedence: when the authorized GitHub repository is accessible, use repository `current/` as the default source of truth for package audits and source-state comparisons. Check repository `current/` before drawing conclusions from local runtime files, chat uploads, File Library results, screenshots, old chats, or archive material. Treat those non-repository layers as mirrors/evidence unless repository access is unavailable or the user explicitly overrides the source.
+
 Before patching, identify: active instruction source; active file list; changed files; unchanged companion files; obsolete/remove files; optional/non-active evidence; missing material. If active basis is unclear and blocks reliable patching, output More Source Material Required or audit-only limitations.
 
 Do not merge old branches into governance by default. Treat them as evidence candidates. Reactivate old content only after checking conflicts, protected behavior impact, current source status, and package continuity.

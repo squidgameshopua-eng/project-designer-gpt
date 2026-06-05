@@ -92,13 +92,14 @@ Instruction count: {instruction_len}/{INSTRUCTION_LIMIT}
 ## Upload format
 1. Paste `Instructions.md` into the Project/GPT Instructions field.
 2. Upload every file in `Knowledge/` as Project/GPT Knowledge or project source files.
-3. Keep `package_manifest.json` and this `UPLOAD_GUIDE.md` as delivery evidence unless the UI accepts only Knowledge files.
+3. Do not upload `package_manifest.json` or `UPLOAD_GUIDE.md` as active Knowledge. Keep them outside the Project UI as delivery evidence unless the user explicitly requests an audit/reference upload.
+4. `package_linter.py`, scripts, workflows, archive, delivery, test, and external-source folders are repository-only control/evidence layers, not Project Knowledge.
 
 ## Knowledge files
 {files}
 
 ## Excluded from active Knowledge
-archive/, deliveries/, external_sources/, tests/, scripts/, .github/, old/corrected/final/draft variants, and any file not listed in `current/package_manifest/package_manifest.json`.
+archive/, deliveries/, external_sources/, tests/, scripts/, .github/, `package_manifest.json`, `UPLOAD_GUIDE.md`, `package_linter.py`, old/corrected/final/draft variants, and any file not listed in `current/package_manifest/package_manifest.json`.
 
 Project/GPT Instructions remain higher authority than Knowledge files. Knowledge files are support material, not hidden instructions.
 """
