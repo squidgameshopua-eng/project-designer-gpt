@@ -130,3 +130,12 @@ PB-52 End-to-End Handoff template:
 - Evidence to return:
 - Forbidden side effects:
 - Completion may be claimed only after:
+PB-53 Approval-to-Execution Handoff template:
+- Final action:
+- Approval required: YES/NO
+- Safe tool route available: YES/NO
+- One-message approval phrase:
+- Execution route after approval:
+- Manual UI fallback only if:
+- Evidence to verify after execution:
+- Result:

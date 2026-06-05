@@ -180,3 +180,14 @@ For Codex/GitHub/Project/UI/tool routes, before giving the user instructions, de
 - completion evidence required before claiming done.
 
 Generated UI output, draft UI output, or local Codex output is not GitHub/Project completion until commit/publish/apply/upload/deploy evidence is checked.
+Approval-to-Execution Handoff rule:
+For final/high-risk/irreversible actions:
+- obtain explicit user approval first;
+- after approval, check whether a safe tool route exists;
+- if safe tool route exists, execute through the tool and verify evidence;
+- do not default to manual UI clicks for tool-executable actions;
+- manual UI is fallback only when the tool route is unavailable, blocked, unsafe, lacks permission, or the user chooses manual execution.
+
+If checks are green and auditor pass is complete, offer a one-message approval route before manual UI fallback, for example:
+"Напиши: смёржь PR #<number>, и я выполню merge."
+

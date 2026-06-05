@@ -136,7 +136,7 @@ def main() -> int:
 
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
-    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 53)]
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 54)]
     for pb_id in required_pb_ids:
         if pb_id not in registry_text:
             return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
@@ -155,6 +155,8 @@ def main() -> int:
         "Problem-Class Generalization Gate",
         "PB-52 End-to-End Handoff",
         "Publish-Step Verification Gate",
+        "PB-53 Approval-to-Execution Handoff",
+        "Tool-Executable Final Action Gate",
     ]
     for phrase in required_registry_phrases:
         if phrase not in registry_text:
@@ -312,32 +314,37 @@ def main() -> int:
         if phrase not in section_texts[file_name]:
             return fail(f'{file_name} missing required Operation Watchdog phrase: "{phrase}"')
 
-    required_pb48_pb49_pb50_pb51_pb52_phrases = [
+    required_pb48_pb49_pb50_pb51_pb52_pb53_phrases = [
         ("protected_behavior_registry.md", "PB-48 User-Facing Russian Output Gate"),
         ("protected_behavior_registry.md", "PB-49 Minimal User Action / Action Compression Gate"),
         ("protected_behavior_registry.md", "PB-50 Target Placement and Result Lock"),
         ("protected_behavior_registry.md", "PB-51 Problem-Class Generalization Gate"),
         ("protected_behavior_registry.md", "PB-52 End-to-End Handoff / Publish-Step Verification Gate"),
+        ("protected_behavior_registry.md", "PB-53 Approval-to-Execution Handoff / Tool-Executable Final Action Gate"),
         ("current/instructions/Instructions.md", "User-Facing Russian Output"),
         ("current/instructions/Instructions.md", "Minimal User Action"),
         ("current/instructions/Instructions.md", "Target Placement and Result Lock"),
         ("current/instructions/Instructions.md", "Problem-Class Generalization"),
         ("current/instructions/Instructions.md", "End-to-End Handoff"),
+        ("current/instructions/Instructions.md", "Approval-to-Execution Handoff"),
         ("autonomous_workflow_router.md", "Minimal User Action / Action Compression rule"),
         ("autonomous_workflow_router.md", "User-Facing Russian Output routing rule"),
         ("autonomous_workflow_router.md", "Target Placement and Result Lock rule"),
         ("autonomous_workflow_router.md", "Problem-Class Generalization rule"),
         ("autonomous_workflow_router.md", "End-to-End Handoff / Publish-Step Verification rule"),
+        ("autonomous_workflow_router.md", "Approval-to-Execution Handoff rule"),
         ("delegation_access_policy.md", "Minimal User Action / Action Compression authority rule"),
         ("delegation_access_policy.md", "User-Facing Russian Output delegation rule"),
         ("delegation_access_policy.md", "Target Placement and Result Lock delegation rule"),
         ("delegation_access_policy.md", "Systemic-failure response"),
         ("delegation_access_policy.md", "End-to-end handoff before user UI action"),
+        ("delegation_access_policy.md", "Approval-to-execution delegation rule"),
         ("testing_protocol.md", "PB-48 User-Facing Russian Output Gate tests"),
         ("testing_protocol.md", "PB-49 Minimal User Action / Action Compression tests"),
         ("testing_protocol.md", "PB-50 Target Placement and Result Lock tests"),
         ("testing_protocol.md", "PB-51 Problem-Class Generalization tests"),
         ("testing_protocol.md", "PB-52 End-to-End Handoff / Publish-Step Verification tests"),
+        ("testing_protocol.md", "PB-53 Approval-to-Execution Handoff tests"),
         ("testing_protocol.md", "Russian user-facing output test"),
         ("testing_protocol.md", "Minimal user action test"),
         ("testing_protocol.md", "Target placement test"),
@@ -348,30 +355,36 @@ def main() -> int:
         ("testing_protocol.md", "Publish/apply-step test"),
         ("testing_protocol.md", "Evidence-return test"),
         ("testing_protocol.md", "Completion-claim test"),
+        ("testing_protocol.md", "Tool-executable final action test"),
+        ("testing_protocol.md", "One-message approval route test"),
+        ("testing_protocol.md", "Post-approval execution test"),
         ("output_templates.md", "PB-48 User-facing Russian output template"),
         ("output_templates.md", "PB-49 Minimal User Action / Action Compression template"),
         ("output_templates.md", "PB-50 Target Placement and Result Lock template"),
         ("output_templates.md", "PB-51 Problem-Class Generalization template"),
         ("output_templates.md", "PB-52 End-to-End Handoff template"),
+        ("output_templates.md", "PB-53 Approval-to-Execution Handoff template"),
         ("output_templates.md", "User-facing language: Russian"),
         ("output_templates.md", "User actions required per route"),
         ("output_templates.md", "Target object"),
         ("output_templates.md", "Generalized prevention mechanism"),
         ("output_templates.md", "Post-run publish/apply action to look for"),
         ("output_templates.md", "Completion may be claimed only after"),
+        ("output_templates.md", "Safe tool route available"),
+        ("output_templates.md", "Execution route after approval"),
     ]
     section_texts["current/instructions/Instructions.md"] = instruction_text
-    for file_name, phrase in required_pb48_pb49_pb50_pb51_pb52_phrases:
+    for file_name, phrase in required_pb48_pb49_pb50_pb51_pb52_pb53_phrases:
         if phrase not in section_texts[file_name]:
-            return fail(f'{file_name} missing required PB-48/PB-49/PB-50/PB-51/PB-52 phrase: "{phrase}"')
+            return fail(f'{file_name} missing required PB-48/PB-49/PB-50/PB-51/PB-52/PB-53 phrase: "{phrase}"')
 
     kernel_line_exact = next((line for line in instruction_text.splitlines() if line.startswith("Kernel self-preservation:")), "")
     final_gate_line_exact = next((line for line in instruction_text.splitlines() if line.startswith("Final gate:")), "")
-    for phrase in ["User-Facing Russian Output", "Minimal User Action", "Target Placement and Result Lock", "Problem-Class Generalization", "End-to-End Handoff"]:
+    for phrase in ["User-Facing Russian Output", "Minimal User Action", "Target Placement and Result Lock", "Problem-Class Generalization", "End-to-End Handoff", "Approval-to-Execution Handoff"]:
         if phrase not in kernel_line_exact:
-            return fail(f'Kernel self-preservation missing PB-48/PB-49/PB-50/PB-51/PB-52 phrase: "{phrase}"')
+            return fail(f'Kernel self-preservation missing PB-48/PB-49/PB-50/PB-51/PB-52/PB-53 phrase: "{phrase}"')
         if phrase not in final_gate_line_exact:
-            return fail(f'Final gate missing PB-48/PB-49/PB-50/PB-51/PB-52 phrase: "{phrase}"')
+            return fail(f'Final gate missing PB-48/PB-49/PB-50/PB-51/PB-52/PB-53 phrase: "{phrase}"')
 
     all_guard_text = "\n".join(section_texts.values()) + "\n" + instruction_text
     required_pb50_phrases = [
@@ -397,6 +410,8 @@ def main() -> int:
     required_pb52_phrases = [
         "PB-52 End-to-End Handoff",
         "Publish-Step Verification Gate",
+        "PB-53 Approval-to-Execution Handoff",
+        "Tool-Executable Final Action Gate",
         "End-to-End Handoff",
         "entry point/link",
         "exact paste/click location",
@@ -414,9 +429,25 @@ def main() -> int:
         "Post-run publish/apply action to look for",
         "Completion may be claimed only after",
     ]
-    for phrase in required_pb50_phrases + required_pb51_phrases + required_pb52_phrases:
+
+    required_pb53_phrases = [
+        "PB-53 Approval-to-Execution Handoff",
+        "Tool-Executable Final Action Gate",
+        "explicit user approval",
+        "safe tool route",
+        "execute the action through the tool",
+        "manual UI clicks",
+        "manual UI is fallback only",
+        "Approval-to-Execution Handoff tests",
+        "Tool-executable final action test",
+        "One-message approval route test",
+        "Post-approval execution test",
+        "PB-53 Approval-to-Execution Handoff template",
+    ]
+
+    for phrase in required_pb50_phrases + required_pb51_phrases + required_pb52_phrases + required_pb53_phrases:
         if phrase not in all_guard_text:
-            return fail(f'missing required PB-50/PB-51/PB-52 phrase: "{phrase}"')
+            return fail(f'missing required PB-50/PB-51/PB-52/PB-53 phrase: "{phrase}"')
 
     anti_weakening_phrases = [
         "safe user request",
