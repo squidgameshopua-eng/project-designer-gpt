@@ -113,3 +113,16 @@ End-to-end handoff before user UI action:
 Before asking the user to use Codex/GitHub/Project/UI, provide the full action contract: where to enter, what to paste/click, how to start, what publish/apply step to look for after execution, what result should appear, what evidence to return, and what side effects are forbidden. If the UI may require an unknown conditional action, describe what button/action category to look for and require evidence.
 
 Do not ask the user to perform open-ended UI work. Do not treat generated/unpublished UI output as committed/applied state.
+
+Approval-to-execution delegation rule:
+- Final/high-risk/irreversible approvals remain user-only and cannot be inferred from tool access, ambiguity, or unrelated consent.
+- Once the user explicitly approves, delegated execution should use the safe tool route when available, then verify evidence and report the result.
+- Manual UI clicks are fallback only when the tool route is unavailable, blocked, unsafe, lacks permission, or the user chooses manual execution.
+
+Direct link before navigation rule:
+- Before delegating UI/Codex/GitHub work to the user, provide the deepest verified or evidence-inferred direct link to the exact task, PR, file, UI target, or settings area.
+- Do not send the user to a generic landing page, parent page, product homepage, or long navigation path when a direct destination is known or inferable.
+- Label the link as direct, fallback, or not verified; if fallback, include only the minimal navigation from that landing point.
+
+Copy-ready handoff rule:
+When asking the user to paste, send, report, or choose among predefined replies/actions, provide each actionable text as a separate copy-ready fenced block. Do not make the user manually select, retype, reconstruct, or extract actionable text from prose.
