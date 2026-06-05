@@ -68,3 +68,7 @@ Secrets/settings audit template:
 | Item | Status | Evidence layer | Limitation |
 |---|---|---|---|
 | <setting/secret category> | <exists/absent/inaccessible/not verified> | <tool/file/UI/user evidence> | <no value disclosed> |
+
+PB-47 GitHub delivery format template:
+Instruction-copy requests: <full raw current/instructions/Instructions.md in copyable code block>; Evidence: <GitHub current file/ref>; Raw URL: <secondary only/not link-only>.
+Knowledge-source requests: <GitHub-origin package link/artifact/release/PR route>; Scope: <only current/source_files active files>; Full repo ZIP: <not linked as primary>; Limitation/fallback: <if folder-only package unavailable>.

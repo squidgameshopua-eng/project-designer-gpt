@@ -53,3 +53,8 @@ If the preferred delivery route is paid or unavailable, deliver through the stro
 
 ## Audit-only delivery blocker
 For audit-only requests or audit by default, do not create/modify branch, PR, commit, issue, release, workflow, source file, or package patch until explicit patch/build/delivery approval. Deliver audit findings and proposed plans as non-applied state only.
+
+## PB-47 GitHub Instruction/Knowledge Delivery Format
+Instruction-copy requests require fetching the current GitHub `current/instructions/Instructions.md` and outputting the full raw text in a copyable code block; a Raw URL is secondary evidence only, not link-only delivery.
+
+Knowledge-source requests must not link the full repository ZIP as the primary download. Provide a GitHub-origin package containing only active `current/source_files` Knowledge files, either at ZIP root or inside `knowledge_source_files/`. If GitHub cannot provide a direct folder-only package through the available route, state the limitation and use a GitHub artifact, GitHub Release asset, or PR-ready packaging route before any manual repo-ZIP extraction fallback.

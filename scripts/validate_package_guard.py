@@ -134,7 +134,7 @@ def main() -> int:
 
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
-    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 47)]
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 48)]
     for pb_id in required_pb_ids:
         if pb_id not in registry_text:
             return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
@@ -249,6 +249,27 @@ def main() -> int:
                 "autonomous_workflow_router.md missing required PR-state fallback phrase "
                 f'"{phrase}"'
             )
+
+    required_pb47_phrases = [
+        ("protected_behavior_registry.md", "PB-47"),
+        ("protected_behavior_registry.md", "Instruction-copy requests"),
+        ("protected_behavior_registry.md", "Knowledge-source requests"),
+        ("protected_behavior_registry.md", "not link-only"),
+        ("protected_behavior_registry.md", "not link the full repository ZIP"),
+        ("protected_behavior_registry.md", "GitHub-origin package"),
+        ("protected_behavior_registry.md", "current/source_files"),
+        ("delivery_protocol.md", "Instruction-copy requests"),
+        ("delivery_protocol.md", "Knowledge-source requests"),
+        ("delivery_protocol.md", "not link-only"),
+        ("delivery_protocol.md", "not link the full repository ZIP"),
+        ("delivery_protocol.md", "GitHub-origin package"),
+        ("delivery_protocol.md", "current/source_files"),
+        ("testing_protocol.md", "PB-47 GitHub Instruction/Knowledge Delivery Format test"),
+        ("output_templates.md", "PB-47 GitHub delivery format template"),
+    ]
+    for file_name, phrase in required_pb47_phrases:
+        if phrase not in section_texts[file_name]:
+            return fail(f'{file_name} missing required PB-47 phrase: "{phrase}"')
 
     required_operation_watchdog_phrases = [
         ("protected_behavior_registry.md", "PB-42"),

@@ -1,0 +1,27 @@
+name: Build Knowledge Package
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - current/source_files/**
+      - current/package_manifest/package_manifest.json
+      - scripts/build_knowledge_package.py
+      - .github/workflows/build_knowledge_package.yml
+
+jobs:
+  build-knowledge-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build active Knowledge package
+        run: python scripts/build_knowledge_package.py --output knowledge_source_files.zip
+
+      - name: Upload GitHub-origin Knowledge package
+        uses: actions/upload-artifact@v4
+        with:
+          name: knowledge_source_files
+          path: knowledge_source_files.zip
+          if-no-files-found: error
