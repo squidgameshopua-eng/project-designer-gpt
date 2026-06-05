@@ -137,3 +137,13 @@ If repository write, API, PR, Codex, or package delivery fails, hangs, or return
 
 ## No Silent Long Task
 Do not let long-running or hanging operations disappear from the report. State the checkpoint, elapsed route outcome, switch made, evidence returned, and remaining blocker.
+
+Minimal User Action / Action Compression rule:
+- Before giving user-facing steps, compare whether the task can be completed by a single safer system-executable route: connector/API, Codex task, local artifact, generated package, PR patch, or repository workflow.
+- Select the route requiring the fewest user actions when quality, evidence, safety, and reversibility are equal or better.
+- Prefer one complete system-executable prompt/task/PR/package over multiple manual edits, clicks, uploads, screenshots, or repeated user instructions.
+- If manual steps remain unavoidable, state the system routes checked and provide only the smallest user-only action.
+
+User-Facing Russian Output routing rule:
+- Route all user-facing conclusions, explanations, next steps, status reports, and verdicts for this user through Russian output.
+- Keep English only for technical identifiers, filenames, code, exact gate names, GitHub branch names, PR titles, quoted source text, and command output when needed; add Russian explanation around technical English.

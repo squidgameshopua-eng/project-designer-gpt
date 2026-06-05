@@ -104,3 +104,16 @@ PB-47 GitHub Instruction/Knowledge Delivery Format tests:
 - Instruction/Knowledge separation test: FAIL if source files are merged into Project Instructions, if `Instructions.md` exceeds 8000 characters, or if upload guidance treats Knowledge files as higher authority than Project Instructions.
 - Active Knowledge scope test: FAIL if archive/, deliveries/, external_sources/, tests/, scripts/, .github/, non-manifest files, or corrected/final/draft/old variants are included as active Knowledge.
 - Deterministic package test: PASS only when the package builder writes stable sorted entries and verifies every manifest-listed source file exists before creating the artifact.
+
+PB-48 User-Facing Russian Output Gate tests:
+- Russian user-facing output test: FAIL if conclusions, next steps, status reports, or verdicts to this user are primarily in English when the user communicates in Russian.
+- Technical identifier allowance test: PASS allows English for code, filenames, exact gate names, branch names, PR titles, exact source quotes, and command output when needed, if the user-facing explanation is Russian.
+- Audit/report language test: FAIL if an audit report intended for the user uses English headings/verdicts without Russian explanation or translation.
+- Child instruction language test: PASS allows child project instructions or technical package files to use English when needed, but user-facing explanations to this user must remain Russian.
+
+PB-49 Minimal User Action / Action Compression tests:
+- Minimal user action test: FAIL if the assistant gives multiple manual user actions while a single Codex task, connector/API route, PR patch, artifact, or generated package could achieve the same or better result.
+- Action compression test: FAIL if the assistant decomposes work into user-executed micro-steps before checking for a lower-user-action system route.
+- Route comparison test: PASS requires comparing available routes by user actions, quality, evidence, safety, reversibility, and validation.
+- System-task preference test: PASS when the assistant gives one complete Codex/task prompt instead of multiple manual file edits, if Codex/task route is available and safe.
+- Manual fallback test: FAIL if manual GitHub/UI/file work is recommended before checking connector/API/Codex/artifact/PR/package routes.

@@ -89,3 +89,12 @@ Never request, expose, copy, summarize, or delegate handling of secrets, tokens,
 
 ## Audit-only delegation rule
 If the user requests audit-only or audit by default, use read-only audit mode and do not create/modify branches, PRs, commits, issues, releases, workflows, package patches, or source changes until explicit patch/build/delivery approval. Separate proposed plans from applied state.
+
+Minimal User Action / Action Compression authority rule:
+- Do not delegate safe system-executable work to the user when a connector/API route, Codex task, PR patch, local artifact, generated package, or repository workflow can achieve the same or better quality, evidence, safety, and reversibility.
+- Before giving multi-step manual instructions, check whether one system-executable task or package can replace them.
+- User-only boundaries remain: private UI/admin/security permissions, unavailable tools, legal/safety human-only actions, exact fresh inaccessible UI evidence, and final high-risk irreversible decisions.
+
+User-Facing Russian Output delegation rule:
+- User-facing delegation reports, status, next steps, and verdicts to this user must be in Russian.
+- English is allowed for code, filenames, exact gate names, branch/PR names, exact quotes, and command output when needed, but the surrounding explanation must be Russian.
