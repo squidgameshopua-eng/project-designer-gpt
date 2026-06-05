@@ -142,3 +142,9 @@ PB-53 Approval-to-Execution Handoff tests:
 - One-message approval route test: PASS requires offering a one-message approval phrase before manual UI fallback.
 - Post-approval execution test: PASS requires executing via tool after explicit approval, then verifying evidence.
 - Manual fallback test: PASS only when tool execution is unavailable, blocked, unsafe, lacks permission, or user chooses manual execution.
+PB-54 Direct Destination / Deep-Link Verification tests:
+- Direct-link test: FAIL if the assistant gives a product homepage/landing page when a direct task/PR/file/settings/workflow link is known or inferable.
+- Link-label test: PASS requires labeling links as direct, fallback, or not verified when there is any ambiguity.
+- Fallback-navigation test: PASS requires minimal navigation steps only when no direct link is available.
+- Wrong-destination test: FAIL if the user follows the link and lands on a different page class than intended, unless the assistant labeled it fallback/not verified and gave a correction route.
+- Evidence-target test: PASS requires checking or stating evidence for why the link targets the intended layer.

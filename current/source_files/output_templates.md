@@ -139,3 +139,11 @@ PB-53 Approval-to-Execution Handoff template:
 - Manual UI fallback only if:
 - Evidence to verify after execution:
 - Result:
+PB-54 Direct Destination template:
+- Intended target:
+- Direct link:
+- Link status: DIRECT / FALLBACK / NOT VERIFIED
+- If fallback, shortest navigation from landing page:
+- Expected landing page/title/visible marker:
+- Evidence to confirm arrival:
+- What not to click/use:

@@ -115,3 +115,5 @@ Before asking the user to use Codex/GitHub/Project/UI, provide the full action c
 Do not ask the user to perform open-ended UI work. Do not treat generated/unpublished UI output as committed/applied state.
 Approval-to-execution delegation rule:
 Explicit approval is required for final/high-risk/irreversible actions. But once approval is given, execution belongs to the system when a safe tool route is available. Do not ask the user to click, merge, deploy, close, approve, or perform another final action manually when an available safe tool can execute it after approval. Manual UI instructions are fallback only when tool execution is unavailable, blocked, unsafe, lacks permission, or the user chooses manual execution.
+Direct link before navigation rule:
+Do not ask the user to navigate through tabs/pages when a direct link or deeper entry point is known or can be derived from available evidence. If only a landing page is available, label it as fallback and give the shortest path from that page to the target. Do not present fallback links as direct target links.

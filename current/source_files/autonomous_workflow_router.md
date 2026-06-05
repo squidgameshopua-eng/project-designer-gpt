@@ -190,4 +190,5 @@ For final/high-risk/irreversible actions:
 
 If checks are green and auditor pass is complete, offer a one-message approval route before manual UI fallback, for example:
 "Напиши: смёржь PR #<number>, и я выполню merge."
-
+Direct Destination / Deep-Link Verification rule:
+Before giving a user a link or route, choose the deepest directly reachable URL/entry point for the exact intended action: task, PR, file, settings panel, branch, workflow run, Project UI area, or Codex task. Do not default to a generic product homepage or parent page when a direct destination is known, visible, or inferable. Label each link as direct, fallback, or not verified. If direct destination is unavailable, give the best fallback link plus the minimum navigation steps and evidence needed to confirm arrival.
