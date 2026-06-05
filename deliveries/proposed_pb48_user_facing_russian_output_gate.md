@@ -1,4 +1,4 @@
-# Proposed delivery: PB-48 User-Facing Russian Output Gate, PB-49 Minimal User Action / Action Compression Gate, PB-50 Target Placement and Result Lock, and PB-51 Problem-Class Generalization Gate
+# Proposed delivery: PB-48 User-Facing Russian Output Gate, PB-49 Minimal User Action / Action Compression Gate, PB-50 Target Placement and Result Lock, PB-51 Problem-Class Generalization Gate, and PB-52 End-to-End Handoff / Publish-Step Verification Gate
 
 Status: proposed companion delivery for PR #26.
 
@@ -7,6 +7,7 @@ Status: proposed companion delivery for PR #26.
 - PB-49 protects minimal user action routing by preferring one safe system-executable Codex task, connector/API route, artifact, PR patch, or generated package over multiple manual edits, clicks, uploads, screenshots, or repeated user instructions.
 - PB-50 protects target placement and result locking before Codex/GitHub/UI instructions: exact place, target object, expected result, forbidden side effects, and blocker reporting when the target is inaccessible.
 - PB-51 protects systemic fixes by triggering from any problem/failure pattern evidence layer, identifying the problem class, and adding a generalized prevention mechanism; a local/current-case fix is added only when still relevant, safe, and necessary.
+- PB-52 protects user UI/tool handoff by requiring entry point, paste/click target, start/submit action, publish/apply step, expected evidence, forbidden side effects, and verification before completion claims.
 
 ## Active files updated
 - `current/instructions/Instructions.md`
@@ -20,4 +21,4 @@ Status: proposed companion delivery for PR #26.
 ## Protected behavior preservation
 - PB-00 through PB-47 remain protected.
 - PB-47 GitHub Instruction/Knowledge Delivery Format remains active.
-- PB-48, PB-49, PB-50, and PB-51 are added to the registry, instruction kernel/final gate, companion protocols, output templates, tests, and validator phrase checks.
+- PB-48, PB-49, PB-50, PB-51, and PB-52 are added to the registry, instruction kernel/final gate, companion protocols, output templates, tests, and validator phrase checks.

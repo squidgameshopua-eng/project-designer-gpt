@@ -119,3 +119,14 @@ PB-51 Problem-Class Generalization template:
 - Files/gates/tests/templates/validator to update:
 - Future regression test:
 - What not to repeat:
+
+PB-52 End-to-End Handoff template:
+- Entry point / link:
+- Exact place to paste/click:
+- Target object:
+- Start/submit action:
+- Post-run publish/apply action to look for:
+- Expected result:
+- Evidence to return:
+- Forbidden side effects:
+- Completion may be claimed only after:

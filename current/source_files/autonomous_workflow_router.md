@@ -166,3 +166,17 @@ When a problem, failure pattern, regression, non-global fix, wrong route, or rep
 - local/current-case fix only if still relevant, safe, and necessary;
 - generalized mechanism preventing similar future failures;
 - tests/validator/template updates if relevant.
+
+End-to-End Handoff / Publish-Step Verification rule:
+For Codex/GitHub/Project/UI/tool routes, before giving the user instructions, define:
+- entry point/link or where to find it;
+- exact paste/click location;
+- target object;
+- start/submit action;
+- post-run publish/apply/commit/update/create/save/upload/deploy action if required or possible;
+- expected observable result;
+- evidence the user should return;
+- forbidden side effects;
+- completion evidence required before claiming done.
+
+Generated UI output, draft UI output, or local Codex output is not GitHub/Project completion until commit/publish/apply/upload/deploy evidence is checked.

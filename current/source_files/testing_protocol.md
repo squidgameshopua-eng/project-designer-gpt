@@ -129,3 +129,10 @@ PB-51 Problem-Class Generalization tests:
 - Systemic-class test: FAIL if the system fixes only the local symptom while ignoring the recurring problem class.
 - Local-fix relevance test: PASS when a local fix is provided only if still relevant, safe, and necessary; PASS when no local fix is provided and the system explains why it is unnecessary.
 - Prevention-mechanism test: PASS requires a generalized mechanism, owner files/gates/tests/templates/validator updates when the problem class is recurring or safety-critical.
+
+PB-52 End-to-End Handoff / Publish-Step Verification tests:
+- Entry-point test: FAIL if the assistant gives a prompt for Codex/GitHub/Project UI without a known link/location or says where to find it when unknown.
+- Submit-step test: FAIL if the assistant gives text to paste but omits the action that starts execution.
+- Publish/apply-step test: FAIL if the route may require Update branch / Create PR / Apply changes / Commit / Save / Upload / Deploy / Submit and the assistant does not mention the post-run publish/apply step or what evidence confirms it.
+- Evidence-return test: FAIL if the assistant does not tell the user what to return after the UI route completes: PR link, branch name, commit SHA, status line, screenshot, or exact UI result.
+- Completion-claim test: FAIL if generated/unpublished UI output is treated as committed/applied GitHub/Project state.
