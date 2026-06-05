@@ -136,7 +136,7 @@ def main() -> int:
 
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
-    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 51)]
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 52)]
     for pb_id in required_pb_ids:
         if pb_id not in registry_text:
             return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
@@ -152,6 +152,7 @@ def main() -> int:
         "User-Facing Russian Output Gate",
         "Minimal User Action / Action Compression Gate",
         "Target Placement and Result Lock",
+        "Problem-Class Generalization Gate",
     ]
     for phrase in required_registry_phrases:
         if phrase not in registry_text:
@@ -309,44 +310,90 @@ def main() -> int:
         if phrase not in section_texts[file_name]:
             return fail(f'{file_name} missing required Operation Watchdog phrase: "{phrase}"')
 
-    required_pb48_pb49_pb50_phrases = [
+    required_pb48_pb49_pb50_pb51_phrases = [
         ("protected_behavior_registry.md", "PB-48 User-Facing Russian Output Gate"),
         ("protected_behavior_registry.md", "PB-49 Minimal User Action / Action Compression Gate"),
         ("protected_behavior_registry.md", "PB-50 Target Placement and Result Lock"),
+        ("protected_behavior_registry.md", "PB-51 Problem-Class Generalization Gate"),
         ("current/instructions/Instructions.md", "User-Facing Russian Output"),
         ("current/instructions/Instructions.md", "Minimal User Action"),
         ("current/instructions/Instructions.md", "Target Placement and Result Lock"),
+        ("current/instructions/Instructions.md", "Problem-Class Generalization"),
         ("autonomous_workflow_router.md", "Minimal User Action / Action Compression rule"),
         ("autonomous_workflow_router.md", "User-Facing Russian Output routing rule"),
         ("autonomous_workflow_router.md", "Target Placement and Result Lock rule"),
+        ("autonomous_workflow_router.md", "Problem-Class Generalization rule"),
         ("delegation_access_policy.md", "Minimal User Action / Action Compression authority rule"),
         ("delegation_access_policy.md", "User-Facing Russian Output delegation rule"),
         ("delegation_access_policy.md", "Target Placement and Result Lock delegation rule"),
+        ("delegation_access_policy.md", "Systemic-failure response"),
         ("testing_protocol.md", "PB-48 User-Facing Russian Output Gate tests"),
         ("testing_protocol.md", "PB-49 Minimal User Action / Action Compression tests"),
         ("testing_protocol.md", "PB-50 Target Placement and Result Lock tests"),
+        ("testing_protocol.md", "PB-51 Problem-Class Generalization tests"),
         ("testing_protocol.md", "Russian user-facing output test"),
         ("testing_protocol.md", "Minimal user action test"),
         ("testing_protocol.md", "Target placement test"),
+        ("testing_protocol.md", "Systemic issue test"),
+        ("testing_protocol.md", "Dual response test"),
         ("output_templates.md", "PB-48 User-facing Russian output template"),
         ("output_templates.md", "PB-49 Minimal User Action / Action Compression template"),
         ("output_templates.md", "PB-50 Target Placement and Result Lock template"),
+        ("output_templates.md", "PB-51 Problem-Class Generalization template"),
         ("output_templates.md", "User-facing language: Russian"),
         ("output_templates.md", "User actions required per route"),
-        ("output_templates.md", "Exact target object to modify"),
+        ("output_templates.md", "Target object"),
+        ("output_templates.md", "Generalized mechanism"),
     ]
     section_texts["current/instructions/Instructions.md"] = instruction_text
-    for file_name, phrase in required_pb48_pb49_pb50_phrases:
+    for file_name, phrase in required_pb48_pb49_pb50_pb51_phrases:
         if phrase not in section_texts[file_name]:
-            return fail(f'{file_name} missing required PB-48/PB-49/PB-50 phrase: "{phrase}"')
+            return fail(f'{file_name} missing required PB-48/PB-49/PB-50/PB-51 phrase: "{phrase}"')
 
     kernel_line_exact = next((line for line in instruction_text.splitlines() if line.startswith("Kernel self-preservation:")), "")
     final_gate_line_exact = next((line for line in instruction_text.splitlines() if line.startswith("Final gate:")), "")
-    for phrase in ["User-Facing Russian Output", "Minimal User Action", "Target Placement and Result Lock"]:
+    for phrase in ["User-Facing Russian Output", "Minimal User Action", "Target Placement and Result Lock", "Problem-Class Generalization"]:
         if phrase not in kernel_line_exact:
-            return fail(f'Kernel self-preservation missing PB-48/PB-49/PB-50 phrase: "{phrase}"')
+            return fail(f'Kernel self-preservation missing PB-48/PB-49/PB-50/PB-51 phrase: "{phrase}"')
         if phrase not in final_gate_line_exact:
-            return fail(f'Final gate missing PB-48/PB-49/PB-50 phrase: "{phrase}"')
+            return fail(f'Final gate missing PB-48/PB-49/PB-50/PB-51 phrase: "{phrase}"')
+
+    all_guard_text = "\n".join(section_texts.values()) + "\n" + instruction_text
+    required_pb50_phrases = [
+        "PB-50 Target Placement and Result Lock",
+        "exact place",
+        "target object",
+        "expected result",
+        "forbidden side effects",
+        "parallel artifact",
+        "Target Placement and Result Lock rule",
+        "Target placement test",
+    ]
+    required_pb51_phrases = [
+        "PB-51 Problem-Class Generalization Gate",
+        "immediate correction",
+        "generalized mechanism",
+        "whole class of similar future errors",
+        "Problem-Class Generalization rule",
+        "Systemic issue test",
+        "Dual response test",
+    ]
+    for phrase in required_pb50_phrases + required_pb51_phrases:
+        if phrase not in all_guard_text:
+            return fail(f'missing required PB-50/PB-51 phrase: "{phrase}"')
+
+    anti_weakening_phrases = [
+        "safe user request",
+        "complete package",
+        "Label layer",
+        "Canonical filenames only",
+        "No snippets-only",
+        "file/UI/repo evidence",
+        "Identify active/current/candidate/obsolete/MSMR",
+    ]
+    for phrase in anti_weakening_phrases:
+        if phrase not in instruction_text:
+            return fail(f'current/instructions/Instructions.md missing anti-weakening phrase: "{phrase}"')
 
     required_pb47_phrases = [
         ("protected_behavior_registry.md", "PB-47"),

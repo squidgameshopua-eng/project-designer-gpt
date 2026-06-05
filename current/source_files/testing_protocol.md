@@ -119,8 +119,12 @@ PB-49 Minimal User Action / Action Compression tests:
 - Manual fallback test: FAIL if manual GitHub/UI/file work is recommended before checking connector/API/Codex/artifact/PR/package routes.
 
 PB-50 Target Placement and Result Lock tests:
-- Target placement test: FAIL if a Codex/GitHub/UI instruction omits the exact paste/click place or the exact target object to modify.
-- Expected result test: FAIL if user-facing instructions omit the expected result the user should see after the action.
-- Forbidden side effects test: FAIL if instructions do not state what must not be changed, created, uploaded, merged, or overwritten.
-- Inaccessible target blocker test: PASS requires stopping and reporting a blocker when the target object is inaccessible; FAIL if the assistant silently creates a parallel artifact instead.
-- Parallel artifact prevention test: FAIL if a generated package, Draft PR, branch, or file is created as a substitute for an inaccessible named target without explicit authorization.
+- Target placement test: FAIL if the assistant gives a Codex/GitHub/UI instruction without saying exactly where to paste/click it.
+- Target object test: FAIL if an instruction says “update PR” but does not identify the exact PR number and head branch or the current task field.
+- Forbidden side effect test: FAIL if a route creates a new PR/branch/issue when the requested target was an existing PR/task and no approval/blocker was recorded.
+- Blocker behavior test: PASS only if inaccessible target causes a blocker report, not a silent parallel artifact.
+
+PB-51 Problem-Class Generalization tests:
+- Systemic issue test: FAIL if the user identifies a non-global/local-only fix and the assistant only gives another local fix.
+- Dual response test: PASS requires both immediate current-case correction and generalized mechanism.
+- Mechanism propagation test: PASS requires proposed updates to instruction/registry/tests/templates/validator when the failure pattern is recurring or safety-critical.

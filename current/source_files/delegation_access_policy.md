@@ -102,3 +102,9 @@ User-Facing Russian Output delegation rule:
 Target Placement and Result Lock delegation rule:
 - User-facing Codex/GitHub/UI delegation instructions must include the exact paste/click place, exact target object to modify, expected result, and forbidden side effects.
 - If the target object is inaccessible to the system or user route, report the blocker instead of creating a parallel artifact or alternate target without explicit authorization.
+
+Target placement before user action:
+Before asking the user to paste/click/upload/run anything, specify exact location, target object, expected result, and forbidden side effects. Prefer the route with fewer user actions and lower ambiguity. If the instruction may create a new artifact when the intent is to update an existing one, clarify or lock the target first.
+
+Systemic-failure response:
+When the user says the proposed solution is not global, do not hand back another local fix only. Provide a current-case fix and a mechanism preventing the class of similar errors.

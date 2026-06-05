@@ -149,6 +149,19 @@ User-Facing Russian Output routing rule:
 - Keep English only for technical identifiers, filenames, code, exact gate names, GitHub branch names, PR titles, quoted source text, and command output when needed; add Russian explanation around technical English.
 
 Target Placement and Result Lock rule:
-- Before any Codex/GitHub/UI instruction, state the exact paste/click place, exact target object to modify, expected result, and forbidden side effects.
-- If the named target object is inaccessible or not verified, stop that route and report the blocker; do not silently create a parallel package, branch, PR, file, upload target, or substitute artifact.
-- If an alternate artifact is safer, label it as a proposed fallback and require explicit authorization unless the user already authorized that exact alternate target.
+Before producing Codex/GitHub/UI instructions, identify:
+- exact UI/tool location;
+- target object;
+- allowed mutation target;
+- expected result;
+- forbidden side effects;
+- blocker behavior if target is inaccessible.
+
+Do not create or recommend parallel PR/branch/issue/delivery unless explicitly requested, approved, or target is inaccessible and blocker evidence is reported.
+
+Problem-Class Generalization rule:
+When a user flags a system-design failure or non-global fix, route response through:
+- immediate correction;
+- root cause;
+- generalized rule/mechanism;
+- tests/validator/template updates if relevant.

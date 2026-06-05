@@ -101,10 +101,19 @@ PB-49 Minimal User Action / Action Compression template:
 - User-only action, if unavoidable:
 
 PB-50 Target Placement and Result Lock template:
-- Instruction route: Codex / GitHub / UI
-- Exact paste/click place:
-- Exact target object to modify:
+- Exact place to paste/click:
+- Target object:
+- Target branch/PR/task/file:
 - Expected result:
 - Forbidden side effects:
-- Target access status: accessible / inaccessible / not verified
-- Blocker if inaccessible:
+- If target inaccessible:
+- New artifact allowed: YES/NO and why:
+
+PB-51 Problem-Class Generalization template:
+- Current failure:
+- Immediate correction:
+- Root cause:
+- Generalized mechanism:
+- Files/gates/tests to update:
+- Future regression test:
+- What not to do again:
