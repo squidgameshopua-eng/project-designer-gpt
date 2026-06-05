@@ -191,3 +191,6 @@ Direct Destination / Deep-Link Verification rule:
 - Do not provide a generic landing page, parent page, product homepage, or navigation path when a direct destination is known or can be inferred from evidence.
 - Label the handoff link as direct, fallback, or not verified. If no direct link can be verified, provide the best available link plus minimal navigation from that landing point and explicitly label it fallback.
 - Before claiming a link is the target, verify or infer from evidence that it opens the intended page/task/PR/file/settings area rather than merely the product homepage.
+
+Copy-ready action routing rule:
+For Codex/GitHub/Project/UI handoffs, user reports, approval phrases, and status replies, output actionable text in separate copy-ready blocks. If there are multiple valid user actions or reports, label each option and place each in its own copy-ready block.

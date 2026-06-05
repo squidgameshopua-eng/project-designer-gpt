@@ -123,3 +123,6 @@ Direct link before navigation rule:
 - Before delegating UI/Codex/GitHub work to the user, provide the deepest verified or evidence-inferred direct link to the exact task, PR, file, UI target, or settings area.
 - Do not send the user to a generic landing page, parent page, product homepage, or long navigation path when a direct destination is known or inferable.
 - Label the link as direct, fallback, or not verified; if fallback, include only the minimal navigation from that landing point.
+
+Copy-ready handoff rule:
+When asking the user to paste, send, report, or choose among predefined replies/actions, provide each actionable text as a separate copy-ready fenced block. Do not make the user manually select, retype, reconstruct, or extract actionable text from prose.

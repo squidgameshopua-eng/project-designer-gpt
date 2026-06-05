@@ -147,3 +147,10 @@ PB-54 Direct Destination template:
 - Verification or inference evidence:
 - If fallback, minimal navigation from landing point:
 - Why this is not merely a product homepage or generic parent page:
+
+PB-55 Copy-Ready User Action Blocks template:
+- Action label:
+- Copy-ready block:
+- Where to paste/send:
+- When to use:
+- If multiple options, provide each option in a separate copy-ready block:

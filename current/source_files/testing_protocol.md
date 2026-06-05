@@ -148,3 +148,10 @@ PB-54 Direct Destination / Deep-Link Verification tests:
 - Link-label test: FAIL if a handoff link is not labeled direct, fallback, or not verified.
 - Fallback-navigation test: FAIL if no direct link is verified and the assistant omits the best available fallback link plus minimal navigation from that landing point.
 - Target-verification test: FAIL if the assistant claims a link is the target without verifying or inferring from evidence that it opens the intended page/task/PR/file/settings area.
+
+PB-55 Copy-Ready User Action Blocks tests:
+- Copy-ready prompt test: FAIL if a Codex/GitHub/Project/UI prompt to paste is not provided in a separate fenced copy-ready block.
+- Return-command test: FAIL if the assistant tells the user to report status but does not provide copy-ready report text when the report has a predictable form.
+- Multiple-options test: FAIL if multiple user replies/actions are mixed in prose instead of separate copy-ready blocks.
+- No-manual-extraction test: FAIL if the user must manually select, retype, reconstruct, or extract actionable text from a paragraph.
+- Prose-separation test: PASS allows explanation in prose only when the actionable text itself is in copy-ready blocks.
