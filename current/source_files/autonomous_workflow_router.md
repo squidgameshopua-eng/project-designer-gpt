@@ -180,3 +180,14 @@ For Codex/GitHub/Project/UI/tool routes, before giving the user instructions, de
 - completion evidence required before claiming done.
 
 Generated UI output, draft UI output, or local Codex output is not GitHub/Project completion until commit/publish/apply/upload/deploy evidence is checked.
+
+Approval-to-Execution Handoff rule:
+- Final/high-risk/irreversible actions still require explicit user approval; tool capability, prior unrelated approval, or silence is not approval.
+- After explicit approval, if a safe tool route is available and permitted, execute the approved action through the tool, verify evidence, and report the result.
+- Do not default to manual UI clicks for tool-executable actions. Manual UI is fallback only when the tool route is unavailable, blocked, unsafe, lacks permission, or the user chooses manual execution.
+
+Direct Destination / Deep-Link Verification rule:
+- Before giving a link, route, or UI entry point, identify the deepest directly reachable destination for the exact intended task, PR, file, UI target, or settings area.
+- Do not provide a generic landing page, parent page, product homepage, or navigation path when a direct destination is known or can be inferred from evidence.
+- Label the handoff link as direct, fallback, or not verified. If no direct link can be verified, provide the best available link plus minimal navigation from that landing point and explicitly label it fallback.
+- Before claiming a link is the target, verify or infer from evidence that it opens the intended page/task/PR/file/settings area rather than merely the product homepage.

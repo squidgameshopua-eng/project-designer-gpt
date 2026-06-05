@@ -130,3 +130,20 @@ PB-52 End-to-End Handoff template:
 - Evidence to return:
 - Forbidden side effects:
 - Completion may be claimed only after:
+
+PB-53 Approval-to-Execution Handoff template:
+- Action requiring approval:
+- Approval evidence:
+- Safe tool route available: YES/NO and why:
+- Execution route selected:
+- Tool evidence verified:
+- Result reported:
+- Manual UI fallback used: YES/NO and reason:
+
+PB-54 Direct Destination template:
+- Intended target/action:
+- Link provided:
+- Link label: direct / fallback / not verified
+- Verification or inference evidence:
+- If fallback, minimal navigation from landing point:
+- Why this is not merely a product homepage or generic parent page:
