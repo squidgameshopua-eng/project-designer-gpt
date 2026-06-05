@@ -53,3 +53,7 @@ If the preferred delivery route is paid or unavailable, deliver through the stro
 
 ## Audit-only delivery blocker
 For audit-only requests or audit by default, do not create/modify branch, PR, commit, issue, release, workflow, source file, or package patch until explicit patch/build/delivery approval. Deliver audit findings and proposed plans as non-applied state only.
+
+
+## PB-47 GitHub Instruction/Knowledge Delivery Format
+For GitHub-backed GPT/Project package delivery, provide or validate a knowledge package built by `scripts/build_knowledge_package.py`. The artifact must separate Project Instructions from Knowledge: `Instructions.md` is for the Project/GPT instruction field, `Knowledge/` contains only manifest-listed files from `current/source_files/`, and `package_manifest.json` plus `UPLOAD_GUIDE.md` document source, count, and upload steps. Do not include archive/, deliveries/, external_sources/, tests/, scripts/, workflow files, or old/corrected/final/draft variants as active Knowledge.

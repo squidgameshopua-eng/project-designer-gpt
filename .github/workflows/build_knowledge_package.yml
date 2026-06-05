@@ -1,0 +1,30 @@
+name: Build Knowledge Package
+
+on:
+  pull_request:
+    paths:
+      - 'current/**'
+      - 'scripts/build_knowledge_package.py'
+      - '.github/workflows/build_knowledge_package.yml'
+  workflow_dispatch:
+
+jobs:
+  build-knowledge-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build GitHub Instruction/Knowledge package
+        run: python scripts/build_knowledge_package.py --output knowledge_source_files.zip
+
+      - name: Upload knowledge package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: knowledge_source_files
+          path: knowledge_source_files.zip

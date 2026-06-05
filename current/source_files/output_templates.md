@@ -68,3 +68,14 @@ Secrets/settings audit template:
 | Item | Status | Evidence layer | Limitation |
 |---|---|---|---|
 | <setting/secret category> | <exists/absent/inaccessible/not verified> | <tool/file/UI/user evidence> | <no value disclosed> |
+
+
+PB-47 GitHub Instruction/Knowledge delivery template:
+Instruction file: current/instructions/Instructions.md -> Instructions.md
+Instruction count: <n>/8000
+Knowledge files: <manifest-listed current/source_files files>
+Excluded from Knowledge: archive/, deliveries/, external_sources/, tests/, scripts/, .github/, non-active files
+Artifact: <knowledge_source_files.zip path/link>
+Build evidence: <scripts/build_knowledge_package.py result>
+Upload guidance: paste Instructions.md into Project Instructions; upload Knowledge/ files as Knowledge/project sources; use UPLOAD_GUIDE.md for continuity.
+Verdict: <Ready/Not Ready>
