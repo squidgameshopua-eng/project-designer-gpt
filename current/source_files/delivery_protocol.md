@@ -10,6 +10,8 @@ Repository-first delivery rule:
 - Do not force the user to manually copy/upload files when the repository route can safely carry the change.
 - Provide complete copyable files or ZIP only when the user explicitly requests file delivery, repository tools are unavailable/blocked, or Project upload continuity cannot be preserved through the repository path.
 
+Source link delivery rule: when the user must place changed GitHub-backed files into Project UI manually, provide per-file links to the verified repository file source for every required changed file, with the target UI location and source ref. Prefer these links over reconstructed chat text.
+
 Patch Lock delivery blocker: do not deliver a revised/compressed instruction or package if Patch Lock test is missing or failed. Deliver only audit verdict and missing gates; do not present artifact as ready.
 
 If no changes are needed, state that no replacement package is required and give verdict.
