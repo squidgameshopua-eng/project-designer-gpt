@@ -79,3 +79,54 @@ Artifact: <knowledge_source_files.zip path/link>
 Build evidence: <scripts/build_knowledge_package.py result>
 Upload guidance: paste Instructions.md into Project Instructions; upload Knowledge/ files as Knowledge/project sources; use UPLOAD_GUIDE.md for continuity.
 Verdict: <Ready/Not Ready>
+
+PB-48 User-facing Russian output template:
+- User-facing language: Russian
+- English allowed only for: technical identifiers, filenames, code, exact gate names, branch/PR names, quoted source text, command output
+- Conclusions: Russian
+- Next steps: Russian
+- Status reports: Russian
+- Verdicts: Russian
+- If technical output is in English, add Russian explanation
+
+PB-49 Minimal User Action / Action Compression template:
+- Goal:
+- Available routes:
+- User actions required per route:
+- Evidence quality per route:
+- Risk / reversibility:
+- Selected route:
+- Why this route has the fewest user actions without lowering quality:
+- Rejected higher-user-work routes:
+- User-only action, if unavoidable:
+
+PB-50 Target Placement and Result Lock template:
+- Exact place to paste/click:
+- Target object:
+- Target branch/PR/task/file:
+- Expected result:
+- Forbidden side effects:
+- If target inaccessible:
+- New artifact allowed: YES/NO and why:
+
+PB-51 Problem-Class Generalization template:
+- Detected problem:
+- Detection source / evidence layer:
+- Problem class:
+- Local fix needed: YES/NO and why:
+- Immediate correction, if relevant:
+- Generalized prevention mechanism:
+- Files/gates/tests/templates/validator to update:
+- Future regression test:
+- What not to repeat:
+
+PB-52 End-to-End Handoff template:
+- Entry point / link:
+- Exact place to paste/click:
+- Target object:
+- Start/submit action:
+- Post-run publish/apply action to look for:
+- Expected result:
+- Evidence to return:
+- Forbidden side effects:
+- Completion may be claimed only after:

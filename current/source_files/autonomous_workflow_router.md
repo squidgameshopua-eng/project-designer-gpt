@@ -137,3 +137,46 @@ If repository write, API, PR, Codex, or package delivery fails, hangs, or return
 
 ## No Silent Long Task
 Do not let long-running or hanging operations disappear from the report. State the checkpoint, elapsed route outcome, switch made, evidence returned, and remaining blocker.
+
+Minimal User Action / Action Compression rule:
+- Before giving user-facing steps, compare whether the task can be completed by a single safer system-executable route: connector/API, Codex task, local artifact, generated package, PR patch, or repository workflow.
+- Select the route requiring the fewest user actions when quality, evidence, safety, and reversibility are equal or better.
+- Prefer one complete system-executable prompt/task/PR/package over multiple manual edits, clicks, uploads, screenshots, or repeated user instructions.
+- If manual steps remain unavoidable, state the system routes checked and provide only the smallest user-only action.
+
+User-Facing Russian Output routing rule:
+- Route all user-facing conclusions, explanations, next steps, status reports, and verdicts for this user through Russian output.
+- Keep English only for technical identifiers, filenames, code, exact gate names, GitHub branch names, PR titles, quoted source text, and command output when needed; add Russian explanation around technical English.
+
+Target Placement and Result Lock rule:
+Before producing Codex/GitHub/UI instructions, identify:
+- exact UI/tool location;
+- target object;
+- allowed mutation target;
+- expected result;
+- forbidden side effects;
+- blocker behavior if target is inaccessible.
+
+Do not create or recommend parallel PR/branch/issue/delivery unless explicitly requested, approved, or target is inaccessible and blocker evidence is reported.
+
+Problem-Class Generalization rule:
+When a problem, failure pattern, regression, non-global fix, wrong route, or repeated error is detected by any evidence layer, route response through:
+- detection source and evidence layer;
+- underlying problem class;
+- local/current-case fix only if still relevant, safe, and necessary;
+- generalized mechanism preventing similar future failures;
+- tests/validator/template updates if relevant.
+
+End-to-End Handoff / Publish-Step Verification rule:
+For Codex/GitHub/Project/UI/tool routes, before giving the user instructions, define:
+- entry point/link or where to find it;
+- exact paste/click location;
+- target object;
+- start/submit action;
+- post-run publish/apply/commit/update/create/save/upload/deploy action if required or possible;
+- expected observable result;
+- evidence the user should return;
+- forbidden side effects;
+- completion evidence required before claiming done.
+
+Generated UI output, draft UI output, or local Codex output is not GitHub/Project completion until commit/publish/apply/upload/deploy evidence is checked.

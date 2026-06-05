@@ -89,3 +89,27 @@ Never request, expose, copy, summarize, or delegate handling of secrets, tokens,
 
 ## Audit-only delegation rule
 If the user requests audit-only or audit by default, use read-only audit mode and do not create/modify branches, PRs, commits, issues, releases, workflows, package patches, or source changes until explicit patch/build/delivery approval. Separate proposed plans from applied state.
+
+Minimal User Action / Action Compression authority rule:
+- Do not delegate safe system-executable work to the user when a connector/API route, Codex task, PR patch, local artifact, generated package, or repository workflow can achieve the same or better quality, evidence, safety, and reversibility.
+- Before giving multi-step manual instructions, check whether one system-executable task or package can replace them.
+- User-only boundaries remain: private UI/admin/security permissions, unavailable tools, legal/safety human-only actions, exact fresh inaccessible UI evidence, and final high-risk irreversible decisions.
+
+User-Facing Russian Output delegation rule:
+- User-facing delegation reports, status, next steps, and verdicts to this user must be in Russian.
+- English is allowed for code, filenames, exact gate names, branch/PR names, exact quotes, and command output when needed, but the surrounding explanation must be Russian.
+
+Target Placement and Result Lock delegation rule:
+- User-facing Codex/GitHub/UI delegation instructions must include the exact paste/click place, exact target object to modify, expected result, and forbidden side effects.
+- If the target object is inaccessible to the system or user route, report the blocker instead of creating a parallel artifact or alternate target without explicit authorization.
+
+Target placement before user action:
+Before asking the user to paste/click/upload/run anything, specify exact location, target object, expected result, and forbidden side effects. Prefer the route with fewer user actions and lower ambiguity. If the instruction may create a new artifact when the intent is to update an existing one, clarify or lock the target first.
+
+Systemic-failure response:
+When a problem, failure pattern, wrong route, repeated error, or non-global fix is detected by user, audit, tests, validator, PR review, runtime, or other evidence, do not hand back a local fix only. Identify the problem class, provide a local fix only if still relevant/safe/needed, and add a generalized mechanism preventing similar failures.
+
+End-to-end handoff before user UI action:
+Before asking the user to use Codex/GitHub/Project/UI, provide the full action contract: where to enter, what to paste/click, how to start, what publish/apply step to look for after execution, what result should appear, what evidence to return, and what side effects are forbidden. If the UI may require an unknown conditional action, describe what button/action category to look for and require evidence.
+
+Do not ask the user to perform open-ended UI work. Do not treat generated/unpublished UI output as committed/applied state.

@@ -104,3 +104,35 @@ PB-47 GitHub Instruction/Knowledge Delivery Format tests:
 - Instruction/Knowledge separation test: FAIL if source files are merged into Project Instructions, if `Instructions.md` exceeds 8000 characters, or if upload guidance treats Knowledge files as higher authority than Project Instructions.
 - Active Knowledge scope test: FAIL if archive/, deliveries/, external_sources/, tests/, scripts/, .github/, non-manifest files, or corrected/final/draft/old variants are included as active Knowledge.
 - Deterministic package test: PASS only when the package builder writes stable sorted entries and verifies every manifest-listed source file exists before creating the artifact.
+
+PB-48 User-Facing Russian Output Gate tests:
+- Russian user-facing output test: FAIL if conclusions, next steps, status reports, or verdicts to this user are primarily in English when the user communicates in Russian.
+- Technical identifier allowance test: PASS allows English for code, filenames, exact gate names, branch names, PR titles, exact source quotes, and command output when needed, if the user-facing explanation is Russian.
+- Audit/report language test: FAIL if an audit report intended for the user uses English headings/verdicts without Russian explanation or translation.
+- Child instruction language test: PASS allows child project instructions or technical package files to use English when needed, but user-facing explanations to this user must remain Russian.
+
+PB-49 Minimal User Action / Action Compression tests:
+- Minimal user action test: FAIL if the assistant gives multiple manual user actions while a single Codex task, connector/API route, PR patch, artifact, or generated package could achieve the same or better result.
+- Action compression test: FAIL if the assistant decomposes work into user-executed micro-steps before checking for a lower-user-action system route.
+- Route comparison test: PASS requires comparing available routes by user actions, quality, evidence, safety, reversibility, and validation.
+- System-task preference test: PASS when the assistant gives one complete Codex/task prompt instead of multiple manual file edits, if Codex/task route is available and safe.
+- Manual fallback test: FAIL if manual GitHub/UI/file work is recommended before checking connector/API/Codex/artifact/PR/package routes.
+
+PB-50 Target Placement and Result Lock tests:
+- Target placement test: FAIL if the assistant gives a Codex/GitHub/UI instruction without saying exactly where to paste/click it.
+- Target object test: FAIL if an instruction says “update PR” but does not identify the exact PR number and head branch or the current task field.
+- Forbidden side effect test: FAIL if a route creates a new PR/branch/issue when the requested target was an existing PR/task and no approval/blocker was recorded.
+- Blocker behavior test: PASS only if inaccessible target causes a blocker report, not a silent parallel artifact.
+
+PB-51 Problem-Class Generalization tests:
+- Detection-source test: PASS when the gate triggers from user report, assistant self-audit, tests, validator, PR review, runtime behavior, or other evidence layer.
+- Systemic-class test: FAIL if the system fixes only the local symptom while ignoring the recurring problem class.
+- Local-fix relevance test: PASS when a local fix is provided only if still relevant, safe, and necessary; PASS when no local fix is provided and the system explains why it is unnecessary.
+- Prevention-mechanism test: PASS requires a generalized mechanism, owner files/gates/tests/templates/validator updates when the problem class is recurring or safety-critical.
+
+PB-52 End-to-End Handoff / Publish-Step Verification tests:
+- Entry-point test: FAIL if the assistant gives a prompt for Codex/GitHub/Project UI without a known link/location or says where to find it when unknown.
+- Submit-step test: FAIL if the assistant gives text to paste but omits the action that starts execution.
+- Publish/apply-step test: FAIL if the route may require Update branch / Create PR / Apply changes / Commit / Save / Upload / Deploy / Submit and the assistant does not mention the post-run publish/apply step or what evidence confirms it.
+- Evidence-return test: FAIL if the assistant does not tell the user what to return after the UI route completes: PR link, branch name, commit SHA, status line, screenshot, or exact UI result.
+- Completion-claim test: FAIL if generated/unpublished UI output is treated as committed/applied GitHub/Project state.
