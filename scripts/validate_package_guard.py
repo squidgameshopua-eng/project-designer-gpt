@@ -31,7 +31,9 @@ PROTECTED_FILES = [
     CURRENT_DIR / "source_files/delegation_access_policy.md",
     CURRENT_DIR / "source_files/autonomous_workflow_router.md",
     ROOT / ".github/workflows/package_guard.yml",
+    ROOT / ".github/workflows/build_knowledge_package.yml",
     ROOT / "scripts/validate_package_guard.py",
+    ROOT / "scripts/build_knowledge_package.py",
 ]
 
 
@@ -134,7 +136,7 @@ def main() -> int:
 
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
-    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 47)]
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 48)]
     for pb_id in required_pb_ids:
         if pb_id not in registry_text:
             return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
@@ -146,6 +148,7 @@ def main() -> int:
         "Free-Route Fallback",
         "Source Safety / No Secrets Gate",
         "Audit-only Before Patch Gate",
+        "GitHub Instruction/Knowledge Delivery Format",
     ]
     for phrase in required_registry_phrases:
         if phrase not in registry_text:
@@ -163,6 +166,35 @@ def main() -> int:
     for phrase in required_kernel_phrases:
         if phrase not in instruction_text:
             return fail(f'current/instructions/Instructions.md missing required phrase: "{phrase}"')
+
+    explicit_gate_names = [
+        "Durable Ledger",
+        "State Reconciliation",
+        "Completion Ledger",
+        "Activation Semantics",
+        "Plan/State Separation",
+    ]
+    for gate_name in explicit_gate_names:
+        if gate_name not in instruction_text:
+            return fail(f'current/instructions/Instructions.md missing explicit gate name: "{gate_name}"')
+    forbidden_grouped_gate_names = [
+        "Ledger/Reconciliation/Completion",
+        "Activation/Plan-State",
+    ]
+    for grouped_name in forbidden_grouped_gate_names:
+        if grouped_name in instruction_text:
+            return fail(f'current/instructions/Instructions.md uses compressed grouped gate name: "{grouped_name}"')
+    final_gate_line = next((line for line in instruction_text.splitlines() if line.startswith("Final gate:")), "")
+    kernel_line = next((line for line in instruction_text.splitlines() if line.startswith("Kernel self-preservation:")), "")
+    if not final_gate_line:
+        return fail("current/instructions/Instructions.md missing Final gate line")
+    if not kernel_line:
+        return fail("current/instructions/Instructions.md missing Kernel self-preservation line")
+    for gate_name in explicit_gate_names:
+        if gate_name not in final_gate_line:
+            return fail(f'Final gate missing explicit gate name: "{gate_name}"')
+        if gate_name not in kernel_line:
+            return fail(f'Kernel self-preservation missing explicit gate name: "{gate_name}"')
 
     router_text = (SOURCE_DIR / "autonomous_workflow_router.md").read_text(encoding="utf-8").lower()
     if "verification fallback" not in router_text:
@@ -273,6 +305,30 @@ def main() -> int:
     for file_name, phrase in required_operation_watchdog_phrases:
         if phrase not in section_texts[file_name]:
             return fail(f'{file_name} missing required Operation Watchdog phrase: "{phrase}"')
+
+    required_pb47_phrases = [
+        ("protected_behavior_registry.md", "PB-47"),
+        ("protected_behavior_registry.md", "GitHub Instruction/Knowledge Delivery Format"),
+        ("delivery_protocol.md", "PB-47 GitHub Instruction/Knowledge Delivery Format"),
+        ("delivery_protocol.md", "scripts/build_knowledge_package.py"),
+        ("delivery_protocol.md", "Knowledge/"),
+        ("output_templates.md", "PB-47 GitHub Instruction/Knowledge delivery template"),
+        ("testing_protocol.md", "PB-47 GitHub Instruction/Knowledge Delivery Format tests"),
+        ("testing_protocol.md", "Build Knowledge Package test"),
+    ]
+    for file_name, phrase in required_pb47_phrases:
+        if phrase not in section_texts[file_name]:
+            return fail(f'{file_name} missing required PB-47 phrase: "{phrase}"')
+
+    build_script = ROOT / "scripts/build_knowledge_package.py"
+    build_workflow = ROOT / ".github/workflows/build_knowledge_package.yml"
+    build_script_text = build_script.read_text(encoding="utf-8")
+    build_workflow_text = build_workflow.read_text(encoding="utf-8")
+    for phrase in ["Instructions.md", "Knowledge/", "UPLOAD_GUIDE.md", "package_manifest.json", "active_source_files"]:
+        if phrase not in build_script_text:
+            return fail(f'scripts/build_knowledge_package.py missing required PB-47 phrase: "{phrase}"')
+    if "python scripts/build_knowledge_package.py --output" not in build_workflow_text:
+        return fail("build_knowledge_package.yml missing package build command")
 
     print("PASS: package guard validation succeeded")
     return 0

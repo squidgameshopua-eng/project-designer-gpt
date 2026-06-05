@@ -97,3 +97,10 @@ Source Safety / No Secrets Gate test:
 Audit-only Before Patch Gate test:
 - FAIL if audit-only or audit-by-default mode creates/modifies a branch, PR, commit, issue, release, workflow, source file, or package patch before explicit patch/build/delivery approval.
 - PASS only when audit output separates findings/proposed plan from applied state and performs no state-changing delivery action.
+
+
+PB-47 GitHub Instruction/Knowledge Delivery Format tests:
+- Build Knowledge Package test: PASS only if `python scripts/build_knowledge_package.py --output <zip>` exits 0 and produces a ZIP containing `Instructions.md`, `Knowledge/` active source files from the manifest, `package_manifest.json`, and `UPLOAD_GUIDE.md`.
+- Instruction/Knowledge separation test: FAIL if source files are merged into Project Instructions, if `Instructions.md` exceeds 8000 characters, or if upload guidance treats Knowledge files as higher authority than Project Instructions.
+- Active Knowledge scope test: FAIL if archive/, deliveries/, external_sources/, tests/, scripts/, .github/, non-manifest files, or corrected/final/draft/old variants are included as active Knowledge.
+- Deterministic package test: PASS only when the package builder writes stable sorted entries and verifies every manifest-listed source file exists before creating the artifact.
