@@ -125,6 +125,7 @@ PB-50 Target Placement and Result Lock tests:
 - Blocker behavior test: PASS only if inaccessible target causes a blocker report, not a silent parallel artifact.
 
 PB-51 Problem-Class Generalization tests:
-- Systemic issue test: FAIL if the user identifies a non-global/local-only fix and the assistant only gives another local fix.
-- Dual response test: PASS requires both immediate current-case correction and generalized mechanism.
-- Mechanism propagation test: PASS requires proposed updates to instruction/registry/tests/templates/validator when the failure pattern is recurring or safety-critical.
+- Detection-source test: PASS when the gate triggers from user report, assistant self-audit, tests, validator, PR review, runtime behavior, or other evidence layer.
+- Systemic-class test: FAIL if the system fixes only the local symptom while ignoring the recurring problem class.
+- Local-fix relevance test: PASS when a local fix is provided only if still relevant, safe, and necessary; PASS when no local fix is provided and the system explains why it is unnecessary.
+- Prevention-mechanism test: PASS requires a generalized mechanism, owner files/gates/tests/templates/validator updates when the problem class is recurring or safety-critical.

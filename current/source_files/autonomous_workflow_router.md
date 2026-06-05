@@ -160,8 +160,9 @@ Before producing Codex/GitHub/UI instructions, identify:
 Do not create or recommend parallel PR/branch/issue/delivery unless explicitly requested, approved, or target is inaccessible and blocker evidence is reported.
 
 Problem-Class Generalization rule:
-When a user flags a system-design failure or non-global fix, route response through:
-- immediate correction;
-- root cause;
-- generalized rule/mechanism;
+When a problem, failure pattern, regression, non-global fix, wrong route, or repeated error is detected by any evidence layer, route response through:
+- detection source and evidence layer;
+- underlying problem class;
+- local/current-case fix only if still relevant, safe, and necessary;
+- generalized mechanism preventing similar future failures;
 - tests/validator/template updates if relevant.

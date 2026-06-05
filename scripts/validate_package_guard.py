@@ -334,8 +334,8 @@ def main() -> int:
         ("testing_protocol.md", "Russian user-facing output test"),
         ("testing_protocol.md", "Minimal user action test"),
         ("testing_protocol.md", "Target placement test"),
-        ("testing_protocol.md", "Systemic issue test"),
-        ("testing_protocol.md", "Dual response test"),
+        ("testing_protocol.md", "Detection-source test"),
+        ("testing_protocol.md", "Local-fix relevance test"),
         ("output_templates.md", "PB-48 User-facing Russian output template"),
         ("output_templates.md", "PB-49 Minimal User Action / Action Compression template"),
         ("output_templates.md", "PB-50 Target Placement and Result Lock template"),
@@ -343,7 +343,7 @@ def main() -> int:
         ("output_templates.md", "User-facing language: Russian"),
         ("output_templates.md", "User actions required per route"),
         ("output_templates.md", "Target object"),
-        ("output_templates.md", "Generalized mechanism"),
+        ("output_templates.md", "Generalized prevention mechanism"),
     ]
     section_texts["current/instructions/Instructions.md"] = instruction_text
     for file_name, phrase in required_pb48_pb49_pb50_pb51_phrases:
@@ -371,12 +371,13 @@ def main() -> int:
     ]
     required_pb51_phrases = [
         "PB-51 Problem-Class Generalization Gate",
-        "immediate correction",
+        "problem/failure pattern",
+        "detected by the user, assistant, audit, tests, validator, PR review, runtime behavior, or other evidence layer",
         "generalized mechanism",
-        "whole class of similar future errors",
-        "Problem-Class Generalization rule",
-        "Systemic issue test",
-        "Dual response test",
+        "local/current-case fix only when it is still relevant, safe, and necessary",
+        "recurring or systemic failure class",
+        "Detection-source test",
+        "Local-fix relevance test",
     ]
     for phrase in required_pb50_phrases + required_pb51_phrases:
         if phrase not in all_guard_text:

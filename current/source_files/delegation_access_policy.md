@@ -107,4 +107,4 @@ Target placement before user action:
 Before asking the user to paste/click/upload/run anything, specify exact location, target object, expected result, and forbidden side effects. Prefer the route with fewer user actions and lower ambiguity. If the instruction may create a new artifact when the intent is to update an existing one, clarify or lock the target first.
 
 Systemic-failure response:
-When the user says the proposed solution is not global, do not hand back another local fix only. Provide a current-case fix and a mechanism preventing the class of similar errors.
+When a problem, failure pattern, wrong route, repeated error, or non-global fix is detected by user, audit, tests, validator, PR review, runtime, or other evidence, do not hand back a local fix only. Identify the problem class, provide a local fix only if still relevant/safe/needed, and add a generalized mechanism preventing similar failures.

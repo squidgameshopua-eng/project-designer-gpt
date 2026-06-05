@@ -110,10 +110,12 @@ PB-50 Target Placement and Result Lock template:
 - New artifact allowed: YES/NO and why:
 
 PB-51 Problem-Class Generalization template:
-- Current failure:
-- Immediate correction:
-- Root cause:
-- Generalized mechanism:
-- Files/gates/tests to update:
+- Detected problem:
+- Detection source / evidence layer:
+- Problem class:
+- Local fix needed: YES/NO and why:
+- Immediate correction, if relevant:
+- Generalized prevention mechanism:
+- Files/gates/tests/templates/validator to update:
 - Future regression test:
-- What not to do again:
+- What not to repeat:
