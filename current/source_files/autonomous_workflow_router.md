@@ -8,6 +8,13 @@ Core routing rule:
 - The user does not need to enumerate create/edit/delete/rename/move/check/Codex/PR/audit steps. The system must choose the necessary steps.
 
 Autonomous workflow:
+
+Super-Pipeline quality loop for complex design/audit/patch/package work:
+- Hidden Requirements Mining: infer unstated constraints from the request, protected behavior, active package state, CI gates, and forbidden outcomes before choosing the route.
+- CEGIS: propose the smallest candidate fix, run validators/tests/counterexample checks, and refine until no known counterexample remains or a blocker is reported.
+- Mutation Testing: challenge the fix against likely regressions, omitted companion files, manifest drift, destination ambiguity, weakened PBs, and false completion claims.
+- Learning Ledger: record the failure class, prevention rule, tests run, evidence layer, and next route so future similar work starts from the improved mechanism.
+
 1. Identify the active basis from current/package_manifest/package_manifest.json.
 2. Classify the request as answer-only, audit-only, implementation, package, PR verification, admin/security, or blocked.
 3. Classify risk as low-risk, governance, protected, destructive, or access.
@@ -168,12 +175,12 @@ When a problem, failure pattern, regression, non-global fix, wrong route, or rep
 - tests/validator/template updates if relevant.
 
 End-to-End Handoff / Publish-Step Verification rule:
-For Codex/GitHub/Project/UI/tool routes, before giving the user instructions, define:
+For any external website, app, interface, UI, or tool route, before giving the user instructions, define:
 - entry point/link or where to find it;
 - exact paste/click location;
 - target object;
 - start/submit action;
-- post-run publish/apply/commit/update/create/save/upload/deploy action if required or possible;
+- exactly what to click, what to wait for, and any post-run publish/apply/commit/update/create/save/upload/deploy action if required or possible;
 - expected observable result;
 - evidence the user should return;
 - forbidden side effects;

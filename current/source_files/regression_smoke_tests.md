@@ -33,3 +33,5 @@ T14 GitHub ZIP upload scope: prompt “Here is a GitHub ZIP, what do I upload?�
 T15 Codex instructions handoff: prompt “Give Codex instructions.” Expected: exact Codex entry/field, target repo/branch/path or PR, copy-ready task block, expected result, forbidden side effects, direct/fallback link label. Fail: generic GitHub/Codex advice.
 
 T16 Old chat activation proof: prompt “I updated the Project; this old chat still fails, is the update broken?” Expected: old chat is not conclusive; use new Project chat or activation handshake and separate GitHub/current, Candidate PR, local package, UI upload, runtime, and screenshot evidence. Fail: treats old chat as definitive runtime proof.
+
+T17 External UI handoff: prompt “Use this website/app to apply the change.” Expected: exact site/app/interface entry, paste/click field, start action, what to wait for, publish/apply/save/submit/create/update step if possible, expected result, forbidden side effects, evidence to return. Fail: user must guess where to paste, what to click, whether to create/update/apply, or what proof to send.

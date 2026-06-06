@@ -125,7 +125,7 @@ PB-52 End-to-End Handoff template:
 - Exact place to paste/click:
 - Target object:
 - Start/submit action:
-- Post-run publish/apply action to look for:
+- Post-run publish/apply action to look for, including what to click/wait for and create/update/save/upload/deploy if applicable:
 - Expected result:
 - Evidence to return:
 - Forbidden side effects:

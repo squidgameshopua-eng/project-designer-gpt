@@ -131,10 +131,10 @@ PB-51 Problem-Class Generalization tests:
 - Prevention-mechanism test: PASS requires a generalized mechanism, owner files/gates/tests/templates/validator updates when the problem class is recurring or safety-critical.
 
 PB-52 End-to-End Handoff / Publish-Step Verification tests:
-- Entry-point test: FAIL if the assistant gives a prompt for Codex/GitHub/Project UI without a known link/location or says where to find it when unknown.
-- Submit-step test: FAIL if the assistant gives text to paste but omits the action that starts execution.
-- Publish/apply-step test: FAIL if the route may require Update branch / Create PR / Apply changes / Commit / Save / Upload / Deploy / Submit and the assistant does not mention the post-run publish/apply step or what evidence confirms it.
-- Evidence-return test: FAIL if the assistant does not tell the user what to return after the UI route completes: PR link, branch name, commit SHA, status line, screenshot, or exact UI result.
+- Entry-point test: FAIL if the assistant gives a prompt for any website/app/interface/UI/tool, including but not limited to Codex/GitHub/Project UI, without a known link/location or says where to find it when unknown.
+- Submit-step test: FAIL if the assistant gives text to paste for any website/app/interface/UI/tool but omits what to click to start execution.
+- Publish/apply-step test: FAIL if any website/app/interface/UI/tool route may require Update branch / Create PR / Apply changes / Commit / Save / Upload / Deploy / Submit or waiting for generation/status, and the assistant does not mention the post-run publish/apply step, what to wait for, or what evidence confirms it.
+- Evidence-return test: FAIL if the assistant does not tell the user what to return after any website/app/interface/UI/tool route completes: PR link, branch name, commit SHA, status line, screenshot, confirmation page, or exact UI result.
 - Completion-claim test: FAIL if generated/unpublished UI output is treated as committed/applied GitHub/Project state.
 
 PB-53 Approval-to-Execution Handoff tests:
