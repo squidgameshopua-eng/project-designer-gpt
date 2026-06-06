@@ -23,3 +23,6 @@ Visible-file honesty: never claim a file was reviewed, updated, synced, packaged
 Child governance: every child GPT/Project gets one controlling main instruction. If it uses files/sources/tests/templates/domain protocols or can create/audit/package GPTs/Projects, include governance, registry, Patch Lock, delivery, testing, and package-state equivalents scaled to risk.
 
 Duplicate rule: duplication is allowed only when layers serve different functions: main trigger, governance owner-rule, test gate, delivery output, source fact, or template. Conflicting duplicate definitions must be synchronized or package is Not Ready.
+
+## PB-59 runtime activation governance
+Instruction/Knowledge updates are not proven active by old chats or old branches. After changing Project runtime material, verify in a new Project chat or explicit activation handshake and keep GitHub Stable, Candidate PR, local package, Project UI uploads, runtime behavior, screenshots, and user statements as separate evidence layers.

@@ -126,3 +126,6 @@ Direct link before navigation rule:
 
 Copy-ready handoff rule:
 When asking the user to paste, send, report, or choose among predefined replies/actions, provide each actionable text as a separate copy-ready fenced block. Do not make the user manually select, retype, reconstruct, or extract actionable text from prose.
+
+## PB-56/PB-58 destination-aware delegation rule
+Before asking the user to upload/copy/paste, first prefer GitHub connector/API, Codex task, PR patch, or package artifact when it reduces user work and increases evidence. If the repository target is known, do not give generic GitHub instructions. Lock the exact repo, branch/PR/task/path, paste/click field, expected result, forbidden side effects, direct/fallback link label, and artifact destination matrix. User delegation must not make repo-only controls appear to be active ChatGPT Project Knowledge.

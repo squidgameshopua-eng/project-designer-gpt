@@ -100,7 +100,7 @@ Audit-only Before Patch Gate test:
 
 
 PB-47 GitHub Instruction/Knowledge Delivery Format tests:
-- Build Knowledge Package test: PASS only if `python scripts/build_knowledge_package.py --output <zip>` exits 0 and produces a ZIP containing `Instructions.md`, `Knowledge/` active source files from the manifest, `package_manifest.json`, and `UPLOAD_GUIDE.md`.
+- Build Knowledge Package test: PASS only if `python scripts/build_knowledge_package.py --output <zip>` exits 0 and produces a ZIP containing only `Instructions.md` plus `Knowledge/` active source files from the manifest, and excludes `package_manifest.json`, `UPLOAD_GUIDE.md`, repo controls, scripts, workflows, tests, reports, archives, deliveries, and Codex tasks from active Knowledge.
 - Instruction/Knowledge separation test: FAIL if source files are merged into Project Instructions, if `Instructions.md` exceeds 8000 characters, if upload guidance treats Knowledge files as higher authority than Project Instructions, or if delivery evidence files are described as active Knowledge.
 - Active Knowledge scope test: FAIL if archive/, deliveries/, external_sources/, tests/, scripts/, .github/, package manifest, upload guide, package linter, non-manifest files, or corrected/final/draft/old variants are included as active Knowledge.
 - Deterministic package test: PASS only when the package builder writes stable sorted entries and verifies every manifest-listed source file exists before creating the artifact.
@@ -155,3 +155,14 @@ PB-55 Copy-Ready User Action Blocks tests:
 - Multiple-options test: FAIL if multiple user replies/actions are mixed in prose instead of separate copy-ready blocks.
 - No-manual-extraction test: FAIL if the user must manually select, retype, reconstruct, or extract actionable text from a paragraph.
 - Prose-separation test: PASS allows explanation in prose only when the actionable text itself is in copy-ready blocks.
+
+## PB-56/PB-57/PB-58/PB-59 destination and activation tests
+Artifact Destination Matrix test: every delivered file/ZIP/task/report/script/workflow/manifest/guide/instruction block has class, exact destination, forbidden destinations, and active/evidence status. Missing matrix is Invalid Delivery; Critical FAIL when user may upload wrong active runtime material, otherwise Major FAIL.
+
+Repo-only Controls Exclusion test: ChatGPT upload package contains only `Instructions.md` and `Knowledge/*.md` derived from active `current/source_files/*.md`. Fail if `package_manifest.json`, `package_linter.py`, `scripts/`, `.github/workflows/`, `tests/`, `reports/`, `UPLOAD_GUIDE.md`, `CODEX_TASK*.md`, `archive/`, `deliveries/`, or repo ZIPs appear under active Knowledge. Critical FAIL if repo-only controls are described as active Knowledge.
+
+Direct Codex/GitHub Handoff test: GitHub/Codex instructions name exact repo, branch/PR/task/file path, paste/click field, expected result, forbidden side effects, and direct/fallback link label. If no direct task was created, one copy-ready Codex task block and fallback Codex entry link must be provided. Missing exact mapping or task = Major FAIL; if it can modify the wrong repo/path = Critical FAIL.
+
+Runtime Activation / old-branch non-equivalence test: old chats/threads/branches/ZIPs/screenshots are evidence only and cannot conclusively prove updated Project Instructions/Knowledge runtime behavior. PASS requires new Project chat or explicit activation handshake after runtime update. Treat layer mixing as Major FAIL or Critical FAIL when it causes false active-system claims.
+
+PB-56 note: Artifact ambiguity is a problem/failure pattern that must route through the generalized Artifact Destination Contract before delivery.

@@ -136,7 +136,7 @@ def main() -> int:
 
 
     registry_text = (SOURCE_DIR / "protected_behavior_registry.md").read_text(encoding="utf-8")
-    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 56)]
+    required_pb_ids = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 60)]
     for pb_id in required_pb_ids:
         if pb_id not in registry_text:
             return fail(f"protected_behavior_registry.md missing required ID: {pb_id}")
@@ -161,6 +161,10 @@ def main() -> int:
         "Deep-Link Verification Gate",
         "PB-55 Copy-Ready User Action Blocks",
         "One-Tap Copy Gate",
+        "PB-56 Artifact Destination Contract",
+        "PB-57 Repo-only Controls Exclusion",
+        "PB-58 GitHub/Codex Direct Handoff Contract",
+        "PB-59 Runtime Activation / Old Branch Non-equivalence",
     ]
     for phrase in required_registry_phrases:
         if phrase not in registry_text:
@@ -185,6 +189,10 @@ def main() -> int:
         "Completion Ledger",
         "Activation Semantics",
         "Plan/State Separation",
+        "Artifact Destination Contract",
+        "Repo-only Controls Exclusion",
+        "Codex/GitHub Direct Handoff",
+        "Runtime Activation Check",
     ]
     for gate_name in explicit_gate_names:
         if gate_name not in instruction_text:
@@ -238,6 +246,9 @@ def main() -> int:
         "package_state_protocol.md": (SOURCE_DIR / "package_state_protocol.md").read_text(encoding="utf-8"),
         "output_templates.md": (SOURCE_DIR / "output_templates.md").read_text(encoding="utf-8"),
         "protected_behavior_registry.md": registry_text,
+        "regression_smoke_tests.md": (SOURCE_DIR / "regression_smoke_tests.md").read_text(encoding="utf-8"),
+        "instruction_governance.md": (SOURCE_DIR / "instruction_governance.md").read_text(encoding="utf-8"),
+        "project_operating_protocol.md": (SOURCE_DIR / "project_operating_protocol.md").read_text(encoding="utf-8"),
     }
     for file_name, phrase in required_user_work_sections:
         if phrase not in section_texts[file_name]:
@@ -531,6 +542,41 @@ def main() -> int:
         if phrase not in instruction_text:
             return fail(f'current/instructions/Instructions.md missing anti-weakening phrase: "{phrase}"')
 
+    required_destination_contract_phrases = [
+        ("current/instructions/Instructions.md", "Artifact Destination Contract"),
+        ("current/instructions/Instructions.md", "Repo-only Controls Exclusion"),
+        ("current/instructions/Instructions.md", "Codex/GitHub Direct Handoff"),
+        ("current/instructions/Instructions.md", "Runtime Activation Check"),
+        ("protected_behavior_registry.md", "PB-56 Artifact Destination Contract"),
+        ("protected_behavior_registry.md", "PB-57 Repo-only Controls Exclusion"),
+        ("protected_behavior_registry.md", "PB-58 GitHub/Codex Direct Handoff Contract"),
+        ("protected_behavior_registry.md", "PB-59 Runtime Activation / Old Branch Non-equivalence"),
+        ("delivery_protocol.md", "Artifact Destination Contract delivery blocker"),
+        ("delivery_protocol.md", "ChatGPT upload package = `Instructions.md` plus `Knowledge/*.md` only"),
+        ("testing_protocol.md", "Artifact Destination Matrix test"),
+        ("testing_protocol.md", "Repo-only Controls Exclusion test"),
+        ("testing_protocol.md", "Direct Codex/GitHub Handoff test"),
+        ("testing_protocol.md", "Runtime Activation / old-branch non-equivalence test"),
+        ("output_templates.md", "PB-56 Artifact Destination Matrix template"),
+        ("output_templates.md", "PB-57 GitHub file-path mapping template"),
+        ("output_templates.md", "PB-58 Codex direct handoff/copy-ready task template"),
+        ("output_templates.md", "PB-59 Runtime activation handshake template"),
+        ("package_state_protocol.md", "ChatGPT runtime active basis"),
+        ("package_state_protocol.md", "GitHub Stable basis"),
+        ("package_state_protocol.md", "Candidate PR basis"),
+        ("package_state_protocol.md", "Local package basis"),
+        ("autonomous_workflow_router.md", "artifact destination and direct handoff routing rule"),
+        ("delegation_access_policy.md", "destination-aware delegation rule"),
+        ("regression_smoke_tests.md", "T13 Repo-only manifest placement"),
+        ("regression_smoke_tests.md", "T14 GitHub ZIP upload scope"),
+        ("regression_smoke_tests.md", "T15 Codex instructions handoff"),
+        ("regression_smoke_tests.md", "T16 Old chat activation proof"),
+    ]
+    section_texts["current/instructions/Instructions.md"] = instruction_text
+    for file_name, phrase in required_destination_contract_phrases:
+        if phrase not in section_texts[file_name]:
+            return fail(f'{file_name} missing required artifact destination phrase: "{phrase}"')
+
     required_pb47_phrases = [
         ("protected_behavior_registry.md", "PB-47"),
         ("protected_behavior_registry.md", "GitHub Instruction/Knowledge Delivery Format"),
@@ -549,9 +595,15 @@ def main() -> int:
     build_workflow = ROOT / ".github/workflows/build_knowledge_package.yml"
     build_script_text = build_script.read_text(encoding="utf-8")
     build_workflow_text = build_workflow.read_text(encoding="utf-8")
-    for phrase in ["Instructions.md", "Knowledge/", "UPLOAD_GUIDE.md", "package_manifest.json", "active_source_files"]:
+    for phrase in ["Instructions.md", "Knowledge/", "UPLOAD_GUIDE.md", "package_manifest.json", "package_linter.py", "scripts/", "reports/", ".github/workflows/", "CODEX_TASK", "archive/", "deliveries/", "active_source_files"]:
         if phrase not in build_script_text:
-            return fail(f'scripts/build_knowledge_package.py missing required PB-47 phrase: "{phrase}"')
+            return fail(f'scripts/build_knowledge_package.py missing required package-scope guard phrase: "{phrase}"')
+    forbidden_entry_snippets = ['\n        ("UPLOAD_GUIDE.md"', '\n        ("package_manifest.json"']
+    for snippet in forbidden_entry_snippets:
+        if snippet in build_script_text:
+            return fail(f'scripts/build_knowledge_package.py must not add repo-only artifact to upload ZIP entries: {snippet}')
+    if 'name == "Instructions.md" or name.startswith("Knowledge/")' not in build_script_text:
+        return fail('scripts/build_knowledge_package.py missing strict upload ZIP path check')
     if "python scripts/build_knowledge_package.py --output" not in build_workflow_text:
         return fail("build_knowledge_package.yml missing package build command")
 

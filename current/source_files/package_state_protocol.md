@@ -35,3 +35,12 @@ Track operation state separately:
 - switched route
 - user-only blocked
 - verified
+
+## PB-56/PB-57/PB-59 layered artifact state rule
+Keep these layers separate in every package/state claim:
+- ChatGPT runtime active basis: saved Project Instructions plus visible Project source/Knowledge files in the current/new runtime chat.
+- GitHub Stable basis: repository `current/` plus `current/package_manifest/package_manifest.json` on main/current stable branch.
+- Candidate PR basis: unmerged PR branch/diff and its validation evidence; not Stable until merged/promoted.
+- Local package basis: generated local files/ZIPs; evidence only until uploaded/committed/promoted.
+- Evidence-only basis: old branches, old chats, old ZIPs, screenshots, reports, archives, deliveries, and user statements until verified in the target layer.
+Repo-only controls (`package_manifest.json`, `package_linter.py`, scripts, workflows, reports, guides, Codex tasks, archives, deliveries, ZIPs) are not ChatGPT runtime active Knowledge unless the user explicitly requests non-active audit/reference upload.

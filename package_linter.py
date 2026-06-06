@@ -65,6 +65,10 @@ REQUIRED_INSTRUCTION_TERMS = [
     "testing_protocol.md",
     "Child-system inheritance",
     "Final gate",
+    "Artifact Destination Contract",
+    "Repo-only Controls Exclusion",
+    "Codex/GitHub Direct Handoff",
+    "Runtime Activation Check",
 ]
 
 REQUIRED_SOURCE_TERMS = {
@@ -79,11 +83,11 @@ REQUIRED_SOURCE_TERMS = {
         "Rational route gate",
     ],
     "patch_lock_protocol.md": ["Patch Lock", "Invalid Delivery", "Builder/Auditor", "Patch State Machine"],
-    "protected_behavior_registry.md": ["PB-00", "PB-00A", "PB-00B", "PB-22", "protected behavior"],
-    "testing_protocol.md": ["Patch Lock test", "Patch State Machine test", "Builder/Auditor test", "Hard pass threshold"],
-    "delivery_protocol.md": ["Patch Lock delivery blocker", "complete current", "No snippets-only"],
-    "package_state_protocol.md": ["Active package basis", "evidence only", "canonical"],
-    "regression_smoke_tests.md": ["T01", "T04", "T12", "Fail"],
+    "protected_behavior_registry.md": ["PB-00", "PB-00A", "PB-00B", "PB-22", "PB-56", "PB-57", "PB-58", "PB-59", "Artifact Destination Contract", "Repo-only Controls Exclusion", "GitHub/Codex Direct Handoff Contract", "Runtime Activation / Old Branch Non-equivalence", "protected behavior"],
+    "testing_protocol.md": ["Patch Lock test", "Patch State Machine test", "Builder/Auditor test", "Hard pass threshold", "Artifact Destination Matrix test", "Repo-only Controls Exclusion test", "Direct Codex/GitHub Handoff test", "Runtime Activation / old-branch non-equivalence test"],
+    "delivery_protocol.md": ["Patch Lock delivery blocker", "complete current", "No snippets-only", "Artifact Destination Contract delivery blocker", "ChatGPT upload package = `Instructions.md` plus `Knowledge/*.md` only"],
+    "package_state_protocol.md": ["Active package basis", "evidence only", "canonical", "ChatGPT runtime active basis", "GitHub Stable basis", "Candidate PR basis", "Local package basis"],
+    "regression_smoke_tests.md": ["T01", "T04", "T12", "T13", "T14", "T15", "T16", "Fail"],
 }
 
 BANNED_ACTIVE_NAME_RE = re.compile(
@@ -345,6 +349,47 @@ def check_non_active_and_root(repo: Path, manifest: dict[str, Any], findings: li
         add(findings, "WARNING", "active_like_outside_current", ".", "Files with active names exist outside current/; they are evidence only unless explicitly promoted: " + ", ".join(sorted(active_like_outside_current)))
 
 
+
+def check_artifact_destination_contract(repo: Path, findings: list[Finding]) -> None:
+    instruction_text = read_text(repo / "current/instructions/Instructions.md")
+    registry_text = read_text(repo / "current/source_files/protected_behavior_registry.md")
+    build_text = read_text(repo / "scripts/build_knowledge_package.py")
+    required_instruction = [
+        "Artifact Destination Contract",
+        "Repo-only Controls Exclusion",
+        "Codex/GitHub Direct Handoff",
+        "Runtime Activation Check",
+        "ChatGPT Project Knowledge",
+        "GitHub repo control",
+        "do-not-upload",
+    ]
+    for term in required_instruction:
+        if term not in instruction_text:
+            add(findings, "ERROR", "artifact_destination_instruction", "current/instructions/Instructions.md", f"Missing destination contract term: {term}")
+
+    for pb_id in ("PB-56", "PB-57", "PB-58", "PB-59"):
+        if pb_id not in registry_text:
+            add(findings, "ERROR", "artifact_destination_registry", "current/source_files/protected_behavior_registry.md", f"Missing protected behavior ID: {pb_id}")
+
+    forbidden_upload_markers = [
+        "package_manifest.json",
+        "package_linter.py",
+        "scripts/",
+        "reports/",
+        ".github/workflows/",
+        "UPLOAD_GUIDE.md",
+        "CODEX_TASK",
+        "archive/",
+        "deliveries/",
+    ]
+    for marker in forbidden_upload_markers:
+        if marker not in build_text:
+            add(findings, "ERROR", "knowledge_build_scope_guard", "scripts/build_knowledge_package.py", f"Missing forbidden upload marker guard: {marker}")
+    if '\n        ("UPLOAD_GUIDE.md"' in build_text or '\n        ("package_manifest.json"' in build_text:
+        add(findings, "ERROR", "knowledge_build_scope_guard", "scripts/build_knowledge_package.py", "Upload ZIP entries must not include UPLOAD_GUIDE.md or package_manifest.json.")
+    if 'name == "Instructions.md" or name.startswith("Knowledge/")' not in build_text:
+        add(findings, "ERROR", "knowledge_build_scope_guard", "scripts/build_knowledge_package.py", "Missing strict Instructions.md/Knowledge/* ZIP scope check.")
+
 def summarize(findings: list[Finding]) -> dict[str, int]:
     return {
         "ERROR": sum(1 for f in findings if f.severity == "ERROR"),
@@ -399,6 +444,7 @@ def run(repo: Path, instruction_limit: int) -> tuple[list[Finding], int]:
     check_required_source_content(repo, source_folder, findings)
     check_linter_location(repo, findings)
     check_non_active_and_root(repo, manifest, findings)
+    check_artifact_destination_contract(repo, findings)
 
     exit_code = 1 if summarize(findings)["ERROR"] else 0
     return findings, exit_code

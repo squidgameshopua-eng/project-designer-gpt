@@ -25,3 +25,6 @@ repository-first workflow rule:
 - For implementation or patch work with an authorized GitHub repository, prefer read-only audit -> Codex-ready patch or direct branch if safe -> Draft PR -> PR verification -> merge/no-merge verdict.
 - Do not default to manual file delivery when repository delivery is available and safer.
 - If a chat write tool hangs, is blocked, or lacks clear evidence, stop that route and switch to Codex-ready task without retrying.
+
+## PB-56/PB-59 operating layer rule
+Project operation must distinguish ChatGPT runtime active files from GitHub Stable `current/`, Candidate PRs, local packages, UI-uploaded files, old chats, screenshots, archives, deliveries, and ZIPs. Any delivery that changes files or asks for upload must include an Artifact Destination Matrix and must not route repo-only controls into active Knowledge.

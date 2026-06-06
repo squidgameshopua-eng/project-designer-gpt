@@ -39,8 +39,8 @@ Use:
 ## Deployment to ChatGPT Project
 
 1. Paste `current/instructions/Instructions.md` into the Project Instructions field.
-2. Upload only files from `current/source_files/` into Project Sources.
-3. Do not upload archive, rejected, delivery, external source, or test files as active Project Sources.
+2. Build or use the upload package so active source files appear only as `Knowledge/*.md`, then upload only those `Knowledge/*.md` files into Project Sources/Knowledge.
+3. Do not upload `current/package_manifest/package_manifest.json`, `package_linter.py`, `scripts/`, `.github/workflows/`, `tests/`, `reports/`, `UPLOAD_GUIDE.md`, `CODEX_TASK*.md`, `archive/`, `deliveries/`, repo ZIPs, external sources, or delivery artifacts as active Project Knowledge unless explicitly requested as non-active audit/reference material.
 
 ## GitHub connector rule
 
@@ -50,3 +50,7 @@ When ChatGPT is connected to this repository:
 - Use `archive/` only when explicitly requested.
 - Treat candidate or experimental material as non-active unless explicitly promoted.
 - Keep “memory and chats” connector context off by default when working with package truth, to avoid mixing old chat branches with the active GitHub package.
+
+## Artifact destination rule
+
+Every delivery must include an Artifact Destination Matrix. `package_manifest.json` and `package_linter.py` are GitHub/repo-only control artifacts; they are not ChatGPT Project Knowledge.
