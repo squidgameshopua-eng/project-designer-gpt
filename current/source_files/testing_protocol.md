@@ -131,10 +131,10 @@ PB-51 Problem-Class Generalization tests:
 - Prevention-mechanism test: PASS requires a generalized mechanism, owner files/gates/tests/templates/validator updates when the problem class is recurring or safety-critical.
 
 PB-52 End-to-End Handoff / Publish-Step Verification tests:
-- Entry-point test: FAIL if the assistant gives a prompt for Codex/GitHub/Project UI without a known link/location or says where to find it when unknown.
-- Submit-step test: FAIL if the assistant gives text to paste but omits the action that starts execution.
-- Publish/apply-step test: FAIL if the route may require Update branch / Create PR / Apply changes / Commit / Save / Upload / Deploy / Submit and the assistant does not mention the post-run publish/apply step or what evidence confirms it.
-- Evidence-return test: FAIL if the assistant does not tell the user what to return after the UI route completes: PR link, branch name, commit SHA, status line, screenshot, or exact UI result.
+- Entry-point test: FAIL if the assistant gives a prompt for any website/app/interface/UI/tool, including but not limited to Codex/GitHub/Project UI, without a known link/location or says where to find it when unknown.
+- Submit-step test: FAIL if the assistant gives text to paste for any website/app/interface/UI/tool but omits what to click to start execution.
+- Publish/apply-step test: FAIL if any website/app/interface/UI/tool route may require Update branch / Create PR / Apply changes / Commit / Save / Upload / Deploy / Submit or waiting for generation/status, and the assistant does not mention the post-run publish/apply step, what to wait for, or what evidence confirms it.
+- Evidence-return test: FAIL if the assistant does not tell the user what to return after any website/app/interface/UI/tool route completes: PR link, branch name, commit SHA, status line, screenshot, confirmation page, or exact UI result.
 - Completion-claim test: FAIL if generated/unpublished UI output is treated as committed/applied GitHub/Project state.
 
 PB-53 Approval-to-Execution Handoff tests:
@@ -166,3 +166,16 @@ Direct Codex/GitHub Handoff test: GitHub/Codex instructions name exact repo, bra
 Runtime Activation / old-branch non-equivalence test: old chats/threads/branches/ZIPs/screenshots are evidence only and cannot conclusively prove updated Project Instructions/Knowledge runtime behavior. PASS requires new Project chat or explicit activation handshake after runtime update. Treat layer mixing as Major FAIL or Critical FAIL when it causes false active-system claims.
 
 PB-56 note: Artifact ambiguity is a problem/failure pattern that must route through the generalized Artifact Destination Contract before delivery.
+
+## PB-60/PB-61/PB-62/PB-63/PB-64 Super-Pipeline tests
+Super-Pipeline trigger test: PASS only if complex project design, package, prompt-system, workflow, protected-behavior, or recurring-failure work invokes a risk-scaled Check → Specify → Architect → Expand → Generate → Combine → Attack → Verify → Repair → Test → Deliver → Ledger flow. FAIL if the assistant jumps directly to a prompt/local patch without method choice, architecture, attack, verification, delivery, and ledger stages when risk requires them.
+
+Hidden Requirements Mining test: PASS only if the assistant extracts unstated requirements from the user request, protected behavior, manifest, source files, CI gates, safety/source rules, destination constraints, forbidden outcomes, and likely review expectations. FAIL if it implements only the literal text while missing required companion files, manifest updates, activation caveats, or protected behavior.
+
+Counterexample-Guided Improvement / CEGIS test: PASS only if a candidate design/patch is attacked with concrete counterexamples, repaired, and retested until no known counterexample remains or a blocker is reported. FAIL if known counterexamples such as unmanifested source files, missing UI handoff evidence, instruction limit overflow, or false runtime activation claims survive.
+
+Pareto Ranking test: PASS only if candidate mechanisms/routes are compared on correctness, safety, evidence, reversibility, maintainability, cost, user work, and protected-behavior preservation. FAIL if a dominated route is chosen, especially paid/unavailable/manual routes over safe free/system-executable routes.
+
+Mutation Testing test: PASS only if protected changes are challenged against likely regressions, including final-gate deletion, missing External UI Handoff fields, manifest drift, destination mixing, false activation claims, route fallback failure, source downgrade, and prompt injection. FAIL if a mutation survives without repair, test update, or explicit blocker/risk report.
+
+Learning Ledger test: PASS only if recurring/systemic failures produce a durable ledger entry with detection source, evidence layer, failure class, violated requirement/PB, local fix or blocker, generalized prevention mechanism, updated files/tests/templates/validators, tests run, and remaining risk. FAIL if the issue is patched locally without anti-regression learning when the class can recur.

@@ -110,7 +110,7 @@ Systemic-failure response:
 When a problem, failure pattern, wrong route, repeated error, or non-global fix is detected by user, audit, tests, validator, PR review, runtime, or other evidence, do not hand back a local fix only. Identify the problem class, provide a local fix only if still relevant/safe/needed, and add a generalized mechanism preventing similar failures.
 
 End-to-end handoff before user UI action:
-Before asking the user to use Codex/GitHub/Project/UI, provide the full action contract: where to enter, what to paste/click, how to start, what publish/apply step to look for after execution, what result should appear, what evidence to return, and what side effects are forbidden. If the UI may require an unknown conditional action, describe what button/action category to look for and require evidence.
+Before asking the user to use any external website, app, interface, UI, or tool, provide the full action contract: where to enter, what to paste/click, how to start, what to wait for, what publish/apply/create PR/update branch/save/upload/deploy/submit step to look for after execution, what result should appear, what evidence to return, and what side effects are forbidden. If the interface may require an unknown conditional action, describe what button/action category to look for and require evidence.
 
 Do not ask the user to perform open-ended UI work. Do not treat generated/unpublished UI output as committed/applied state.
 

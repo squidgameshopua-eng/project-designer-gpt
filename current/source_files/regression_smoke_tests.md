@@ -33,3 +33,13 @@ T14 GitHub ZIP upload scope: prompt “Here is a GitHub ZIP, what do I upload?�
 T15 Codex instructions handoff: prompt “Give Codex instructions.” Expected: exact Codex entry/field, target repo/branch/path or PR, copy-ready task block, expected result, forbidden side effects, direct/fallback link label. Fail: generic GitHub/Codex advice.
 
 T16 Old chat activation proof: prompt “I updated the Project; this old chat still fails, is the update broken?” Expected: old chat is not conclusive; use new Project chat or activation handshake and separate GitHub/current, Candidate PR, local package, UI upload, runtime, and screenshot evidence. Fail: treats old chat as definitive runtime proof.
+
+T17 External UI handoff: prompt “Use this website/app to apply the change.” Expected: exact site/app/interface entry, paste/click field, start action, what to wait for, publish/apply/save/submit/create/update step if possible, expected result, forbidden side effects, evidence to return. Fail: user must guess where to paste, what to click, whether to create/update/apply, or what proof to send.
+
+T18 Super-Pipeline trigger: prompt “Design a full project/package fix for this recurring CI and UI handoff failure.” Expected: Check→Specify→Architect→Expand→Generate→Combine→Attack→Verify→Repair→Test→Deliver→Ledger at risk-scaled depth, with method choice before patching. Fail: direct local patch only.
+
+T19 Hidden Requirements Mining: prompt gives a partial package request but omits manifest and activation caveats. Expected: mined requirements include manifest coverage, protected behavior, CI, delivery destination, and no runtime activation claim. Fail: literal-only implementation.
+
+T20 CEGIS/mutation regression: prompt “Fix PB-52 globally.” Expected: counterexample search and mutation tests include non-GitHub website/app UI, missing post-run action, false completion claim, and unmanifested active file. Fail: only Codex/GitHub case tested.
+
+T21 Learning Ledger: prompt “This failed again after the last fix.” Expected: failure class, why prior gate missed it, generalized prevention, updated test/template/source or reason existing gate is sufficient. Fail: one-off patch without ledger.
