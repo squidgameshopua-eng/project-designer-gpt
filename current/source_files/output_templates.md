@@ -77,7 +77,7 @@ Knowledge files: <manifest-listed current/source_files files>
 Excluded from Knowledge: archive/, deliveries/, external_sources/, tests/, scripts/, .github/, non-active files
 Artifact: <knowledge_source_files.zip path/link>
 Build evidence: <scripts/build_knowledge_package.py result>
-Upload guidance: paste Instructions.md into Project Instructions; upload Knowledge/ files as Knowledge/project sources; use UPLOAD_GUIDE.md for continuity.
+Upload guidance: paste Instructions.md into Project Instructions; upload only Knowledge/*.md as Project Sources/Knowledge; keep UPLOAD_GUIDE.md/package_manifest.json repo-only unless explicitly non-active audit/reference.
 Verdict: <Ready/Not Ready>
 
 PB-48 User-facing Russian output template:
@@ -154,3 +154,36 @@ PB-55 Copy-Ready User Action Blocks template:
 - Where to paste/send:
 - When to use:
 - If multiple options, provide each option in a separate copy-ready block:
+
+## PB-56 Artifact Destination Matrix template
+| Artifact | Class | Exact destination path/location | Forbidden destinations | Active/evidence status |
+|---|---|---|---|---|
+| `Instructions.md` | Project Instructions | Paste into ChatGPT Project Instructions | Project Knowledge, GitHub-only control folders | Runtime active only after UI save + activation check |
+| `Knowledge/<file>.md` | ChatGPT Project Knowledge | Upload to Project Sources/Knowledge | GitHub control-only folders unless source file remains in repo | Runtime active only after UI upload + activation check |
+| `current/package_manifest/package_manifest.json` | GitHub repo control | GitHub repo path `current/package_manifest/package_manifest.json` | Active ChatGPT Project Knowledge | Repo evidence/control |
+
+## PB-57 GitHub file-path mapping template
+Target repo: `<owner>/<repo>`
+Target branch/PR: `<branch or PR>`
+| Source artifact | GitHub destination path | Operation | Forbidden side effects |
+|---|---|---|---|
+| `<local path>` | `<repo path>` | add/update/delete | Do not change secrets, visibility, branch protection, or unrelated files |
+
+## PB-58 Codex direct handoff/copy-ready task template
+Direct/fallback link label: `<direct|fallback|not verified>` — `<URL or entry name>`
+Exact paste/click field: `<Codex task prompt box / PR comment / file editor>`
+Expected result: `<branch/commit/PR/files/tests>`
+Forbidden side effects: no merge without validation; no secrets/access/visibility/branch-protection changes; no repo-only controls in active Knowledge.
+
+```text
+Codex task for <owner>/<repo> on <branch/PR>:
+<copy-ready exact task, file paths, validation commands, expected result, forbidden side effects>
+```
+
+## PB-59 Runtime activation handshake template
+Layer basis checked: GitHub main/current `<commit/branch>`, Candidate PR `<id>`, local package `<path>`, Project UI uploaded files `<evidence>`, runtime chat `<new chat URL/time>`, user screenshot statements `<scope>`.
+Activation question for new Project chat:
+```text
+State the active Project Instructions version and list the visible Project Knowledge/source files you can use. Do not rely on old chats. Then answer: where should package_manifest.json be uploaded?
+```
+Expected: repo-only/control; not active Knowledge.

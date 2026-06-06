@@ -81,30 +81,6 @@ def validate_manifest(manifest: dict) -> tuple[Path, list[str]]:
     return instruction_path, validated
 
 
-def guide_text(manifest: dict, instruction_len: int, active_files: list[str]) -> str:
-    files = "\n".join(f"- {name}" for name in active_files)
-    return f"""# GitHub Instruction/Knowledge Delivery Package
-
-Repository package: {manifest.get('package_name', 'project-designer-gpt')}
-Active source of truth: current/
-Instruction count: {instruction_len}/{INSTRUCTION_LIMIT}
-
-## Upload format
-1. Paste `Instructions.md` into the Project/GPT Instructions field.
-2. Upload every file in `Knowledge/` as Project/GPT Knowledge or project source files.
-3. Do not upload `package_manifest.json` or `UPLOAD_GUIDE.md` as active Knowledge. Keep them outside the Project UI as delivery evidence unless the user explicitly requests an audit/reference upload.
-4. `package_linter.py`, scripts, workflows, archive, delivery, test, and external-source folders are repository-only control/evidence layers, not Project Knowledge.
-
-## Knowledge files
-{files}
-
-## Excluded from active Knowledge
-archive/, deliveries/, external_sources/, tests/, scripts/, .github/, `package_manifest.json`, `UPLOAD_GUIDE.md`, `package_linter.py`, old/corrected/final/draft variants, and any file not listed in `current/package_manifest/package_manifest.json`.
-
-Project/GPT Instructions remain higher authority than Knowledge files. Knowledge files are support material, not hidden instructions.
-"""
-
-
 def add_text(zf: zipfile.ZipFile, arcname: str, text: str) -> None:
     info = zipfile.ZipInfo(arcname)
     info.date_time = (1980, 1, 1, 0, 0, 0)
@@ -116,13 +92,10 @@ def build(output: Path) -> None:
     manifest = load_manifest()
     instruction_path, active_files = validate_manifest(manifest)
     instruction_text = instruction_path.read_text(encoding="utf-8")
-    manifest_text = json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"
     output.parent.mkdir(parents=True, exist_ok=True)
 
     entries: list[tuple[str, str]] = [
         ("Instructions.md", instruction_text),
-        ("UPLOAD_GUIDE.md", guide_text(manifest, len(instruction_text), active_files)),
-        ("package_manifest.json", manifest_text),
     ]
     for file_name in active_files:
         entries.append((f"Knowledge/{file_name}", (SOURCE_DIR / file_name).read_text(encoding="utf-8")))
@@ -136,7 +109,12 @@ def build(output: Path) -> None:
     expected = sorted(arcname for arcname, _ in entries)
     if names != expected:
         raise ValueError("ZIP entries are not deterministic or complete")
-    print(f"PASS: built {output} with {len(active_files)} Knowledge files and Instructions.md {len(instruction_text)}/{INSTRUCTION_LIMIT} chars")
+    forbidden = ("package_manifest.json", "package_linter.py", "scripts/", "reports/", ".github/workflows/", "UPLOAD_GUIDE.md", "CODEX_TASK", "archive/", "deliveries/")
+    if any(any(marker in name for marker in forbidden) for name in names):
+        raise ValueError(f"ZIP contains repo-only artifact: {names}")
+    if not all(name == "Instructions.md" or name.startswith("Knowledge/") for name in names):
+        raise ValueError(f"ZIP contains non-upload path: {names}")
+    print(f"PASS: built {output} with Instructions.md and {len(active_files)} Knowledge files only; repo-only controls excluded")
 
 
 def main() -> int:

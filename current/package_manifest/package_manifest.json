@@ -47,7 +47,7 @@
   ],
   "chatgpt_project_upload_rule": {
     "project_instructions": "Paste the content of current/instructions/Instructions.md into the Project Instructions field.",
-    "project_sources": "Upload only files from current/source_files/ into Project Sources. Do not upload archive/, deliveries/, external_sources/, or tests/ as active Project Sources."
+    "project_sources": "Upload only active source files packaged as Knowledge/*.md into Project Sources/Knowledge. Do not upload package_manifest.json, package_linter.py, scripts/, .github/workflows/, tests/, reports/, UPLOAD_GUIDE.md, CODEX_TASK*.md, archive/, deliveries/, external_sources/, repo ZIPs, or other repo-only controls as active Project Knowledge unless explicitly requested as non-active audit/reference material."
   },
   "github_connector_rule": {
     "repository_access": "Allow ChatGPT access only to the selected repository project-designer-gpt.",

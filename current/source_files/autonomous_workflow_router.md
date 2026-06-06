@@ -194,3 +194,6 @@ Direct Destination / Deep-Link Verification rule:
 
 Copy-ready action routing rule:
 For Codex/GitHub/Project/UI handoffs, user reports, approval phrases, and status replies, output actionable text in separate copy-ready blocks. If there are multiple valid user actions or reports, label each option and place each in its own copy-ready block.
+
+## PB-56/PB-58 artifact destination and direct handoff routing rule
+Before asking the user to upload, copy, paste, or click, first prefer a GitHub connector/API action, Codex task, PR patch, or package artifact when it reduces user work and increases evidence. If the repo target is known, do not give generic GitHub steps. Provide exact repo, branch/PR/task/file path, paste/click field, expected result, forbidden side effects, direct/fallback link label, and an Artifact Destination Matrix or GitHub file-path mapping. If a direct Codex task cannot be created by tools, provide one copy-ready Codex task block and fallback Codex entry link.

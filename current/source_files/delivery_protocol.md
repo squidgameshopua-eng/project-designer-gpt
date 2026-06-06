@@ -57,3 +57,10 @@ For audit-only requests or audit by default, do not create/modify branch, PR, co
 
 ## PB-47 GitHub Instruction/Knowledge Delivery Format
 For GitHub-backed GPT/Project package delivery, provide or validate a knowledge package built by `scripts/build_knowledge_package.py`. The artifact must separate Project Instructions from Knowledge: `Instructions.md` is for the Project/GPT instruction field, `Knowledge/` contains only manifest-listed files from `current/source_files/`, and `package_manifest.json` plus `UPLOAD_GUIDE.md` are delivery evidence, not active Knowledge unless the user explicitly requests audit/reference upload. Do not include archive/, deliveries/, external_sources/, tests/, scripts/, workflow files, package linter, package manifest, upload guide, or old/corrected/final/draft variants as active Knowledge.
+
+## PB-56/PB-57 Artifact Destination Contract delivery blocker
+No package, ZIP, file set, report, script, workflow, manifest, upload guide, Codex task, or instruction block may be delivered without an Artifact Destination Matrix. The matrix must name each artifact, class, exact destination path/location, forbidden destinations, and active/evidence status. Missing matrix = Invalid Delivery.
+
+ChatGPT upload package = `Instructions.md` plus `Knowledge/*.md` only. `Instructions.md` is pasted into Project Instructions; `Knowledge/*.md` are the only files uploaded as Project Sources/Knowledge. A GitHub repo package may include `current/package_manifest/package_manifest.json`, `package_linter.py`, `scripts/`, `.github/workflows/`, `tests/`, `reports/`, `UPLOAD_GUIDE.md`, `CODEX_TASK*.md`, `archive/`, `deliveries/`, and ZIPs, but those artifacts must be labeled repo-only/control/evidence and forbidden from active ChatGPT Project Knowledge unless explicitly requested as non-active audit/reference material.
+
+For GitHub/Codex delivery, include the exact target repo, branch/PR/task/path, paste/click field, expected result, forbidden side effects, and direct/fallback link label. Do not give broad “upload to GitHub” instructions without exact path mapping or a copy-ready Codex task.
