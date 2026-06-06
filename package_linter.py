@@ -33,14 +33,18 @@ DEFAULT_MANIFEST = Path("current/package_manifest/package_manifest.json")
 REQUIRED_ACTIVE_SOURCE_FILES = {
     "architecture_domain_rules.md",
     "autonomous_workflow_router.md",
+    "counterexample_improvement_protocol.md",
     "delegation_access_policy.md",
     "delivery_protocol.md",
     "gpt_action_discovery_protocol.md",
     "instruction_governance.md",
+    "mutation_testing_protocol.md",
     "openai_gpt_project_sources.md",
     "output_templates.md",
     "package_state_protocol.md",
     "patch_lock_protocol.md",
+    "project_design_super_pipeline_protocol.md",
+    "project_learning_ledger.md",
     "project_operating_protocol.md",
     "protected_behavior_registry.md",
     "regression_smoke_tests.md",
@@ -88,6 +92,10 @@ REQUIRED_SOURCE_TERMS = {
     "delivery_protocol.md": ["Patch Lock delivery blocker", "complete current", "No snippets-only", "Artifact Destination Contract delivery blocker", "ChatGPT upload package = `Instructions.md` plus `Knowledge/*.md` only"],
     "package_state_protocol.md": ["Active package basis", "evidence only", "canonical", "ChatGPT runtime active basis", "GitHub Stable basis", "Candidate PR basis", "Local package basis"],
     "regression_smoke_tests.md": ["T01", "T04", "T12", "T13", "T14", "T15", "T16", "Fail"],
+    "project_design_super_pipeline_protocol.md": ["Super-Pipeline", "Hidden Requirements Mining", "CEGIS", "Mutation Testing", "Learning Ledger", "Pareto Ranking"],
+    "counterexample_improvement_protocol.md": ["Counterexample-Guided Improvement", "CEGIS", "counterexample"],
+    "mutation_testing_protocol.md": ["Mutation Testing", "mutation", "protected behavior"],
+    "project_learning_ledger.md": ["Learning Ledger", "failure class", "evidence layer"],
 }
 
 BANNED_ACTIVE_NAME_RE = re.compile(

@@ -187,3 +187,17 @@ Activation question for new Project chat:
 State the active Project Instructions version and list the visible Project Knowledge/source files you can use. Do not rely on old chats. Then answer: where should package_manifest.json be uploaded?
 ```
 Expected: repo-only/control; not active Knowledge.
+
+PB-60/PB-64 Super-Pipeline delivery template:
+- Super-Pipeline depth used: Check / Specify / Architect / Expand / Generate / Combine / Attack / Verify / Repair / Test / Deliver / Ledger.
+- Meta-Optimization route choice:
+- Hidden Requirements Mining / Specification Mining findings:
+- Architecture / invariants / authority layers / state machine:
+- Candidate mechanisms considered:
+- Combination Search result:
+- Pareto Ranking / Pareto Frontier decision:
+- Counterexample-Guided Improvement / CEGIS attack and repair:
+- Mutation / Regression Testing result:
+- Evidence-Based Delivery layer:
+- Learning Ledger / Anti-Regression Update:
+- Runtime activation status: GitHub Candidate PR only unless Project Instructions/Sources upload and activation handshake are verified.
