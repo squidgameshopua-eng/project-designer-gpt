@@ -4,10 +4,14 @@ on:
   pull_request:
     paths:
       - 'current/**'
+      - 'evals/**'
+      - 'reports/**'
       - '.github/workflows/package_guard.yml'
+      - '.github/workflows/external_evals.yml'
       - 'package_linter.py'
       - 'scripts/validate_package_guard.py'
       - 'scripts/validate_rule_admission_guard.py'
+      - 'scripts/validate_external_eval_specs.py'
   workflow_dispatch:
 
 jobs:
@@ -27,6 +31,9 @@ jobs:
 
       - name: Run rule admission guard validation
         run: python3 scripts/validate_rule_admission_guard.py
+
+      - name: Run external eval spec validation
+        run: python3 scripts/validate_external_eval_specs.py
 
       - name: Run package linter
         run: python3 package_linter.py

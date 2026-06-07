@@ -3,7 +3,8 @@
 
 The generated artifact separates the Project/GPT instruction text from Knowledge
 source files so a repository-backed package can be uploaded without mixing
-archive, test, script, workflow, or reference folders into active Knowledge.
+archive, eval, report, test, script, workflow, or reference folders into active
+Knowledge.
 """
 from __future__ import annotations
 
@@ -26,6 +27,20 @@ FORBIDDEN_NAME_MARKERS = (
     "backup_",
     "old_",
     "superseded",
+)
+
+
+FORBIDDEN_ZIP_MARKERS = (
+    "package_manifest.json",
+    "package_linter.py",
+    "scripts/",
+    "reports/",
+    "evals/",
+    ".github/workflows/",
+    "UPLOAD_GUIDE.md",
+    "CODEX_TASK",
+    "archive/",
+    "deliveries/",
 )
 
 
@@ -109,8 +124,7 @@ def build(output: Path) -> None:
     expected = sorted(arcname for arcname, _ in entries)
     if names != expected:
         raise ValueError("ZIP entries are not deterministic or complete")
-    forbidden = ("package_manifest.json", "package_linter.py", "scripts/", "reports/", ".github/workflows/", "UPLOAD_GUIDE.md", "CODEX_TASK", "archive/", "deliveries/")
-    if any(any(marker in name for marker in forbidden) for name in names):
+    if any(any(marker in name for marker in FORBIDDEN_ZIP_MARKERS) for name in names):
         raise ValueError(f"ZIP contains repo-only artifact: {names}")
     if not all(name == "Instructions.md" or name.startswith("Knowledge/") for name in names):
         raise ValueError(f"ZIP contains non-upload path: {names}")
