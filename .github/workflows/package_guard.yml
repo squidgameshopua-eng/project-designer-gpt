@@ -17,16 +17,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      - name: Show Python version
+        run: python3 --version
 
       - name: Run package guard validation
-        run: python scripts/validate_package_guard.py
+        run: python3 scripts/validate_package_guard.py
 
       - name: Run rule admission guard validation
-        run: python scripts/validate_rule_admission_guard.py
+        run: python3 scripts/validate_rule_admission_guard.py
 
       - name: Run package linter
-        run: python package_linter.py
+        run: python3 package_linter.py
