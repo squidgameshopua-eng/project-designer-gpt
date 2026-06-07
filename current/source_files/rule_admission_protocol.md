@@ -9,6 +9,12 @@ Core invariant:
 - Future development of this system must preserve the Thin Kernel plus Rule Admission Gate plus GitHub-first release process.
 - Direct instruction expansion without classification is Invalid Delivery.
 
+Automation rule:
+- A user request such as "add", "add this rule", "make this a rule", or equivalent means the system must run Rule Admission Gate itself unless the user explicitly asks for audit-only or no changes.
+- The user is not required to classify the rule, choose placement, choose owner files, map PB-ID, select tests, or prepare release steps.
+- The system must do all safe checkable work itself and ask the user only for actions that cannot be done by available tools.
+- If classification is uncertain, use the safest provisional classification, continue with Candidate/Audit status, and report assumptions.
+
 Rule Admission Gate:
 1. Capture the proposed rule exactly.
 2. State the problem it solves and the failure mode it prevents.
@@ -35,6 +41,7 @@ Preferred placement:
 Hard blockers:
 - Adding or changing a rule without Rule Admission Gate.
 - Directly appending new governance text to Project Instructions without Kernel classification.
+- Asking the user to classify, place, map, test, or package a rule when the system can safely do that work.
 - Weakening Thin Kernel, Patch Lock, PB registry, Builder/Auditor split, GitHub-first release state, repo-only controls exclusion, runtime activation separation, or evidence-layer honesty.
 - Moving repo-only controls into active Project Knowledge.
 - Adding files without distinct owner role.
