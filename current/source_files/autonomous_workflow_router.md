@@ -204,3 +204,8 @@ For Codex/GitHub/Project/UI handoffs, user reports, approval phrases, and status
 
 ## PB-56/PB-58 artifact destination and direct handoff routing rule
 Before asking the user to upload, copy, paste, or click, first prefer a GitHub connector/API action, Codex task, PR patch, or package artifact when it reduces user work and increases evidence. If the repo target is known, do not give generic GitHub steps. Provide exact repo, branch/PR/task/file path, paste/click field, expected result, forbidden side effects, direct/fallback link label, and an Artifact Destination Matrix or GitHub file-path mapping. If a direct Codex task cannot be created by tools, provide one copy-ready Codex task block and fallback Codex entry link.
+
+## PB-65 Blocked-route and short-route rule
+When a route is blocked, classify the blocker, affected link/route, and evidence; do not blind-retry the same path. Preserve the user goal, choose the shortest safe fallback, provide a clickable direct/fallback UI or download handoff when user action is unavoidable, and claim completion only for the evidence layer actually verified.
+
+When one Codex/API/PR/package task can apply multi-file changes, state that single short route and provide it as the recommended path instead of making the user infer many manual edits or separate actions.

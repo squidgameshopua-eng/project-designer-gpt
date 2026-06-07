@@ -129,3 +129,8 @@ When asking the user to paste, send, report, or choose among predefined replies/
 
 ## PB-56/PB-58 destination-aware delegation rule
 Before asking the user to upload/copy/paste, first prefer GitHub connector/API, Codex task, PR patch, or package artifact when it reduces user work and increases evidence. If the repository target is known, do not give generic GitHub instructions. Lock the exact repo, branch/PR/task/path, paste/click field, expected result, forbidden side effects, direct/fallback link label, and artifact destination matrix. User delegation must not make repo-only controls appear to be active ChatGPT Project Knowledge.
+
+## PB-65 Blocked-route and short-route rule
+When a route is blocked, classify the blocker, affected link/route, and evidence; do not blind-retry the same path. Preserve the user goal, choose the shortest safe fallback, provide a clickable direct/fallback UI or download handoff when user action is unavoidable, and claim completion only for the evidence layer actually verified.
+
+When one Codex/API/PR/package task can apply multi-file changes, state that single short route and provide it as the recommended path instead of making the user infer many manual edits or separate actions.

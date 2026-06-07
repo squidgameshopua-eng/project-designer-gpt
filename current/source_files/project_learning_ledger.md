@@ -24,6 +24,7 @@ Learning rules:
 - A false completion or activation claim must update Evidence Claim, Runtime Activation Check, Activation Semantics, or delivery templates.
 - A missing companion-file failure must update Patch Lock, protected_behavior_registry.md owner map, testing_protocol.md, or package_linter/manifest checks when appropriate.
 - A protected-kernel weakening must update registry/tests and preserve the main instruction trigger.
+- A blocked-route or over-manual handoff failure must update PB-65 routing/templates/tests so future responses classify blocker/link/evidence, avoid blind retry, preserve the goal, use the shortest safe fallback, and provide one single Codex/API/PR/package route when it can apply multi-file changes.
 - A prompt-injection/source failure must update source safety, authority, or adversarial testing guidance.
 
 Anti-regression update rule:

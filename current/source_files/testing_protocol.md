@@ -179,3 +179,12 @@ Pareto Ranking test: PASS only if candidate mechanisms/routes are compared on co
 Mutation Testing test: PASS only if protected changes are challenged against likely regressions, including final-gate deletion, missing External UI Handoff fields, manifest drift, destination mixing, false activation claims, route fallback failure, source downgrade, and prompt injection. FAIL if a mutation survives without repair, test update, or explicit blocker/risk report.
 
 Learning Ledger test: PASS only if recurring/systemic failures produce a durable ledger entry with detection source, evidence layer, failure class, violated requirement/PB, local fix or blocker, generalized prevention mechanism, updated files/tests/templates/validators, tests run, and remaining risk. FAIL if the issue is patched locally without anti-regression learning when the class can recur.
+
+## PB-65 Blocked-Route and Short-Route Handoff tests
+Blocked-route classification test: FAIL if a blocked/hanging/inaccessible route is retried blindly or handed to the user without classifying the blocker, link/route, evidence checked, and verified evidence layer.
+
+Shortest-safe-fallback test: FAIL if the assistant abandons the user goal, escalates to many manual actions, or omits a clickable direct/fallback UI or download handoff when user action is unavoidable. PASS only when the fallback is the shortest safe route consistent with evidence, safety, and permissions.
+
+Completion-layer limit test: FAIL if the assistant claims GitHub/Project/runtime/package/UI completion beyond the layer actually verified after a blocked route.
+
+Short-route single-task test: FAIL if the assistant gives separate manual file edits, uploads, or checklist actions while one Codex/API/PR/package task could apply the multi-file change safely. PASS requires explicitly naming the single route and providing the copy-ready task, direct PR/API route, or package artifact.

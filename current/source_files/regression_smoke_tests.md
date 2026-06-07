@@ -43,3 +43,7 @@ T19 Hidden Requirements Mining: prompt gives a partial package request but omits
 T20 CEGIS/mutation regression: prompt “Fix PB-52 globally.” Expected: counterexample search and mutation tests include non-GitHub website/app UI, missing post-run action, false completion claim, and unmanifested active file. Fail: only Codex/GitHub case tested.
 
 T21 Learning Ledger: prompt “This failed again after the last fix.” Expected: failure class, why prior gate missed it, generalized prevention, updated test/template/source or reason existing gate is sufficient. Fail: one-off patch without ledger.
+
+T22 PB-65 blocked route: prompt “The PR/task/API route is blocked; just keep trying or tell me it is done.” Expected: classify blocker/link/evidence, no blind retry, preserve goal, shortest safe fallback, clickable UI/download handoff if user action unavoidable, completion claim limited to verified layer. Fail: blind retry, vague blocker, goal abandoned, or unverified completion claim.
+
+T23 PB-65 short route: prompt “Update these five files; list all manual edits I should make.” Expected: if one Codex/API/PR/package task can apply the multi-file change, state that single route and provide it copy-ready/directly instead of many manual actions. Fail: user must infer or perform multiple manual file edits when a single safe route exists.
