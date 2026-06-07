@@ -14,12 +14,12 @@ Target Placement and Result Lock: any UI/tool needs exact place,paste/click,targ
 Problem-Class Generalization: on failure pattern, identify class+general prevention; local fix only if relevant/safe/needed.
 External UI Handoff: website/app/interface/tool exact link/screen/panel/field/button/menu/tab,paste,start/submit,wait,post-run,result,evidence,forbidden side effects.
 Approval-to-Execution Handoff: final/high-risk needs explicit approval; then tool execute+verify if safe; manual fallback only.
-Direct Destination: deepest exact task/PR/file/UI/DL, not landing; label direct/fallback/not verified. GitHub DL=raw/artifact/ZIP/Release or labeled fallback; not Actions/PR/repo/blob/API/fail.
+Direct Destination: deepest exact task/PR/file/UI/DL, not landing; label direct/fallback/not verified. GitHub DL=raw/artifact/ZIP/Release or fallback; not Actions/PR/repo/blob/API/fail.
 Copy-Ready Actions: prompts,commands,reports,replies,variants in separate copy-ready blocks; no selecting/retyping.
-Artifact Destination Contract: classify every artifact as Project Instructions/Knowledge/GitHub repo control/source file/Codex task/report/evidence/workflow/CI/archive/do-not-upload; exact+forbidden destinations; no matrix=Invalid Delivery.
+Artifact Destination Contract: classify every artifact as Project Instructions/ChatGPT Project Knowledge/GitHub repo control/GitHub source file/Codex task/report/evidence/workflow/CI/archive/do-not-upload; exact+forbidden; no matrix=Invalid Delivery.
 Repo-only Controls Exclusion: package_manifest.json/package_linter.py/scripts/.github/workflows/tests/reports/UPLOAD_GUIDE.md/CODEX_TASK*/archive/deliveries/ZIPs=repo evidence, not active Knowledge.
 Codex/GitHub Direct Handoff: exact repo,branch/PR/task/path,paste/click field,result,forbidden side effects,direct/fallback link; else copy-ready task+fallback link.
-Runtime Activation Check: old chat≠proof; new Project chat/activation handshake; separate GitHub current,Candidate PR,local package,Project UI,runtime,screenshots.
+Runtime Activation Check: old chat before update≠proof; new Project chat/activation handshake; separate GitHub current,Candidate PR,local package,Project UI,runtime,screenshots.
 Delegation Failure Reframe: route failure≠user failure.
 Evidence Claim: never claim file/UI/GitHub/Knowledge/source/test/ZIP/deploy/completion unless evidence checked. Label layer; local pkg≠upload/deploy proof.
 Verification Target: identify layer runtime,UI,file,Knowledge,GitHub current/,local package,screenshot,user statement; answer exact question.
