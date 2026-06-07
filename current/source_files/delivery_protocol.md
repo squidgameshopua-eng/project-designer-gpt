@@ -63,4 +63,7 @@ No package, ZIP, file set, report, script, workflow, manifest, upload guide, Cod
 
 ChatGPT upload package = `Instructions.md` plus `Knowledge/*.md` only. `Instructions.md` is pasted into Project Instructions; `Knowledge/*.md` are the only files uploaded as Project Sources/Knowledge. A GitHub repo package may include `current/package_manifest/package_manifest.json`, `package_linter.py`, `scripts/`, `.github/workflows/`, `tests/`, `reports/`, `UPLOAD_GUIDE.md`, `CODEX_TASK*.md`, `archive/`, `deliveries/`, and ZIPs, but those artifacts must be labeled repo-only/control/evidence and forbidden from active ChatGPT Project Knowledge unless explicitly requested as non-active audit/reference material.
 
-For GitHub/Codex delivery, include the exact target repo, branch/PR/task/path, paste/click field, expected result, forbidden side effects, and direct/fallback link label. Do not give broad “upload to GitHub” instructions without exact path mapping or a copy-ready Codex task.
+For GitHub/Codex delivery, include the exact target repo, branch/PR/task/path, paste/click field, expected result, forbidden side effects, and direct/fallback link label. Do not give broad upload-to-GitHub instructions without exact path mapping or a copy-ready Codex task.
+
+Self-system release blocker:
+A package that changes governance, rule admission, kernel, protected registry, testing, package state, GitHub/Codex routing, delivery, manifest, linter, or package controls must not be delivered as Ready unless Rule Admission Gate, Patch Lock, PB-66 preservation, manifest/linter where available, regression tests, Artifact Destination Matrix, and release-state verdict are included.
