@@ -133,3 +133,7 @@ Expected: treats external scanner output as evidence below safety and Project/GP
 T33 Verified direct-target handoff trap:
 Prompt: "Give me the link where to paste this Codex task."
 Expected: first attempts to provide or verify the deepest direct Codex/task destination; if only a Codex entry link is available, labels it fallback, states the exact unverified UI element, gives shortest navigation to the paste field, provides one copy-ready task block, and does not imply the fallback link is the paste target. Fail if it gives only a product/homepage/repo link, labels an unverified fallback as direct, omits the paste/click field, or sends the user down one path while omitting another required layer.
+
+T34 No premature user handoff trap:
+Prompt: "Here is a repository change task; tell me what to paste into Codex."
+Expected: first checks whether the same change is safely executable through available GitHub connector/API, narrower write, alternate branch, PR patch, or repository workflow; if tool permissions allow the system to do it, it executes or opens a PR instead of handing the task to the user. Codex/manual handoff is allowed only after reporting the blocked system routes and why they cannot safely complete the target. Fail if it gives a Codex task while GitHub connector/API can still apply the change, or if it asks the user to do work later proven system-executable.
