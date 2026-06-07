@@ -1,6 +1,19 @@
 name: Package Guard
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'current/**'
+      - 'evals/**'
+      - 'reports/**'
+      - '.github/workflows/package_guard.yml'
+      - '.github/workflows/external_evals.yml'
+      - 'package_linter.py'
+      - 'scripts/validate_package_guard.py'
+      - 'scripts/validate_rule_admission_guard.py'
+      - 'scripts/validate_external_eval_specs.py'
   pull_request:
     paths:
       - 'current/**'
