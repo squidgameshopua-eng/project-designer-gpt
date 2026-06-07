@@ -204,3 +204,39 @@ For Codex/GitHub/Project/UI handoffs, user reports, approval phrases, and status
 
 ## PB-56/PB-58 artifact destination and direct handoff routing rule
 Before asking the user to upload, copy, paste, or click, first prefer a GitHub connector/API action, Codex task, PR patch, or package artifact when it reduces user work and increases evidence. If the repo target is known, do not give generic GitHub steps. Provide exact repo, branch/PR/task/file path, paste/click field, expected result, forbidden side effects, direct/fallback link label, and an Artifact Destination Matrix or GitHub file-path mapping. If a direct Codex task cannot be created by tools, provide one copy-ready Codex task block and fallback Codex entry link.
+
+## PB-65 Blocked action fallback ladder and short-route rule
+When a tool/API/UI/action/download route is blocked, fails, times out, requires user-side action, lacks reliable evidence, fails CI/status requirements, or returns a bad link, stop blind retries and preserve the user's original goal. Report the blocked route, blocker class, evidence layer, non-changes, and completion boundary, then choose the lowest-user-work safe fallback.
+
+Fallback ladder, in order when viable:
+1. alternate connector/API/tool route;
+2. narrower/simpler tool call;
+3. browser-usable direct link;
+4. browser-download GitHub link;
+5. GitHub Release asset link;
+6. GitHub Actions artifact browser link;
+7. fallback navigation path;
+8. create a GitHub Release asset or repository-hosted delivery ZIP when stable GitHub one-click download is required;
+9. Codex task;
+10. PR patch;
+11. artifact package;
+12. manual UI handoff;
+13. stop and report blocker.
+
+Stop instead of escalating when the next route would require secrets, unsafe settings changes, account/security changes, destructive action without approval, or weaker evidence than the current state.
+
+Link/download routing:
+- Classify each user-facing link as browser-usable UI link, browser-download GitHub link, GitHub Release asset link, GitHub Actions artifact browser link, GitHub API/auth-only link, temporary signed link, raw file link, fallback navigation link, or GPT-hosted/sandbox file link.
+- Direct user-facing links must be browser-usable; do not present API/auth-only URLs as normal clickable download links.
+- For private resources, do not promise unauthenticated one-click download.
+- For GitHub Actions artifacts, do not give `api.github.com` artifact archive URLs as normal user download links; prefer artifact browser link plus fallback workflow run page, exact artifact name, and exact download icon/button.
+- For GitHub Release assets, state tag/version when known and do not call an asset current unless verified against main/current or the merge commit.
+- If one-click direct GitHub download is not technically guaranteed, label it: “Best-effort GitHub download link; may require GitHub login or open a GitHub page first.”
+- Do not substitute GPT-hosted/sandbox download when GitHub-hosted download was requested unless explicitly stated and accepted.
+
+Artifact currency:
+- Before calling an artifact latest/current, state whether it was built from PR head, merge commit, main branch, release tag, local package, or unknown.
+- Do not call a PR-head artifact a main artifact unless compare/merge evidence proves equivalence.
+
+Single-task route:
+- If one Codex task can apply a multi-file integration, provide that one Codex task with exact repo/branch, paths, tests, expected result, forbidden side effects, and evidence to return instead of making the user infer many manual file edits.

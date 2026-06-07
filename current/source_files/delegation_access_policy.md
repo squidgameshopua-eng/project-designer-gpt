@@ -129,3 +129,27 @@ When asking the user to paste, send, report, or choose among predefined replies/
 
 ## PB-56/PB-58 destination-aware delegation rule
 Before asking the user to upload/copy/paste, first prefer GitHub connector/API, Codex task, PR patch, or package artifact when it reduces user work and increases evidence. If the repository target is known, do not give generic GitHub instructions. Lock the exact repo, branch/PR/task/path, paste/click field, expected result, forbidden side effects, direct/fallback link label, and artifact destination matrix. User delegation must not make repo-only controls appear to be active ChatGPT Project Knowledge.
+
+## PB-65 Blocked action and external handoff delegation rule
+Trigger this rule whenever a requested tool, API, UI, action, download route, merge, status change, artifact access, or evidence route cannot be completed, times out, lacks reliable evidence, requires user-only action, produces a bad link, or is blocked by CI/status requirements.
+
+Blocked-action report must include:
+- exact blocked route/action, target object, repository/branch/PR/file/artifact/release/UI target, and intended result;
+- blocker class: OpenAI/tool safety layer, connector limitation, missing tool capability, GitHub/API permission, branch protection, CI/status-check requirement, UI-only approval, browser/auth/link failure, rate/timeout/transient failure, unavailable route, or unknown;
+- if unknown, what was ruled out and what evidence is missing;
+- evidence layer verified: tool response/error, GitHub/API state, PR state, branch state, main/current state, CI/workflow state, artifact/package state, release asset state, Project UI state, runtime active state, screenshot, or user statement;
+- non-change statement for files, branch, PR, main/current, artifact, release, Project UI, runtime, settings, secrets, permissions, or branch protection.
+
+User-only boundary:
+- Tool safety blocks and connector limitations are system/tool route blockers, not user mistakes.
+- User-only action is allowed only for unavailable permissions, private UI/admin/security states, UI-only approval, inaccessible evidence, final approval, or actions whose next safe route would require secrets, unsafe settings changes, account/security changes, or destructive action without approval.
+- Do not claim completion beyond the verified layer; prepared/drafted/uploaded-to-artifact/linked/local output is not committed/applied/published/merged/uploaded-to-Project/downloaded/active until that layer is verified.
+
+Retry policy:
+- Do not repeat the same blocked route blindly.
+- Retry a safety, permission, capability, branch-protection, or connector block only if target state, permissions, tool capability, route, payload, or user approval changed.
+- For rate/timeout/transient failure, one justified retry is allowed; state why retry is justified and what changed or why the failure appears transient.
+
+Short-route obligation:
+- If one safe Codex/API/PR/package route can execute a multi-file or multi-rule change, provide that single route and state what the assistant can do, what is blocked, and what single Codex/user action remains.
+- Do not describe multi-file integration as a pile of manual edits when a single executable Codex task, PR patch, API operation, or package build can apply it.

@@ -201,3 +201,27 @@ PB-60/PB-64 Super-Pipeline delivery template:
 - Evidence-Based Delivery layer:
 - Learning Ledger / Anti-Regression Update:
 - Runtime activation status: GitHub Candidate PR only unless Project Instructions/Sources upload and activation handshake are verified.
+
+## PB-65 Blocked route / external handoff template
+Blocked action: `<tool/action/route>`
+Target: `<repository/branch/PR/file/artifact/release/UI target>`
+Intended result: `<goal preserved>`
+Blocker class: `<OpenAI/tool safety layer|connector limitation|missing tool capability|GitHub/API permission|branch protection|CI/status-check requirement|UI-only approval|browser/auth/link failure|rate/timeout/transient failure|unavailable route|unknown>`
+Evidence verified: `<tool response/API/PR/branch/main/CI/artifact/release/Project UI/runtime/screenshot/user statement>`
+Not changed: `<files/branch/PR/main/artifact/release/Project UI/runtime/settings/secrets/permissions/branch protection>`
+Retry policy: `<not retried|one justified retry|retry only after changed target/permissions/capability/route/payload/approval>`
+Shortest safe route: `<connector/API|narrower tool call|browser link|GitHub download|Release asset|Actions artifact|fallback navigation|Codex task|PR patch|package|manual UI|stop>`
+Link type: `<browser-usable UI link|browser-download GitHub link|GitHub Release asset link|GitHub Actions artifact browser link|GitHub API/auth-only link|temporary signed link|raw file link|fallback navigation link|GPT-hosted/sandbox file link>`
+Primary clickable link: `[<label>](<browser-usable URL>)`
+Fallback link: `[<label>](<URL>)`
+Screen/panel: `<exact screen or panel>`
+Field/button/icon: `<exact field/button/menu/tab/icon>`
+Click: `<exact click sequence>`
+Wait for: `<observable wait condition>`
+Post-run action: `<Create PR|Update branch|Commit|Apply changes|Save|Publish|Upload|Deploy|Submit|Download>`
+Expected result: `<observable result>`
+Evidence to return: `<screenshot/status/link/log/artifact name>`
+Do not: `<forbidden side effects>`
+Source layer: `<PR head|merge commit|main branch|release tag|local package|unknown>`
+GitHub vs GPT-hosted: `<GitHub-hosted|GPT-hosted/sandbox|not a download>`
+Completion boundary: `<prepared/drafted/linked/local/package only; not active/merged/published/downloaded until verified>`

@@ -31,3 +31,9 @@ If the same class could recur in future tasks, add a regression smoke test or mu
 
 Reporting rule:
 Final delivery for complex tasks should summarize the Learning Ledger entry in Done / Not done / Blocked terms and identify the evidence layer used. Do not claim runtime learning or ChatGPT Project activation from repository-only changes.
+
+## PB-65 blocked-route failure classes
+Add a Learning Ledger entry when any of these classes appears or repeats:
+- Wrong link type / API URL used as user download: record requested hosting, link type given, browser result such as 401/404/auth, verified fallback, template/test updated, and whether GitHub-vs-GPT-hosted distinction was made.
+- Blocked tool-write without exact manual handoff: record blocked tool/action/target, blocker class, evidence layer, non-changes, retry decision, shortest safe fallback, exact UI/download handoff, and regression test added.
+- Multi-file integration described as many manual steps instead of one executable Codex/PR route: record the single route that should have been offered, why manual inference was invalid, files/rules/tests affected, and the output/router/template update that prevents recurrence.

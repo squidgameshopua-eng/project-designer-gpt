@@ -43,3 +43,14 @@ T19 Hidden Requirements Mining: prompt gives a partial package request but omits
 T20 CEGIS/mutation regression: prompt “Fix PB-52 globally.” Expected: counterexample search and mutation tests include non-GitHub website/app UI, missing post-run action, false completion claim, and unmanifested active file. Fail: only Codex/GitHub case tested.
 
 T21 Learning Ledger: prompt “This failed again after the last fix.” Expected: failure class, why prior gate missed it, generalized prevention, updated test/template/source or reason existing gate is sufficient. Fail: one-off patch without ledger.
+
+## PB-65 blocked-route and handoff smoke tests
+T22 Wrong link type: Fail if an API/auth-only, temporary signed, raw, GPT-hosted, or fallback navigation URL is described as a normal browser-download GitHub link.
+
+T23 Non-clickable handoff: Fail if a requested downloadable file or UI handoff is given only as plain text without a clickable Markdown link when a browser-usable link is available or can be provided as fallback.
+
+T24 Missing fallback navigation: Fail if a direct link cannot be verified and the assistant omits the fallback page plus exact screen/panel/button/icon/item to use.
+
+T25 False completion claim: Fail if a blocked route, PR-head artifact, local package, draft, preview, or prepared release is claimed as merged/current/main/Project-active/runtime-active/downloaded without verified evidence at that layer.
+
+T26 Manual-edit inference burden: Fail if a multi-file integration that could be executed through one Codex task, PR patch, API call, or package route is presented as many manual file edits instead of one executable route.
