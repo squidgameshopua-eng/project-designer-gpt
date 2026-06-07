@@ -12,6 +12,7 @@
     "counterexample_improvement_protocol.md",
     "delegation_access_policy.md",
     "delivery_protocol.md",
+    "github_download_link_protocol.md",
     "gpt_action_discovery_protocol.md",
     "instruction_governance.md",
     "mutation_testing_protocol.md",
@@ -34,6 +35,7 @@
     "counterexample_improvement_protocol.md": "Counterexample-Guided Improvement / CEGIS rules for finding and repairing failure cases.",
     "delegation_access_policy.md": "Delegation, access, evidence-claim, and rational-route boundaries.",
     "delivery_protocol.md": "Delivery format, artifact destination, release handoff, and no-snippets-only rules.",
+    "github_download_link_protocol.md": "GitHub download-link selection, link-type classification, and failed-run handling.",
     "gpt_action_discovery_protocol.md": "Action discovery for GPT/Project tools, UI handoffs, and capability routing.",
     "instruction_governance.md": "Instruction authority, placement, compression, and lower-authority file controls.",
     "mutation_testing_protocol.md": "Mutation testing for protected behavior and regression-resistance checks.",
@@ -61,7 +63,7 @@
     "PB-51": ["current/instructions/Instructions.md", "project_learning_ledger.md", "testing_protocol.md"],
     "PB-52": ["current/instructions/Instructions.md", "delivery_protocol.md", "testing_protocol.md"],
     "PB-53": ["current/instructions/Instructions.md", "delivery_protocol.md", "testing_protocol.md"],
-    "PB-54": ["current/instructions/Instructions.md", "delivery_protocol.md", "testing_protocol.md"],
+    "PB-54": ["current/instructions/Instructions.md", "github_download_link_protocol.md", "delivery_protocol.md", "testing_protocol.md"],
     "PB-55": ["current/instructions/Instructions.md", "output_templates.md", "testing_protocol.md"],
     "PB-56": ["current/instructions/Instructions.md", "protected_behavior_registry.md", "testing_protocol.md", "package_linter.py"],
     "PB-57": ["current/instructions/Instructions.md", "protected_behavior_registry.md", "testing_protocol.md", "package_linter.py"],
@@ -72,7 +74,7 @@
     "PB-62": ["current/instructions/Instructions.md", "counterexample_improvement_protocol.md", "testing_protocol.md"],
     "PB-63": ["current/instructions/Instructions.md", "mutation_testing_protocol.md", "testing_protocol.md"],
     "PB-64": ["current/instructions/Instructions.md", "project_learning_ledger.md", "testing_protocol.md"],
-    "PB-65": ["current/instructions/Instructions.md", "autonomous_workflow_router.md", "testing_protocol.md"],
+    "PB-65": ["current/instructions/Instructions.md", "autonomous_workflow_router.md", "github_download_link_protocol.md", "testing_protocol.md"],
     "PB-67": ["autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md"]
   },
   "required_test_suites": [
@@ -125,7 +127,7 @@
   ],
   "chatgpt_project_upload_rule": {
     "project_instructions": "Paste the content of current/instructions/Instructions.md into the Project Instructions field.",
-    "project_sources": "Upload only active source files packaged as Knowledge/*.md into Project Sources/Knowledge. Do not upload package_manifest.json, package_linter.py, scripts/, .github/workflows/, tests/, reports/, evals/, UPLOAD_GUIDE.md, CODEX_TASK*.md, archive/, deliveries/, external_sources/, repo ZIPs, or other repo-only controls as active Project Knowledge unless explicitly requested as non-active audit/reference material."
+    "project_sources": "Upload only active source files packaged as Knowledge/*.md into Project Sources/Knowledge. Do not upload package_manifest.json, package_linter.py, scripts/, .github/workflows/, tests/, reports/, evals/, UPLOAD_GUIDE.md, CODEX_TASK*.md, archive/, deliveries/, external_sources/, repo ZIPs, or other repo-only controls as active ChatGPT Project Knowledge unless explicitly requested as non-active audit/reference material."
   },
   "github_connector_rule": {
     "repository_access": "Allow ChatGPT access only to the selected repository project-designer-gpt.",
