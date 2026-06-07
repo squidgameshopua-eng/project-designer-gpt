@@ -130,7 +130,17 @@ When asking the user to paste, send, report, or choose among predefined replies/
 ## PB-56/PB-58 destination-aware delegation rule
 Before asking the user to upload/copy/paste, first prefer GitHub connector/API, Codex task, PR patch, or package artifact when it reduces user work and increases evidence. If the repository target is known, do not give generic GitHub instructions. Lock the exact repo, branch/PR/task/path, paste/click field, expected result, forbidden side effects, direct/fallback link label, and artifact destination matrix. User delegation must not make repo-only controls appear to be active ChatGPT Project Knowledge.
 
-## PB-65 Blocked-route and short-route rule
-When a route is blocked, classify the blocker, affected link/route, and evidence; do not blind-retry the same path. Preserve the user goal, choose the shortest safe fallback, provide a clickable direct/fallback UI or download handoff when user action is unavoidable, and claim completion only for the evidence layer actually verified.
+## PB-65 Blocked-action delegation rule
+Trigger PB-65 when a tool call, connector/API route, Codex route, PR/merge/update route, package build/download route, GitHub Actions artifact route, Release asset route, external UI route, or repository write route is blocked, inaccessible, ambiguous, hanging, auth-only for the user, unsafe, or unable to produce the requested evidence layer.
 
-When one Codex/API/PR/package task can apply multi-file changes, state that single short route and provide it as the recommended path instead of making the user infer many manual edits or separate actions.
+Blocked-action reports must include: blocked action, target, intended result, blocker class, evidence verified, evidence layer, what was not changed, retry policy, shortest safe route, link type, primary clickable link, fallback link/navigation, UI screen/panel/field/button/icon/click/wait/post-run action when manual UI remains, expected result, evidence to return, forbidden side effects, source layer, GitHub-vs-GPT-hosted status, and completion boundary.
+
+Blocker classes: permission/access, authentication/API-only link, unavailable tool/connector, rate/timeout/hang, missing target, unsafe/secrets/security/account setting, destructive/unapproved action, weaker evidence than requested, stale/unknown artifact currency, external UI unknown, or other/unknown. For unknown blockers, state unknown, list evidence checked, avoid blind retry, and choose the safest evidence-preserving fallback or stop/report.
+
+Evidence layer must be labeled as GitHub current/main, Candidate PR, PR head, merge commit, release tag, GitHub Actions artifact, local package, GPT-hosted/sandbox file, Project UI, runtime, screenshot/user statement, or not verified. Include a non-change statement for any blocked route, such as branch not merged, Project UI not updated, runtime not active, release not created, or file not committed.
+
+User-only boundary: delegate to the user only for private UI/admin/security access, unavailable tools, final approval, or evidence that cannot be reached safely by the system. Do not ask the user to perform secrets, unsafe settings, account/security, billing, access, branch-protection, destructive, or unapproved actions.
+
+Retry policy: do not blind-retry. Retry once only when the blocker is transient and the retry is narrower/simpler or returns better evidence without added risk. Otherwise switch via the fallback ladder or stop/report.
+
+Short-route obligation: when one Codex/API/PR/package task can apply multi-file changes safely, provide that single route with exact repo/branch, paths, tests, expected result, forbidden side effects, and evidence to return instead of many manual edits or inferred actions.

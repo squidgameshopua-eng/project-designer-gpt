@@ -206,6 +206,31 @@ For Codex/GitHub/Project/UI handoffs, user reports, approval phrases, and status
 Before asking the user to upload, copy, paste, or click, first prefer a GitHub connector/API action, Codex task, PR patch, or package artifact when it reduces user work and increases evidence. If the repo target is known, do not give generic GitHub steps. Provide exact repo, branch/PR/task/file path, paste/click field, expected result, forbidden side effects, direct/fallback link label, and an Artifact Destination Matrix or GitHub file-path mapping. If a direct Codex task cannot be created by tools, provide one copy-ready Codex task block and fallback Codex entry link.
 
 ## PB-65 Blocked-route and short-route rule
-When a route is blocked, classify the blocker, affected link/route, and evidence; do not blind-retry the same path. Preserve the user goal, choose the shortest safe fallback, provide a clickable direct/fallback UI or download handoff when user action is unavoidable, and claim completion only for the evidence layer actually verified.
+When a route is blocked, classify the blocker, affected link/route, target, intended result, evidence checked, non-change state, retry policy, fallback route, and completion boundary. Do not blind-retry the same path. Preserve the user goal, choose the shortest safe fallback, provide clickable UI/download handoff when user action is unavoidable, and claim completion only for the evidence layer actually verified.
 
-When one Codex/API/PR/package task can apply multi-file changes, state that single short route and provide it as the recommended path instead of making the user infer many manual edits or separate actions.
+PB-65 fallback ladder, in order when safe and applicable:
+1. alternate connector/API/tool route;
+2. narrower/simpler tool call;
+3. browser-usable direct link;
+4. browser-download GitHub link;
+5. GitHub Release asset link;
+6. GitHub Actions artifact browser link;
+7. fallback navigation path;
+8. create a GitHub Release asset or repository-hosted delivery ZIP when stable GitHub one-click download is required and approved/allowed;
+9. Codex task;
+10. PR patch;
+11. artifact package;
+12. manual UI handoff;
+13. stop/report.
+
+PB-65 stop condition: stop and report instead of falling back if the route would expose/request secrets, change unsafe settings, alter account/security/repository access, perform destructive actions without approval, or lower evidence below the user's required verification layer.
+
+PB-65 link/download routing:
+- Classify links as browser-usable UI link, browser-download GitHub link, GitHub Release asset link, GitHub Actions artifact browser link, GitHub API/auth-only link, temporary signed link, raw file link, fallback navigation link, or GPT-hosted/sandbox file link.
+- Do not present `api.github.com` artifact archive URLs as normal user download links; they are API/auth-only unless a browser-authenticated download path is verified.
+- For GitHub Actions artifacts, provide the artifact browser page or workflow run page fallback, exact artifact name, and exact download icon/button to click.
+- Prefer a current GitHub Release asset when a stable one-click GitHub download is required; verify current tag/release status before claiming currency.
+- Distinguish GitHub-hosted links from GPT-hosted/sandbox file links. Do not substitute a GPT-hosted/sandbox file when the user requested a GitHub-hosted or repository-hosted download.
+- State artifact currency/source layer: PR head, merge commit, main branch, release tag, local package, or unknown.
+
+PB-65 short-route/single-task route: when one Codex/API/PR/package task can apply multi-file changes, state that single route and provide it as the recommended path instead of making the user infer many manual edits or separate actions. The single-task handoff must include exact repo/branch, paths, tests, expected result, forbidden side effects, and evidence to return.

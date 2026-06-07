@@ -202,21 +202,39 @@ PB-60/PB-64 Super-Pipeline delivery template:
 - Learning Ledger / Anti-Regression Update:
 - Runtime activation status: GitHub Candidate PR only unless Project Instructions/Sources upload and activation handshake are verified.
 
-PB-65 Blocked Route template:
-- Blocked route/link:
-- Blocker classification:
-- Evidence checked:
-- Why no blind retry:
-- User goal preserved:
-- Shortest safe fallback:
-- Clickable UI/download handoff, if user action is unavoidable:
-- Verified evidence layer:
-- Completion claim limit:
+PB-65 Blocked Action / Short Route template:
+- Blocked action:
+- Target:
+- Intended result:
+- Blocker class:
+- Evidence verified:
+- Not changed:
+- Retry policy:
+- Shortest safe route:
+- Link type:
+- Primary clickable link:
+- Fallback link:
+- Screen/panel:
+- Field/button/icon:
+- Click:
+- Wait for:
+- Post-run action:
+- Expected result:
+- Evidence to return:
+- Do not:
+- Source layer:
+- GitHub vs GPT-hosted:
+- Completion boundary:
 
-PB-65 Short Route template:
+PB-65 Single Task route template:
 - Multi-file goal:
 - Single Codex/API/PR/package route available: YES/NO and why:
-- Recommended single route:
-- Copy-ready task or direct link:
+- Exact repo/branch:
+- Paths to change:
+- Copy-ready single task / direct route:
+- Tests to run:
+- Expected result:
+- Forbidden side effects:
+- Evidence to return:
 - User actions avoided:
 - Remaining user-only action, if any:
