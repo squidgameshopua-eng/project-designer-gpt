@@ -1,6 +1,14 @@
 name: External Eval Specs
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'evals/**'
+      - 'reports/**'
+      - 'scripts/validate_external_eval_specs.py'
+      - '.github/workflows/external_evals.yml'
   workflow_dispatch:
   pull_request:
     paths:
