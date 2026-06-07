@@ -27,7 +27,7 @@ Learning rules:
 - A missing companion-file failure must update Patch Lock, protected_behavior_registry.md owner map, testing_protocol.md, or package_linter/manifest checks when appropriate.
 - A protected-kernel weakening must update registry/tests and preserve the main instruction trigger.
 - A blocked-route or over-manual handoff failure must update PB-65 routing/templates/tests so future responses classify blocker/link/evidence, avoid blind retry, preserve the goal, use the shortest safe fallback, and provide one single Codex/API/PR/package route when it can apply multi-file changes.
-- PB-65 failure classes include Wrong link type / API URL used as user download; Blocked tool-write without exact manual handoff; Multi-file integration described as many manual steps instead of one executable Codex/PR route; Premature Codex/manual handoff despite available GitHub connector/API or narrower write route.
+- PB-65 failure classes include Wrong link type / API URL used as user download; GitHub Actions/PR/repo/blob page substituted for raw file/artifact download; failed/red workflow run treated as deliverable; Blocked tool-write without exact manual handoff; Multi-file integration described as many manual steps instead of one executable Codex/PR route; Premature Codex/manual handoff despite available GitHub connector/API or narrower write route.
 - A prompt-injection/source failure must update source safety, authority, or adversarial testing guidance.
 
 Anti-regression update rule:
