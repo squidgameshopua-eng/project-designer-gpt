@@ -16,6 +16,7 @@
     "gpt_action_discovery_protocol.md",
     "instruction_governance.md",
     "mutation_testing_protocol.md",
+    "no_premature_user_handoff_protocol.md",
     "openai_gpt_project_sources.md",
     "output_templates.md",
     "package_state_protocol.md",
@@ -39,6 +40,7 @@
     "gpt_action_discovery_protocol.md": "Action discovery for GPT/Project tools, UI handoffs, and capability routing.",
     "instruction_governance.md": "Instruction authority, placement, compression, and lower-authority file controls.",
     "mutation_testing_protocol.md": "Mutation testing for protected behavior and regression-resistance checks.",
+    "no_premature_user_handoff_protocol.md": "PB-68 no-premature-user-handoff protocol, system-route checks before Codex/manual fallback, and fallback evidence requirements.",
     "openai_gpt_project_sources.md": "OpenAI GPT/Project source facts and source-use boundaries.",
     "output_templates.md": "User-facing report, matrix, ledger, and delivery templates.",
     "package_state_protocol.md": "Stable/Candidate/runtime/local/archive state semantics and source-of-truth rules.",
@@ -76,7 +78,7 @@
     "PB-64": ["current/instructions/Instructions.md", "project_learning_ledger.md", "testing_protocol.md"],
     "PB-65": ["current/instructions/Instructions.md", "autonomous_workflow_router.md", "github_download_link_protocol.md", "testing_protocol.md"],
     "PB-67": ["autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md"],
-    "PB-68": ["current/instructions/Instructions.md", "autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md", "project_learning_ledger.md"]
+    "PB-68": ["current/instructions/Instructions.md", "no_premature_user_handoff_protocol.md", "autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md", "project_learning_ledger.md"]
   },
   "required_test_suites": [
     "package_linter.py",
