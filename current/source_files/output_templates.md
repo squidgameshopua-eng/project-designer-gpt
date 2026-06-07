@@ -238,3 +238,17 @@ PB-65 Single Task route template:
 - Evidence to return:
 - User actions avoided:
 - Remaining user-only action, if any:
+
+Rule Admission Report Template:
+Proposed rule:
+Existing coverage:
+Classification:
+Owner file:
+Companion files:
+Affected PB-ID:
+Instruction impact:
+Test impact:
+Linter/manifest impact:
+Release-state impact:
+Decision: Accept to Kernel / Accept to Protocol / Accept to Test / Accept to Linter-Manifest / Accept to Template / Reject duplicate / Reject unsafe or unclear
+Verdict:

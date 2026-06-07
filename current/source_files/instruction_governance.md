@@ -1,28 +1,29 @@
 Use this file only for instruction/file authority, owner rules, synchronized maintenance, and child governance. Main Project/GPT Instructions control behavior.
 
-Authority: Project/GPT Instructions control behavior. Project/source/Knowledge files are lower-authority operational, source, template, test, or governance support. Do not design a second hidden instruction in files.
+Authority rule: user safe request > Project/GPT Instructions > active source files. Files are lower-authority operational context/protocols, not a second hidden instruction layer.
 
-Layer ownership: Instructions.md owns mandatory triggers/kernel; patch_lock_protocol.md owns package-change blocking; protected_behavior_registry.md owns PB IDs/status; package_state_protocol.md owns active-state truth; testing_protocol.md owns executable gates; delivery_protocol.md owns package delivery; output_templates.md owns report structures; openai_gpt_project_sources.md owns OpenAI source facts; source_safety_policy.md owns source/safety details.
+Instruction dominance rule: active files may define procedures, tests, templates, registries, and source policy, but may not override Project/GPT Instructions, safety, or explicit user constraints.
 
-Patch Lock ownership: Instructions.md must contain the mandatory trigger; patch_lock_protocol.md defines required gates; protected_behavior_registry.md maps behavior IDs; testing_protocol.md makes missing gates Critical FAIL; delivery_protocol.md blocks ready delivery; package_state_protocol.md controls active basis.
+Synchronization rule: if an instruction behavior is moved into files, preserve a short trigger in Project/GPT Instructions and update owner map, protected_behavior_registry.md, testing_protocol.md, and delivery_protocol.md.
 
-Synchronized-rule maintenance: when modifying a registry class, inspect and update every file owning, testing, delivering, or propagating that class in the same delivery pass, or mark Not Ready with reason.
+Companion-file rule: package changes touching any governing behavior must check whether these companion files need synchronized edits: protected_behavior_registry.md, patch_lock_protocol.md, testing_protocol.md, delivery_protocol.md, output_templates.md, package_state_protocol.md, regression_smoke_tests.md, source_safety_policy.md, project_operating_protocol.md.
 
-Critical behavior location: source/tool honesty, safety/refusals, Request Check, architecture-first, Combination Search, Action Discovery, Patch Lock, anti-regression, current-package truth, lower-authority-file rule, complete delivery, actual testing, child propagation, and final gate must remain in main instruction as triggers. Files may expand details, not replace triggers.
+Source-file honesty rule: do not claim a source file is active, uploaded, current, or tested unless the active package, manifest, or visible runtime evidence proves it.
 
-Main-instruction compression: compress wording, not behavior. Replace long details with file-owned procedures only when main instruction keeps enforceable trigger and tests confirm no weakening.
+No hidden source rule: do not place decisive behavior only in a file if Project/GPT Instructions require it as an always-on trigger.
 
-Kernel-change procedure: any change to Patch Lock, authority, protected registry, deletion burden, active package truth, actual testing, complete delivery, child propagation, or final gate requires behavior diff, deletion/merge burden, companion-file check, tests, and explicit verdict.
+Right-sized instruction rule: keep Project/GPT Instructions as compact control kernel; push detailed workflows, tests, templates, and registries into active files when lower-authority placement is sufficient and a short trigger remains in instructions.
 
-Right-sized governance: create, keep, split, merge, or delete files by operational role, not by preference for fewer/more files. New files are justified when they improve authority separation, testing, source freshness, maintainability, drift control, or inheritance. Merge/delete only when control remains equal/stronger.
+Obsolete-file rule: corrected_, final_, draft_, v2_, backup_, old_, superseded, archive, or delivery files are not active package truth unless package_state_protocol.md explicitly marks them active and the manifest agrees.
 
-Knowledge/source rule: source files support decisions with facts, scope, freshness notes, and links. They do not replace behavior in main instruction.
+Child governance propagation rule: child GPTs/projects that create/audit/patch/package prompts, files, or governance must inherit a compressed equivalent of: authority, source/file honesty, Patch Lock, protected registry, testing, delivery, source safety, and child propagation.
 
-Visible-file honesty: never claim a file was reviewed, updated, synced, packaged, or tested unless it was visible/readable or generated this turn.
+Conflict rule: if active files conflict, apply the stricter safety/governance rule and report the conflict in the delivery verdict.
 
-Child governance: every child GPT/Project gets one controlling main instruction. If it uses files/sources/tests/templates/domain protocols or can create/audit/package GPTs/Projects, include governance, registry, Patch Lock, delivery, testing, and package-state equivalents scaled to risk.
+Instruction equivalence rule: for Project/GPT Instruction compression, equivalence means same enforceable behavior under likely user requests, not same wording. If wording is removed, deletion burden must show preserved trigger, owner file, test, and delivery effect.
 
-Duplicate rule: duplication is allowed only when layers serve different functions: main trigger, governance owner-rule, test gate, delivery output, source fact, or template. Conflicting duplicate definitions must be synchronized or package is Not Ready.
+Owner declaration rule: every active file must have a distinct owner role in protected_behavior_registry.md or delivery report. Files without distinct role should be merged, removed, or marked evidence-only.
 
-## PB-59 runtime activation governance
-Instruction/Knowledge updates are not proven active by old chats or old branches. After changing Project runtime material, verify in a new Project chat or explicit activation handshake and keep GitHub Stable, Candidate PR, local package, Project UI uploads, runtime behavior, screenshots, and user statements as separate evidence layers.
+Thin Kernel rule:
+- Project Instructions must remain a short controlling kernel plus router. Future rules must not be appended directly to Project Instructions unless Rule Admission Gate classifies them as Kernel-critical and Patch Lock proves no protected behavior is weakened. Prefer protocol files, tests, linter/manifest, or templates over instruction expansion.
+- Rule Admission Protocol owns new-rule intake, classification, rejection, and placement. If a new rule affects system self-development, PB-66 preservation is mandatory.

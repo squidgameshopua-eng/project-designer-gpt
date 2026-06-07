@@ -194,3 +194,6 @@ GitHub-vs-GPT download substitution test: FAIL if a GPT-hosted/sandbox file link
 Single Codex task for multi-file integration test: FAIL if multi-file integration is described as many manual edits while one Codex/API/PR/package route could apply it. PASS requires exact repo/branch, paths, tests, expected result, forbidden side effects, and evidence to return in one task/route.
 
 Blocked-route completion boundary test: FAIL if file/UI/GitHub/Project/runtime/package completion is claimed after a blocked route beyond the verified evidence layer. PASS requires blocked action, target, intended result, evidence verified, not changed, retry policy, shortest safe route, evidence to return, and completion boundary.
+
+Rule Admission test:
+PASS only if every new rule is classified before placement, checked for duplicate coverage, assigned an owner file, mapped to affected PB-ID, paired with companion-file updates, and tested. FAIL if a new rule is appended directly to Project Instructions without Rule Admission Gate, or if Thin Kernel / GitHub-first release state / repo-only controls exclusion is weakened.
