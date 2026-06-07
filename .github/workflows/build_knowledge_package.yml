@@ -1,6 +1,13 @@
 name: Build Knowledge Package
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'current/**'
+      - 'scripts/build_knowledge_package.py'
+      - '.github/workflows/build_knowledge_package.yml'
   pull_request:
     paths:
       - 'current/**'
