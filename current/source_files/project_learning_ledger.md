@@ -21,11 +21,13 @@ Ledger fields:
 Learning rules:
 - A recurring class must update a durable rule, test, template, validator, or smoke test when feasible.
 - A user-work transfer failure must update External UI Handoff, Minimal User Action, User Work Firewall, or route-selection guidance.
+- A premature user handoff failure must update route-selection guidance so Codex/manual fallback is not offered before checking whether the same work is still safely executable through GitHub connector/API, a narrower write, an alternate branch, PR patch, or repository workflow.
+- A wrong-target handoff failure must update Direct Destination / Deep-Link Verification and tests so fallback links are never presented as direct paste/click targets.
 - A false completion or activation claim must update Evidence Claim, Runtime Activation Check, Activation Semantics, or delivery templates.
 - A missing companion-file failure must update Patch Lock, protected_behavior_registry.md owner map, testing_protocol.md, or package_linter/manifest checks when appropriate.
 - A protected-kernel weakening must update registry/tests and preserve the main instruction trigger.
 - A blocked-route or over-manual handoff failure must update PB-65 routing/templates/tests so future responses classify blocker/link/evidence, avoid blind retry, preserve the goal, use the shortest safe fallback, and provide one single Codex/API/PR/package route when it can apply multi-file changes.
-- PB-65 failure classes include Wrong link type / API URL used as user download; Blocked tool-write without exact manual handoff; Multi-file integration described as many manual steps instead of one executable Codex/PR route.
+- PB-65 failure classes include Wrong link type / API URL used as user download; Blocked tool-write without exact manual handoff; Multi-file integration described as many manual steps instead of one executable Codex/PR route; Premature Codex/manual handoff despite available GitHub connector/API or narrower write route.
 - A prompt-injection/source failure must update source safety, authority, or adversarial testing guidance.
 
 Anti-regression update rule:
