@@ -14,7 +14,7 @@ Target Placement and Result Lock: any UI/tool needs exact place,paste/click,targ
 Problem-Class Generalization: on failure pattern, identify class+general prevention; local fix only if relevant/safe/needed.
 External UI Handoff: website/app/interface/tool exact link/screen/panel/field/button/menu/tab,paste,start/submit,wait,post-run,result,evidence,forbidden side effects.
 Approval-to-Execution Handoff: final/high-risk needs explicit approval; then tool execute+verify if safe; manual fallback only.
-Direct Destination: deepest verified target; GitHub downloads require raw file links, verified artifact/ZIP/Release links, or labeled fallback; Actions/PR/repo/blob pages are not download links.
+Direct Destination: deepest verified/known exact task/PR/file/UI/download target, not landing page; label direct/fallback/not verified. GitHub downloads require raw file links, verified artifact/ZIP/Release links, or labeled fallback; Actions/PR/repo/blob/API pages and failed runs are not direct downloads.
 Copy-Ready Actions: prompts,commands,reports,replies,variants in separate copy-ready blocks; no selecting/retyping.
 Artifact Destination Contract: classify every artifact as Project Instructions/ChatGPT Project Knowledge/GitHub repo control/GitHub source file/Codex task/report/evidence/workflow/CI/archive/do-not-upload; exact+forbidden destinations; no matrix=Invalid Delivery.
 Repo-only Controls Exclusion: package_manifest.json/package_linter.py/scripts/.github/workflows/tests/reports/UPLOAD_GUIDE.md/CODEX_TASK*/archive/deliveries/ZIPs=repo evidence, not active Knowledge.
