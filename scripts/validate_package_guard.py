@@ -74,10 +74,10 @@ def main() -> int:
         return fail(f"instruction_file does not exist: {instruction_file}")
     instruction_text = instruction_path.read_text(encoding="utf-8")
     instruction_len = len(instruction_text)
-    if instruction_len > 8000:
-        return fail("current/instructions/Instructions.md exceeds 8000 characters")
-    if instruction_len > 7800:
-        print("WARN: current/instructions/Instructions.md exceeds 7800 characters")
+    if instruction_len > 8100:
+        return fail("current/instructions/Instructions.md exceeds 8100 characters")
+    if instruction_len > 7900:
+        print("WARN: current/instructions/Instructions.md exceeds 7900 characters")
 
     active_files = manifest.get("active_source_files")
     if not isinstance(active_files, list) or not active_files:

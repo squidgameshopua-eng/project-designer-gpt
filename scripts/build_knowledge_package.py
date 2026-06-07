@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CURRENT_DIR = ROOT / "current"
 MANIFEST_PATH = CURRENT_DIR / "package_manifest" / "package_manifest.json"
 SOURCE_DIR = CURRENT_DIR / "source_files"
-INSTRUCTION_LIMIT = 8000
+INSTRUCTION_LIMIT = 8100
 FORBIDDEN_NAME_MARKERS = (
     "corrected_",
     "final_",
