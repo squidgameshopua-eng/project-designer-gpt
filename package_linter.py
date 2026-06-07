@@ -6,6 +6,7 @@ Purpose:
 - Verify that GitHub current/ package matches current/package_manifest/package_manifest.json.
 - Catch hidden/extra files such as .gitkeep in active folders.
 - Catch missing active files, stale filenames, instruction-limit failures, and lost kernel terms.
+- Validate release-control manifest metadata, repo-only eval/report separation, and Knowledge upload scope.
 
 Usage from repository root:
     python package_linter.py
@@ -20,12 +21,11 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import sys
 from dataclasses import dataclass, asdict
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 DEFAULT_INSTRUCTION_LIMIT = 8000
 DEFAULT_MANIFEST = Path("current/package_manifest/package_manifest.json")
@@ -48,8 +48,52 @@ REQUIRED_ACTIVE_SOURCE_FILES = {
     "project_operating_protocol.md",
     "protected_behavior_registry.md",
     "regression_smoke_tests.md",
+    "rule_admission_protocol.md",
     "source_safety_policy.md",
     "testing_protocol.md",
+}
+
+REQUIRED_MANIFEST_KEYS = [
+    "package_name",
+    "status",
+    "active_source_of_truth",
+    "instruction_file",
+    "project_sources_folder",
+    "manifest_file",
+    "active_source_files",
+    "file_roles",
+    "protected_behavior_coverage",
+    "required_test_suites",
+    "release_gates",
+    "external_eval_layers",
+    "non_active_folders",
+    "chatgpt_project_upload_rule",
+    "github_connector_rule",
+]
+
+REQUIRED_RELEASE_GATES = {
+    "manifest_schema_pass",
+    "package_linter_pass",
+    "package_guard_pass",
+    "rule_admission_guard_pass",
+    "regression_selection_reported",
+    "external_eval_status_recorded",
+    "auditor_pass_before_stable",
+    "runtime_activation_not_claimed_without_evidence",
+}
+
+REQUIRED_EXTERNAL_EVAL_LAYERS = {
+    "promptfoo",
+    "inspect_ai",
+    "garak_or_harmbench",
+    "langfuse_style_ledger",
+}
+
+REQUIRED_TEST_SUITE_PATHS = {
+    "package_linter.py",
+    "scripts/validate_package_guard.py",
+    "scripts/validate_rule_admission_guard.py",
+    "current/source_files/regression_smoke_tests.md",
 }
 
 REQUIRED_INSTRUCTION_TERMS = [
@@ -91,11 +135,12 @@ REQUIRED_SOURCE_TERMS = {
     "testing_protocol.md": ["Patch Lock test", "Patch State Machine test", "Builder/Auditor test", "Hard pass threshold", "Artifact Destination Matrix test", "Repo-only Controls Exclusion test", "Direct Codex/GitHub Handoff test", "Runtime Activation / old-branch non-equivalence test"],
     "delivery_protocol.md": ["Patch Lock delivery blocker", "complete current", "No snippets-only", "Artifact Destination Contract delivery blocker", "ChatGPT upload package = `Instructions.md` plus `Knowledge/*.md` only"],
     "package_state_protocol.md": ["Active package basis", "evidence only", "canonical", "ChatGPT runtime active basis", "GitHub Stable basis", "Candidate PR basis", "Local package basis"],
-    "regression_smoke_tests.md": ["T01", "T04", "T12", "T13", "T14", "T15", "T16", "Fail"],
+    "regression_smoke_tests.md": ["T01", "T04", "T12", "T13", "T14", "T15", "T16", "T28", "T29", "T30", "T31", "T32", "Fail"],
     "project_design_super_pipeline_protocol.md": ["Super-Pipeline", "Hidden Requirements Mining", "CEGIS", "Mutation Testing", "Learning Ledger", "Pareto Ranking"],
     "counterexample_improvement_protocol.md": ["Counterexample-Guided Improvement", "CEGIS", "counterexample"],
     "mutation_testing_protocol.md": ["Mutation Testing", "mutation", "protected behavior"],
     "project_learning_ledger.md": ["Learning Ledger", "failure class", "evidence layer"],
+    "rule_admission_protocol.md": ["Rule Admission", "Thin Kernel", "owner file"],
 }
 
 BANNED_ACTIVE_NAME_RE = re.compile(
@@ -104,6 +149,7 @@ BANNED_ACTIVE_NAME_RE = re.compile(
 )
 
 EXPECTED_CURRENT_SUBDIRS = {"instructions", "source_files", "package_manifest"}
+
 
 @dataclass
 class Finding:
@@ -206,6 +252,9 @@ def check_manifest_and_structure(repo: Path, manifest: dict[str, Any], findings:
         dupes = sorted({x for x in active_source_files if active_source_files.count(x) > 1})
         add(findings, "ERROR", "active_source_files_duplicates", DEFAULT_MANIFEST, f"Duplicate active_source_files: {dupes}")
 
+    if active_source_files != sorted(active_source_files):
+        add(findings, "ERROR", "active_source_files_sorted", DEFAULT_MANIFEST, "active_source_files must be sorted for deterministic packaging.")
+
     missing_required = sorted(REQUIRED_ACTIVE_SOURCE_FILES - set(active_source_files))
     extra_manifest = sorted(set(active_source_files) - REQUIRED_ACTIVE_SOURCE_FILES)
     if missing_required:
@@ -220,6 +269,72 @@ def check_manifest_and_structure(repo: Path, manifest: dict[str, Any], findings:
         "manifest_file": manifest_file,
         "active_source_files": active_source_files,
     }
+
+
+def check_manifest_control_metadata(repo: Path, manifest: dict[str, Any], active_source_files: list[str], findings: list[Finding]) -> None:
+    for key in REQUIRED_MANIFEST_KEYS:
+        if key not in manifest:
+            add(findings, "ERROR", "manifest_required_keys", DEFAULT_MANIFEST, f"Missing manifest key: {key}")
+
+    file_roles = manifest.get("file_roles")
+    if not isinstance(file_roles, dict):
+        add(findings, "ERROR", "manifest_file_roles", DEFAULT_MANIFEST, "file_roles must be an object mapping every active source file to a role.")
+    else:
+        missing_roles = sorted(set(active_source_files) - set(file_roles))
+        extra_roles = sorted(set(file_roles) - set(active_source_files))
+        if missing_roles:
+            add(findings, "ERROR", "manifest_file_roles", DEFAULT_MANIFEST, f"Missing file_roles for active files: {missing_roles}")
+        if extra_roles:
+            add(findings, "ERROR", "manifest_file_roles", DEFAULT_MANIFEST, f"file_roles contains non-active files: {extra_roles}")
+        for name, role in file_roles.items():
+            if not isinstance(role, str) or len(role.strip()) < 12:
+                add(findings, "ERROR", "manifest_file_roles", DEFAULT_MANIFEST, f"file_roles[{name!r}] must be a meaningful non-empty role string.")
+
+    coverage = manifest.get("protected_behavior_coverage")
+    if not isinstance(coverage, dict):
+        add(findings, "ERROR", "manifest_pb_coverage", DEFAULT_MANIFEST, "protected_behavior_coverage must be an object.")
+    else:
+        required_pb = {"PB-00", "PB-00A", "PB-00B"} | {f"PB-{n:02d}" for n in range(47, 66)}
+        missing_pb = sorted(required_pb - set(coverage))
+        if missing_pb:
+            add(findings, "ERROR", "manifest_pb_coverage", DEFAULT_MANIFEST, f"Missing protected_behavior_coverage IDs: {missing_pb}")
+        for pb_id, owners in coverage.items():
+            if not re.fullmatch(r"PB-(00A|00B|\d{2})", str(pb_id)):
+                add(findings, "ERROR", "manifest_pb_coverage", DEFAULT_MANIFEST, f"Invalid PB ID in protected_behavior_coverage: {pb_id}")
+            if not isinstance(owners, list) or not all(isinstance(x, str) and x.strip() for x in owners):
+                add(findings, "ERROR", "manifest_pb_coverage", DEFAULT_MANIFEST, f"Coverage for {pb_id} must be a list of owner paths/files.")
+
+    test_suites = manifest.get("required_test_suites")
+    if not isinstance(test_suites, list) or not all(isinstance(x, str) and x.strip() for x in test_suites):
+        add(findings, "ERROR", "manifest_required_test_suites", DEFAULT_MANIFEST, "required_test_suites must be a list of strings.")
+    else:
+        missing_required_suites = sorted(REQUIRED_TEST_SUITE_PATHS - set(test_suites))
+        if missing_required_suites:
+            add(findings, "ERROR", "manifest_required_test_suites", DEFAULT_MANIFEST, f"Missing required test suites: {missing_required_suites}")
+        for suite in test_suites:
+            if not (repo / suite).exists():
+                add(findings, "ERROR", "manifest_required_test_suites", suite, "Required test suite path does not exist.")
+
+    release_gates = manifest.get("release_gates")
+    if not isinstance(release_gates, list) or not all(isinstance(x, str) and x.strip() for x in release_gates):
+        add(findings, "ERROR", "manifest_release_gates", DEFAULT_MANIFEST, "release_gates must be a list of strings.")
+    else:
+        missing_gates = sorted(REQUIRED_RELEASE_GATES - set(release_gates))
+        if missing_gates:
+            add(findings, "ERROR", "manifest_release_gates", DEFAULT_MANIFEST, f"Missing release gates: {missing_gates}")
+
+    external_eval_layers = manifest.get("external_eval_layers")
+    if not isinstance(external_eval_layers, dict):
+        add(findings, "ERROR", "manifest_external_eval_layers", DEFAULT_MANIFEST, "external_eval_layers must be an object.")
+    else:
+        missing_layers = sorted(REQUIRED_EXTERNAL_EVAL_LAYERS - set(external_eval_layers))
+        if missing_layers:
+            add(findings, "ERROR", "manifest_external_eval_layers", DEFAULT_MANIFEST, f"Missing external eval layers: {missing_layers}")
+
+    upload_rule = manifest.get("chatgpt_project_upload_rule", {}).get("project_sources") if isinstance(manifest.get("chatgpt_project_upload_rule"), dict) else ""
+    for marker in ("evals/", "reports/", "package_manifest.json", "package_linter.py", "scripts/", ".github/workflows/", "archive/", "deliveries/"):
+        if marker not in upload_rule:
+            add(findings, "ERROR", "manifest_upload_rule", DEFAULT_MANIFEST, f"chatgpt_project_upload_rule.project_sources must forbid {marker} as active Knowledge.")
 
 
 def check_current_tree(repo: Path, active_root: Path, findings: list[Finding]) -> None:
@@ -303,7 +418,6 @@ def check_instruction(repo: Path, instruction_file: Path, limit: int, findings: 
         add(findings, "INFO", "instruction_kernel_terms", instruction_file.relative_to(repo), "All required kernel terms are present.")
 
     if "corrected_" in text or "final_" in text or "draft_" in text or "v2_" in text:
-        # The instruction may mention banned names as a rule; that is OK. Keep this as info rather than error.
         add(findings, "INFO", "instruction_mentions_banned_names", instruction_file.relative_to(repo), "Instruction mentions banned filename patterns; this is acceptable if it is a prohibition rule.")
 
 
@@ -344,7 +458,6 @@ def check_non_active_and_root(repo: Path, manifest: dict[str, Any], findings: li
     else:
         add(findings, "WARNING", "non_active_folders", DEFAULT_MANIFEST, "non_active_folders is not a dictionary.")
 
-    # Warn about active-looking files at repo root or outside current/.
     active_names = set(manifest.get("active_source_files", [])) | {"Instructions.md", "package_manifest.json"}
     active_like_outside_current: list[str] = []
     for p in list_all_files(repo):
@@ -355,7 +468,6 @@ def check_non_active_and_root(repo: Path, manifest: dict[str, Any], findings: li
             active_like_outside_current.append(posix(rel))
     if active_like_outside_current:
         add(findings, "WARNING", "active_like_outside_current", ".", "Files with active names exist outside current/; they are evidence only unless explicitly promoted: " + ", ".join(sorted(active_like_outside_current)))
-
 
 
 def check_artifact_destination_contract(repo: Path, findings: list[Finding]) -> None:
@@ -384,6 +496,7 @@ def check_artifact_destination_contract(repo: Path, findings: list[Finding]) -> 
         "package_linter.py",
         "scripts/",
         "reports/",
+        "evals/",
         ".github/workflows/",
         "UPLOAD_GUIDE.md",
         "CODEX_TASK",
@@ -397,6 +510,7 @@ def check_artifact_destination_contract(repo: Path, findings: list[Finding]) -> 
         add(findings, "ERROR", "knowledge_build_scope_guard", "scripts/build_knowledge_package.py", "Upload ZIP entries must not include UPLOAD_GUIDE.md or package_manifest.json.")
     if 'name == "Instructions.md" or name.startswith("Knowledge/")' not in build_text:
         add(findings, "ERROR", "knowledge_build_scope_guard", "scripts/build_knowledge_package.py", "Missing strict Instructions.md/Knowledge/* ZIP scope check.")
+
 
 def summarize(findings: list[Finding]) -> dict[str, int]:
     return {
@@ -446,6 +560,7 @@ def run(repo: Path, instruction_limit: int) -> tuple[list[Finding], int]:
     assert isinstance(manifest_file, Path)
     assert isinstance(active_source_files, list)
 
+    check_manifest_control_metadata(repo, manifest, active_source_files, findings)
     check_current_tree(repo, active_root, findings)
     check_folder_contents(repo, instruction_file, source_folder, manifest_file, active_source_files, findings)
     check_instruction(repo, instruction_file, instruction_limit, findings)
