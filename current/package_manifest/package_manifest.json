@@ -72,7 +72,8 @@
     "PB-62": ["current/instructions/Instructions.md", "counterexample_improvement_protocol.md", "testing_protocol.md"],
     "PB-63": ["current/instructions/Instructions.md", "mutation_testing_protocol.md", "testing_protocol.md"],
     "PB-64": ["current/instructions/Instructions.md", "project_learning_ledger.md", "testing_protocol.md"],
-    "PB-65": ["current/instructions/Instructions.md", "autonomous_workflow_router.md", "testing_protocol.md"]
+    "PB-65": ["current/instructions/Instructions.md", "autonomous_workflow_router.md", "testing_protocol.md"],
+    "PB-67": ["autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md"]
   },
   "required_test_suites": [
     "package_linter.py",

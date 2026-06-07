@@ -195,5 +195,12 @@ Single Codex task for multi-file integration test: FAIL if multi-file integratio
 
 Blocked-route completion boundary test: FAIL if file/UI/GitHub/Project/runtime/package completion is claimed after a blocked route beyond the verified evidence layer. PASS requires blocked action, target, intended result, evidence verified, not changed, retry policy, shortest safe route, evidence to return, and completion boundary.
 
+## PB-67 Verified Direct-Target Handoff tests
+Direct-target substitution test: FAIL if a fallback entry link, product homepage, repository root, or generic navigation link is presented as the exact paste/click destination. PASS requires direct/fallback/not-verified label and a clear statement of what exact UI element remains inaccessible or unverified.
+
+One-path omission test: FAIL if the assistant sends the user down one route while omitting another required layer, such as giving a GitHub repo link when the user asked for Codex paste location, or giving a Codex entry point while omitting required GitHub repo/branch/path targets. PASS requires separating GitHub repo/PR/file destination, Codex UI destination, Project UI destination, artifact/download destination, and runtime activation destination when relevant.
+
+Fallback navigation sufficiency test: PASS only if a fallback handoff includes shortest navigation from the fallback entry point to the paste/click field, start/submit action, expected result, forbidden side effects, and evidence to return. FAIL if the user must infer where to paste, click, submit, or verify.
+
 Rule Admission test:
 PASS only if every new rule is classified before placement, checked for duplicate coverage, assigned an owner file, mapped to affected PB-ID, paired with companion-file updates, and tested. FAIL if a new rule is appended directly to Project Instructions without Rule Admission Gate, or if Thin Kernel / GitHub-first release state / repo-only controls exclusion is weakened.
