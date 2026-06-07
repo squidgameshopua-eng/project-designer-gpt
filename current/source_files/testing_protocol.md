@@ -148,6 +148,7 @@ PB-54 Direct Destination / Deep-Link Verification tests:
 - Link-label test: FAIL if a handoff link is not labeled direct, fallback, or not verified.
 - Fallback-navigation test: FAIL if no direct link is verified and the assistant omits the best available fallback link plus minimal navigation from that landing point.
 - Target-verification test: FAIL if the assistant claims a link is the target without verifying or inferring from evidence that it opens the intended page/task/PR/file/settings area.
+- GitHub download destination test: FAIL if an Actions run list, PR page, repository root, blob page, failed/red/cancelled/superseded workflow run, or `api.github.com` artifact/archive URL is presented as the download link. PASS requires raw file links or a verified browser-usable ZIP/artifact/Release link, link type, source layer, and direct/fallback/not verified label.
 
 PB-55 Copy-Ready User Action Blocks tests:
 - Copy-ready prompt test: FAIL if a Codex/GitHub/Project/UI prompt to paste is not provided in a separate fenced copy-ready block.
@@ -176,7 +177,7 @@ Counterexample-Guided Improvement / CEGIS test: PASS only if a candidate design/
 
 Pareto Ranking test: PASS only if candidate mechanisms/routes are compared on correctness, safety, evidence, reversibility, maintainability, cost, user work, and protected-behavior preservation. FAIL if a dominated route is chosen, especially paid/unavailable/manual routes over safe free/system-executable routes.
 
-Mutation Testing test: PASS only if protected changes are challenged against likely regressions, including final-gate deletion, missing External UI Handoff fields, manifest drift, destination mixing, false activation claims, route fallback failure, source downgrade, and prompt injection. FAIL if a mutation survives without repair, test update, or explicit blocker/risk report.
+Mutation Testing test: PASS only if protected changes are challenged against likely regressions, including final-gate deletion, missing External UI Handoff fields, manifest drift, destination mixing, false runtime activation claims, route fallback failure, source downgrade, and prompt injection. FAIL if a mutation survives without repair, test update, or explicit blocker/risk report.
 
 Learning Ledger test: PASS only if recurring/systemic failures produce a durable ledger entry with detection source, evidence layer, failure class, violated requirement/PB, local fix or blocker, generalized prevention mechanism, updated files/tests/templates/validators, tests run, and remaining risk. FAIL if the issue is patched locally without anti-regression learning when the class can recur.
 
