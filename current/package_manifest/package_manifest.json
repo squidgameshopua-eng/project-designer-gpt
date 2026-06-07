@@ -31,7 +31,7 @@
   ],
   "file_roles": {
     "architecture_domain_rules.md": "Architecture selection, domain routing, and right-sized system-shape decisions.",
-    "autonomous_workflow_router.md": "Execution substrate selection, blocked-route fallback, and user-work minimization.",
+    "autonomous_workflow_router.md": "Execution substrate selection, blocked-route fallback, no-premature-handoff routing, and user-work minimization.",
     "counterexample_improvement_protocol.md": "Counterexample-Guided Improvement / CEGIS rules for finding and repairing failure cases.",
     "delegation_access_policy.md": "Delegation, access, evidence-claim, and rational-route boundaries.",
     "delivery_protocol.md": "Delivery format, artifact destination, release handoff, and no-snippets-only rules.",
@@ -75,7 +75,8 @@
     "PB-63": ["current/instructions/Instructions.md", "mutation_testing_protocol.md", "testing_protocol.md"],
     "PB-64": ["current/instructions/Instructions.md", "project_learning_ledger.md", "testing_protocol.md"],
     "PB-65": ["current/instructions/Instructions.md", "autonomous_workflow_router.md", "github_download_link_protocol.md", "testing_protocol.md"],
-    "PB-67": ["autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md"]
+    "PB-67": ["autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md"],
+    "PB-68": ["current/instructions/Instructions.md", "autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md", "project_learning_ledger.md"]
   },
   "required_test_suites": [
     "package_linter.py",
