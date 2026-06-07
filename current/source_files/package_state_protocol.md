@@ -44,3 +44,6 @@ Keep these layers separate in every package/state claim:
 - Local package basis: generated local files/ZIPs; evidence only until uploaded/committed/promoted.
 - Evidence-only basis: old branches, old chats, old ZIPs, screenshots, reports, archives, deliveries, and user statements until verified in the target layer.
 Repo-only controls (`package_manifest.json`, `package_linter.py`, scripts, workflows, reports, guides, Codex tasks, archives, deliveries, ZIPs) are not ChatGPT runtime active Knowledge unless the user explicitly requests non-active audit/reference upload.
+
+GitHub-first self-system release rule:
+For system-development changes, GitHub current/ is the Stable source of truth when verified. Candidate PRs, local packages, old chats, screenshots, reports, and ZIPs are not Stable until promoted through manifest/linter/test/audit/release verification. Runtime active state requires Project UI update plus new-chat activation check. Rule Admission Gate and PB-66 must be preserved before any self-system release is promoted.
