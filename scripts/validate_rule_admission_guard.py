@@ -12,6 +12,8 @@ REQUIRED = {
     "current/source_files/rule_admission_protocol.md": [
         "Rule Admission Gate",
         "Core invariant",
+        "Automation rule",
+        "The system must do all safe checkable work itself",
         "Self-development rule",
         "Direct instruction expansion without classification is Invalid Delivery",
     ],
