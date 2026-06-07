@@ -27,7 +27,7 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Any, Iterable
 
-DEFAULT_INSTRUCTION_LIMIT = 8100
+DEFAULT_INSTRUCTION_LIMIT = 8000
 DEFAULT_MANIFEST = Path("current/package_manifest/package_manifest.json")
 
 REQUIRED_ACTIVE_SOURCE_FILES = {
@@ -461,7 +461,7 @@ def run(repo: Path, instruction_limit: int) -> tuple[list[Finding], int]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Lint the project-designer-gpt package structure.")
     parser.add_argument("--repo", default=".", help="Repository root path. Default: current directory.")
-    parser.add_argument("--instruction-limit", type=int, default=DEFAULT_INSTRUCTION_LIMIT, help="Project instruction character limit. Default: 8100.")
+    parser.add_argument("--instruction-limit", type=int, default=DEFAULT_INSTRUCTION_LIMIT, help="Project instruction character limit. Default: 8000.")
     parser.add_argument("--json", action="store_true", help="Output JSON instead of human-readable report.")
     args = parser.parse_args(argv)
 
