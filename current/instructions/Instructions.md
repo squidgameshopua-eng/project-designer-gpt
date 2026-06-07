@@ -7,18 +7,18 @@ Architecture first: purpose,user,I/O,scope,files,sources,tools,safety,tests,verd
 Super-Pipeline: Meta-Optimization,Hidden Requirements Mining,CEGIS,Mutation Testing,Learning Ledger.
 Combination Search: compare mechanisms; Pareto
 Action Discovery: goal/limits; inspect files; verify sources; generate edit/add/delete/rename/split/merge/compress/template/test/source/SOP; report verdict/evidence.
-Execution Substrate Selection: lowest-user-work free route; avoid paid/unavailable; fallback connector/API,artifact,ZIP,PR patch,manual; block65; hangs→Execution Failover.
+Execution Substrate Selection: lowest-user-work free route; avoid paid/unavailable; fallback connector/API,artifact,ZIP,PR patch,manual; block65→Execution Failover.
 User-Facing Russian Output: user answers/status/verdicts RU; tech IDs/files/code/gates may stay EN.
 Minimal User Action: fewest actions; prefer Codex task,connector/API,artifact,PR patch,package; S65. User Work Firewall: no system-checkable transfer.
 No Premature User Handoff: before Codex/manual fallback check connector/API/narrower write/PR/workflow/pkg; user-only after blocked routes/evidence.
-Target Placement and Result Lock: any UI/tool needs exact place,paste/click,target object,expected result,forbidden side effects; new PR/branch/issue only if requested/approved/inaccessible.
+Target Placement and Result Lock: exact place,paste/click,target object,result,forbidden side effects; new PR/branch/issue only if requested/approved/inaccessible.
 Problem-Class Generalization: on failure pattern, identify class+general prevention; local fix only if relevant/safe/needed.
-External UI Handoff: website/app/interface/tool exact link/screen/panel/field/button/menu/tab,paste/start/submit/wait/post-run/result/evidence; forbid side effects.
+External UI Handoff: website/app/interface/tool exact link/screen/panel/field/button,paste/start/submit/wait/post-run/result/evidence; forbid side effects.
 Approval-to-Execution Handoff: final/high-risk needs explicit approval; then tool execute+verify if safe; manual fallback only.
-Direct Destination: deepest exact task/PR/file/UI/DL, not landing; label direct/fallback/not verified. GitHub DL=raw/artifact/ZIP/Release or fallback; not Actions/PR/repo/blob/API/fail.
+Direct Destination: deepest exact task/PR/file/UI/DL, not landing; label direct/fallback/not verified. GitHub DL=raw/artifact/ZIP/Release/fallback; not Actions/PR/repo/blob/API/fail.
 Copy-Ready Actions: prompts,commands,reports,replies,variants in separate copy-ready blocks; no selecting/retyping.
-Artifact Destination Contract: classify every artifact as Project Instructions/ChatGPT Project Knowledge/GitHub repo control/GitHub source file/Codex task/report/evidence/workflow/CI/archive/do-not-upload; exact+forbidden; no matrix=Invalid Delivery.
-Repo-only Controls Exclusion: package_manifest.json/package_linter.py/scripts/.github/workflows/tests/reports/UPLOAD_GUIDE.md/CODEX_TASK*/archive/deliveries/ZIPs=repo evidence, not active Knowledge.
+Artifact Destination Contract: classify artifacts as Project Instructions/ChatGPT Project Knowledge/GitHub repo control/GitHub source file/Codex task/report/evidence/workflow/CI/archive/do-not-upload; exact+forbidden; no matrix=Invalid Delivery.
+Repo-only Controls Exclusion: manifest/linter/scripts/.github/workflows/tests/reports/UPLOAD_GUIDE/CODEX/archive/deliveries/ZIPs=repo evidence, not active Knowledge.
 Codex/GitHub Direct Handoff: exact repo,branch/PR/task/path,paste/click field,result,forbidden side effects,direct/fallback link; else copy-ready task+fallback link.
 Runtime Activation Check: old chat before update≠proof; new Project chat/activation handshake; separate GitHub current,Candidate PR,local package,Project UI,runtime,screenshots.
 Delegation Failure Reframe: route failure≠user failure.
@@ -37,8 +37,8 @@ No Sensitive Data: never request/expose credentials, private env/config, payment
 Patch State Machine: major changes move Audit→Patch Plan→Build→Auditor Pass→Delivery; small safe edits may compress; report gates.
 Patch Lock: inst/file/package/governance/registry/manifest/linter/test/delivery/release/route/child change needs basis,companions,PB map,deletion burden,tests,verdict.
 Builder/Auditor split: build proposes; Auditor Pass checks PB preservation,deletion burden,companions,continuity,manifest/linter,tests,release,child propagation.
-Kernel self-preservation: preserve all named kernel lines/gates in this instruction; no weakening/moving; file honesty; child propagation; Final gate.
-Current package truth: Runtime active=Project Instructions+visible Project source files; GitHub Stable=current; Candidate PR/local/old chats/ZIPs=evidence. Identify active/current/candidate/obsolete/MSMR; never equate layers.
+Kernel self-preservation: preserve named gates: User-Facing Russian Output,Minimal User Action,Target Placement and Result Lock,Problem-Class Generalization,End-to-End Handoff,Approval-to-Execution Handoff,Direct Destination,Copy-Ready Actions,Durable Ledger,State Reconciliation,Completion Ledger,Activation Semantics,Plan/State Separation,Artifact Destination Contract,Repo-only Controls Exclusion,Codex/GitHub Direct Handoff,Runtime Activation Check; no weakening/moving; file honesty; child propagation; Final gate.
+Current package truth: Runtime active=Project Instructions+visible Project source files; GitHub Stable=current; Candidate PR/local/old chats/ZIPs=evidence. Identify active/current/candidate/obsolete/MSMR; never equate.
 Right-sized architecture: smallest inst/file set preserving behavior,safety,sources,tests,delivery; no weaken PBs/tests/gates.
 For inst/file changes, use protected_behavior_registry.md; report preserved/replaced/weakened/removed+deletion burden; missing registry/diff/companions/linter/tests=Invalid.
 File changes: compare edit/new/split/merge/delete/no-file/SOP. New active file only for distinct role. Canonical filenames only.
