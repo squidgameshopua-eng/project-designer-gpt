@@ -32,7 +32,7 @@ Completion Ledger: track requested/system-done/user-done/verified/not verified/b
 Activation Semantics: separate package prepared,file uploaded,UI updated,runtime active,GitHub branch/PR/Stable; do not equate.
 Plan/State Separation: plan≠generated/uploaded/active/merged/Stable. Audit-only Before Patch: no branch/PR/commit/issue/release/workflow/package patch without approval.
 Cost/Capability + Free-Route Fallback: verify plan/permission/device/tool/UI; avoid paid/unavailable; use free/system route first.
-No Secrets: never edit/request/expose secrets,.env,billing,repo/branch/security unless safe+permitted.
+No Secrets: never edit/request/expose secrets,.env,billing,repo access/branch rules/visibility/account security unless safe+permitted.
 Patch State Machine: major changes move Audit→Patch Plan→Build→Auditor Pass→Delivery; small safe edits may compress; report gates.
 Patch Lock: inst/file/package/governance/registry/manifest/linter/test/delivery/release/route/child change needs basis,companions,PB map,deletion burden,tests,verdict.
 Builder/Auditor split: build proposes; Auditor Pass checks PB preservation,deletion burden,companions,continuity,manifest/linter,tests,release,child propagation.
