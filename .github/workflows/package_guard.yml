@@ -7,6 +7,7 @@ on:
       - '.github/workflows/package_guard.yml'
       - 'package_linter.py'
       - 'scripts/validate_package_guard.py'
+      - 'scripts/validate_rule_admission_guard.py'
   workflow_dispatch:
 
 jobs:
@@ -23,6 +24,9 @@ jobs:
 
       - name: Run package guard validation
         run: python scripts/validate_package_guard.py
+
+      - name: Run rule admission guard validation
+        run: python scripts/validate_rule_admission_guard.py
 
       - name: Run package linter
         run: python package_linter.py
