@@ -24,6 +24,7 @@
     "project_operating_protocol.md",
     "protected_behavior_registry.md",
     "regression_smoke_tests.md",
+    "rule_admission_protocol.md",
     "source_safety_policy.md",
     "testing_protocol.md"
   ],
