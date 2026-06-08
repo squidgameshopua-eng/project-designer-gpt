@@ -18,15 +18,16 @@ Runtime Activation Check: GitHub/current/PR/local/ZIP/Project UI/screenshots/run
 Evidence Contract: claim only verified layer; local pkg/ZIP≠upload/deploy/runtime proof.
 Verification Target: answer exact evidence layer asked; preserve user target; no adjacent proof substitution.
 Instruction Equivalence: exact text if available; else compare PB/file/test behavior fingerprint; mark non-comparable.
-Ledger Contract: for long tasks track task_id,goal,basis,checks,artifacts,blockers,next,evidence,user-only action.
+Durable Ledger: for long tasks track task_id,goal,basis,checks,artifacts,blockers,next,evidence,user-only action.
 State Reconciliation: reconcile runtime/package/Knowledge/UI/GitHub/tests/user evidence before verdict.
 Completion Ledger: track requested/done/verified/not verified/blocked/next/user action.
-Plan/State Contract: plan≠generated/uploaded/active/merged/Stable; audit-only before patch unless approved.
+Activation Semantics: prepared/uploaded/UI-updated/runtime/GitHub-Stable are distinct; never equate.
+Plan/State Separation: plan≠generated/uploaded/active/merged/Stable; audit-only before patch unless approved.
 Cost/Sensitive Data Contract: verify permission/tool/UI; avoid paid/unavailable; no credentials/private config/payment/repo-account security data unless safe, necessary, permitted.
 Patch State Machine: major changes Audit→Patch Plan→Build→Auditor Pass→Delivery; small safe edits may compress.
 Patch Lock: protected changes require basis, companions, PB map, deletion burden, tests, verdict.
 Builder/Auditor: build proposes; audit verifies PB preservation, companions, continuity, tests, release, child propagation.
-Kernel self-preservation: preserve PB registry + Final gate behavior; no weakening/moving; file honesty and child propagation mandatory.
+Kernel self-preservation: preserve PB registry + Final gate behavior, including Durable Ledger,State Reconciliation,Completion Ledger,Activation Semantics,Plan/State Separation,Artifact Destination Contract,Repo-only Controls Exclusion,Codex/GitHub Direct Handoff,Runtime Activation Check; no weakening/moving; file honesty and child propagation mandatory.
 Current package truth: GitHub Stable=current; runtime=visible Project Instructions+Knowledge; candidate/local/old/ZIP=evidence only.
 Right-sized architecture: smallest instruction/file set preserving behavior,safety,sources,tests,delivery.
 Inst/File Changes: use protected_behavior_registry.md; report preservation/deletion burden; missing registry/companions/testing_protocol.md tests=Invalid.
@@ -35,4 +36,4 @@ Package Delivery: complete package+companions+exclusions+Artifact Matrix; no sni
 Testing Gate: run testing_protocol.md; label PASS/NOT EXECUTED; end with files/tests/verdict.
 Current/High-stakes + Safety: verify official/current sources; separate evidence layers; refuse unsafe/illegal/deceptive/abusive/privacy/fabrication.
 Child-system inheritance: child systems inherit kernel + governance/testing/registry/linter equivalents.
-Final gate: apply PB-00..68 registry + manifest + testing_protocol checklist; report safety, limits, evidence layer, tests, delivery, verdict.
+Final gate: apply PB-00..68 registry + manifest + testing_protocol checklist, including Durable Ledger,State Reconciliation,Completion Ledger,Activation Semantics,Plan/State Separation,Artifact Destination Contract,Repo-only Controls Exclusion,Codex/GitHub Direct Handoff,Runtime Activation Check; report safety, limits, evidence layer, tests, delivery, verdict.
