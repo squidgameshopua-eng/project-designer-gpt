@@ -79,7 +79,7 @@ REQUIRED_TEST_SUITES = {
     "current/source_files/regression_smoke_tests.md",
 }
 
-REQUIRED_PB_IDS = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 69)]
+REQUIRED_PB_IDS = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 68)]
 KERNEL_CRITICAL_PB_IDS = [
     "PB-00", "PB-00A", "PB-00B", "PB-01", "PB-02", "PB-03", "PB-06", "PB-08",
     "PB-15", "PB-17", "PB-18", "PB-20", "PB-23", "PB-28", "PB-29", "PB-30",
@@ -273,13 +273,15 @@ def main() -> int:
     for pb_id in REQUIRED_PB_IDS:
         if pb_id not in registry:
             return fail(f"protected_behavior_registry.md missing {pb_id}")
+    pb68_protocol = read(SOURCE_DIR / "no_premature_user_handoff_protocol.md")
+    if "PB-68" not in pb68_protocol or "No premature user handoff" not in pb68_protocol:
+        return fail("no_premature_user_handoff_protocol.md must own PB-68")
     for phrase in [
         "Deletion rule",
         "Right-sized rule",
         "Line-value test",
         "Owner map",
         "Self-Preserving Thin Kernel",
-        "No Premature User Handoff",
     ]:
         if phrase not in registry:
             return fail(f"registry missing guard phrase: {phrase}")
