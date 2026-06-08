@@ -77,6 +77,7 @@
     "PB-63": ["current/instructions/Instructions.md", "mutation_testing_protocol.md", "testing_protocol.md"],
     "PB-64": ["current/instructions/Instructions.md", "project_learning_ledger.md", "testing_protocol.md"],
     "PB-65": ["current/instructions/Instructions.md", "autonomous_workflow_router.md", "github_download_link_protocol.md", "testing_protocol.md"],
+    "PB-66": ["current/instructions/Instructions.md", "protected_behavior_registry.md", "instruction_governance.md", "rule_admission_protocol.md", "patch_lock_protocol.md", "package_state_protocol.md", "delivery_protocol.md", "testing_protocol.md", "regression_smoke_tests.md", "package_linter.py"],
     "PB-67": ["autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md"],
     "PB-68": ["current/instructions/Instructions.md", "no_premature_user_handoff_protocol.md", "autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md", "project_learning_ledger.md"]
   },
