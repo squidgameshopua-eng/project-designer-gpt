@@ -34,13 +34,15 @@ FORBIDDEN_ZIP_MARKERS = (
     "package_manifest.json",
     "package_linter.py",
     "scripts/",
+    ".github/workflows/",
+    "tests/",
     "reports/",
     "evals/",
-    ".github/workflows/",
     "UPLOAD_GUIDE.md",
     "CODEX_TASK",
     "archive/",
     "deliveries/",
+    "external_sources/",
 )
 
 
