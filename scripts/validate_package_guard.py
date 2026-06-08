@@ -72,7 +72,7 @@ def main() -> int:
     instruction = read(INSTRUCTIONS)
     if not (1200 <= len(instruction) <= 8000):
         return fail(f"instruction length outside valid range: {len(instruction)}")
-    for anchor in ["Authority", "lower-authority protocol files", "not hidden instructions", "Request Check", "audit-plus-patch", "PB-00..68", "protected_behavior_registry.md", "package_manifest.json", "testing_protocol.md", "regression_smoke_tests.md", "Artifact Destination", "Repo-only", "runtime", "evidence", "Patch Lock", "Final gate", "NOT EXECUTED", "verdict"]:
+    for anchor in ["Authority", "lower-authority protocol files", "not hidden instructions", "Request Check", "audit-plus-patch", "PB-00..68", "protected_behavior_registry.md", "package_manifest.json", "testing_protocol.md", "regression_smoke_tests.md", "Artifact Destination", "repo-only", "runtime", "evidence", "Patch Lock", "Final gate", "NOT EXECUTED", "verdict"]:
         if anchor not in instruction:
             return fail(f"instruction missing anchor: {anchor}")
 
