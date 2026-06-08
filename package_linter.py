@@ -118,7 +118,7 @@ REQUIRED_SOURCE_TERMS = {
     "testing_protocol.md": ["Evidence-grade test", "Patch Lock test", "Protected-registry regression test", "Deletion-burden test", "Right-sized architecture test", "Instruction-limit test", "Rule Admission test"],
     "instruction_governance.md": ["Thin Kernel", "Project Instructions", "lower-authority", "Rule Admission Gate"],
     "rule_admission_protocol.md": ["Rule Admission", "Kernel-critical", "owner file"],
-    "no_premature_user_handoff_protocol.md": ["PB-68", "No premature user handoff", "system routes"],
+    "no_premature_user_handoff_protocol.md": ["PB-68", "No premature user handoff", "Execution Failover Ladder", "system routes"],
     "delivery_protocol.md": ["Artifact Destination Contract", "ChatGPT upload package = `Instructions.md` plus `Knowledge/*.md` only"],
     "output_templates.md": ["Artifact Destination Matrix", "copy-ready"],
     "package_state_protocol.md": ["GitHub Stable basis", "Candidate PR basis", "ChatGPT runtime active basis"],
