@@ -41,6 +41,7 @@ FORBIDDEN_ZIP_MARKERS = (
     "CODEX_TASK",
     "archive/",
     "deliveries/",
+    "external_sources/",
 )
 
 
