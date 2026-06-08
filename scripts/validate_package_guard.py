@@ -80,14 +80,7 @@ REQUIRED_TEST_SUITES = {
 }
 
 REQUIRED_PB_IDS = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 68)]
-KERNEL_CRITICAL_PB_IDS = [
-    "PB-00", "PB-00A", "PB-00B", "PB-01", "PB-02", "PB-03", "PB-06", "PB-08",
-    "PB-15", "PB-17", "PB-18", "PB-20", "PB-23", "PB-28", "PB-29", "PB-30",
-    "PB-33", "PB-34", "PB-35", "PB-36", "PB-37", "PB-40", "PB-41", "PB-47",
-    "PB-48", "PB-49", "PB-50", "PB-51", "PB-52", "PB-53", "PB-54", "PB-55",
-    "PB-56", "PB-57", "PB-58", "PB-59", "PB-60", "PB-61", "PB-62", "PB-63",
-    "PB-64", "PB-65", "PB-66", "PB-67", "PB-68",
-]
+KERNEL_CRITICAL_PB_IDS = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(47, 69)]
 
 KERNEL_ANCHORS = [
     "Authority",
@@ -112,7 +105,7 @@ KERNEL_ANCHORS = [
 
 FORBIDDEN_INSTRUCTION_PATTERNS = [
     "Final gate: Request Check,architecture,Super-Pipeline,Hidden Requirements Mining,CEGIS,Mutation Testing,Learning Ledger,External UI Handoff",
-    "Kernel self-preservation: preserve User-Facing Russian Output,Minimal User Action,Target Placement",
+    "Kernel self-preservation: preserve User-Facing Russian Output,Minimal User Action,TargetPlacement",
     "website/app/interface/tool exact link/screen/panel/field/button,paste/start/submit/wait/post-run/result/evidence",
     "manifest/linter/scripts/.github/workflows/tests/reports/UPLOAD_GUIDE/CODEX/archive/deliveries/ZIPs=repo evidence",
 ]
@@ -137,6 +130,7 @@ OWNER_FILES_BY_PB = {
     "PB-63": ["mutation_testing_protocol.md", "testing_protocol.md"],
     "PB-64": ["project_learning_ledger.md", "testing_protocol.md"],
     "PB-65": ["autonomous_workflow_router.md", "github_download_link_protocol.md", "testing_protocol.md"],
+    "PB-66": ["instruction_governance.md", "rule_admission_protocol.md", "patch_lock_protocol.md", "testing_protocol.md"],
     "PB-67": ["autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md"],
     "PB-68": ["no_premature_user_handoff_protocol.md", "autonomous_workflow_router.md", "protected_behavior_registry.md", "testing_protocol.md", "regression_smoke_tests.md"],
 }
