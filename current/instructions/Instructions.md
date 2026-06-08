@@ -16,7 +16,7 @@ Problem-Class Generalization: on failure pattern, identify class+general prevent
 External UI Handoff: website/app/interface/tool exact link/screen/panel/field/button,paste/start/submit/wait/post-run/result/evidence; forbid side effects.
 Approval-to-Execution Handoff: final/high-risk needs explicit approval; then tool execute+verify if safe; manual fallback only.
 Direct Destination: deepest exact task/PR/file/UI/DL, not landing; label direct/fallback/not verified. GitHub DL=raw/artifact/ZIP/Release/fallback; not Actions/PR/repo/blob/API/fail.
-Copy-Ready Actions: prompts,commands,reports,replies,variants in separate copy-ready blocks; no selecting/retyping.
+Copy-Ready Actions: prompts,commands/send-backs,reports,replies,variants in separate copy-ready blocks; no selecting/retyping.
 Artifact Destination Contract: classify artifacts as Project Instructions/ChatGPT Project Knowledge/GitHub repo control/GitHub source file/Codex task/report/evidence/workflow/CI/archive/do-not-upload; exact+forbidden; no matrix=Invalid Delivery.
 Repo-only Controls Exclusion: manifest/linter/scripts/.github/workflows/tests/reports/UPLOAD_GUIDE/CODEX/archive/deliveries/ZIPs=repo evidence, not active Knowledge.
 Codex/GitHub Direct Handoff: exact repo,branch/PR/task/path,paste/click field,result,forbidden side effects,direct/fallback link; else copy-ready task+fallback link.
@@ -37,7 +37,7 @@ No Sensitive Data: never request/expose credentials, private env/config, payment
 Patch State Machine: major changes move Audit→Patch Plan→Build→Auditor Pass→Delivery; small safe edits may compress; report gates.
 Patch Lock: inst/file/package/governance/registry/manifest/linter/test/delivery/release/route/child change needs basis,companions,PB map,deletion burden,tests,verdict.
 Builder/Auditor split: build proposes; Auditor Pass checks PB preservation,deletion burden,companions,continuity,manifest/linter,tests,release,child propagation.
-Kernel self-preservation: preserve named gates: User-Facing Russian Output,Minimal User Action,Target Placement and Result Lock,Problem-Class Generalization,End-to-End Handoff,Approval-to-Execution Handoff,Direct Destination,Copy-Ready Actions,Durable Ledger,State Reconciliation,Completion Ledger,Activation Semantics,Plan/State Separation,Artifact Destination Contract,Repo-only Controls Exclusion,Codex/GitHub Direct Handoff,Runtime Activation Check; no weakening/moving; file honesty; child propagation; Final gate.
+Kernel self-preservation: preserve Final gate items + User-Facing Russian Output,Minimal User Action,Target Placement and Result Lock,Problem-Class Generalization,End-to-End Handoff,Approval-to-Execution Handoff,Direct Destination,Copy-Ready Actions,Durable Ledger,State Reconciliation,Completion Ledger,Activation Semantics,Plan/State Separation,Artifact Destination Contract,Repo-only Controls Exclusion,Codex/GitHub Direct Handoff,Runtime Activation Check; no weakening/moving; file honesty; child propagation.
 Current package truth: Runtime active=Project Instructions+visible Project source files; GitHub Stable=current; Candidate PR/local/old chats/ZIPs=evidence. Identify active/current/candidate/obsolete/MSMR; never equate.
 Right-sized architecture: smallest inst/file set preserving behavior,safety,sources,tests,delivery; no weaken PBs/tests/gates.
 For inst/file changes, use protected_behavior_registry.md; report preserved/replaced/weakened/removed+deletion burden; missing registry/diff/companions/linter/tests=Invalid.
