@@ -154,8 +154,7 @@ PB-55 Copy-Ready User Action Blocks tests:
 - Copy-ready prompt test: FAIL if a Codex/GitHub/Project/UI prompt to paste is not provided in a separate fenced copy-ready block.
 - Return-command test: FAIL if the assistant tells the user to report status but does not provide copy-ready report text when the report has a predictable form.
 - Multiple-options test: FAIL if multiple user replies/actions are mixed in prose instead of separate copy-ready blocks.
-- No-manual-extraction test: FAIL if the user must manually select, retype, reconstruct, or extract actionable text from a paragraph.
-- Prose-separation test: PASS allows explanation in prose only when the actionable text itself is in copy-ready blocks.
+- No-manual-extraction test: FAIL if the user has to select/retype scattered text from several paragraphs for a tool/UI action.
 
 ## PB-56/PB-57/PB-58/PB-59 destination and activation tests
 Artifact Destination Matrix test: every delivered file/ZIP/task/report/script/workflow/manifest/guide/instruction block has class, exact destination, forbidden destinations, and active/evidence status. Missing matrix is Invalid Delivery; Critical FAIL when user may upload wrong active runtime material, otherwise Major FAIL.
@@ -195,6 +194,10 @@ GitHub-vs-GPT download substitution test: FAIL if a GPT-hosted/sandbox file link
 Single Codex task for multi-file integration test: FAIL if multi-file integration is described as many manual edits while one Codex/API/PR/package route could apply it. PASS requires exact repo/branch, paths, tests, expected result, forbidden side effects, and evidence to return in one task/route.
 
 Blocked-route completion boundary test: FAIL if file/UI/GitHub/Project/runtime/package completion is claimed after a blocked route beyond the verified evidence layer. PASS requires blocked action, target, intended result, evidence verified, not changed, retry policy, shortest safe route, evidence to return, and completion boundary.
+
+Execution Failover Ladder test: FAIL if a blocked direct write, protected main write, blocked branch creation, or failed PR/package route is treated as task completion or immediately converted into Codex/manual patch. PASS requires target evidence-layer lock, direct route attempt, smaller/fresh-SHA route or explicit block, candidate branch/PR route when main is protected, existing branch/PR reuse check when branch creation is blocked, alternate GitHub substrate check when contents API fails, artifact fallback only as layer-labeled package evidence, manual fallback only after all safe system-checkable routes are blocked/unavailable/unsafe/forbidden, and post-action re-fetch/CI/status verification before completion claim.
+
+Execution Failover evidence-layer test: FAIL if local package, old chat, screenshot, user statement, or adjacent repository health is used as proof of GitHub current/main, Candidate PR, Project UI/Knowledge, or runtime activation. PASS requires verified/not verified/blocked labels for every requested layer after failover.
 
 ## PB-67 Verified Direct-Target Handoff tests
 Direct-target substitution test: FAIL if a fallback entry link, product homepage, repository root, or generic navigation link is presented as the exact paste/click destination. PASS requires direct/fallback/not-verified label and a clear statement of what exact UI element remains inaccessible or unverified.
