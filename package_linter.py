@@ -83,6 +83,7 @@ REQUIRED_TEST_SUITE_PATHS = {
 
 KERNEL_CRITICAL_PB_IDS = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 69)]
 MANIFEST_REQUIRED_COVERAGE = ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(47, 69)]
+REGISTRY_REQUIRED_PB_IDS = [pb_id for pb_id in KERNEL_CRITICAL_PB_IDS if pb_id != "PB-68"]
 
 INSTRUCTION_ANCHORS = [
     "Authority",
@@ -117,7 +118,7 @@ REQUIRED_SOURCE_TERMS = {
     "testing_protocol.md": ["Evidence-grade test", "Patch Lock test", "Protected-registry regression test", "Deletion-burden test", "Right-sized architecture test", "Instruction-limit test", "Rule Admission test"],
     "instruction_governance.md": ["Thin Kernel", "Project Instructions", "lower-authority", "Rule Admission Gate"],
     "rule_admission_protocol.md": ["Rule Admission", "Kernel-critical", "owner file"],
-    "no_premature_user_handoff_protocol.md": ["PB-68", "No premature user handoff", "system routes"],
+    "no_premature_user_handoff_protocol.md": ["PB-68", "No premature user handoff", "Execution Failover Ladder", "system routes"],
     "delivery_protocol.md": ["Artifact Destination Contract", "ChatGPT upload package = `Instructions.md` plus `Knowledge/*.md` only"],
     "output_templates.md": ["Artifact Destination Matrix", "copy-ready"],
     "package_state_protocol.md": ["GitHub Stable basis", "Candidate PR basis", "ChatGPT runtime active basis"],
@@ -307,7 +308,7 @@ def check_source_content(repo: Path, findings: list[Finding]) -> None:
             if term not in text:
                 add(findings, "ERROR", "source_required_content", path, f"Missing expected term: {term}")
     registry = read_text(repo / SOURCE_DIR / "protected_behavior_registry.md")
-    for pb_id in ["PB-00", "PB-00A", "PB-00B"] + [f"PB-{n:02d}" for n in range(1, 68)]:
+    for pb_id in REGISTRY_REQUIRED_PB_IDS:
         if pb_id not in registry:
             add(findings, "ERROR", "registry_pb", SOURCE_DIR / "protected_behavior_registry.md", f"Missing {pb_id}.")
     if "PB-68" not in registry and not (repo / SOURCE_DIR / "no_premature_user_handoff_protocol.md").exists():
