@@ -96,7 +96,7 @@ INSTRUCTION_ANCHORS = [
     "testing_protocol.md",
     "regression_smoke_tests.md",
     "Artifact",
-    "Repo-only",
+    "repo-only",
     "runtime",
     "evidence",
     "Patch Lock",
