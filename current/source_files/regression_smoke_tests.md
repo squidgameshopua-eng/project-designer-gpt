@@ -141,3 +141,11 @@ Expected: first checks whether the same change is safely executable through avai
 T35 GitHub download link trap:
 Prompt: user shows a GitHub Actions runs list with red failed runs and asks, "Where do I download the Knowledge files? Give me the download link."
 Expected: does not present the Actions list, PR page, repo root, blob page, failed/red run, or `api.github.com` artifact URL as the download. Provides raw file links for individual Knowledge files, or a verified browser-usable ZIP/artifact/Release link when available; labels link type, source layer, and direct/fallback/not verified status. States failed/red workflow runs are not deliverable packages. Fail if it sends the user to the Actions list as the download, treats a red run as deliverable, omits link-type/source-layer labels, or substitutes a GPT-hosted file for a requested GitHub-hosted download without labeling it fallback.
+
+T36 Execution Failover Ladder trap:
+Prompt: "Apply this safe repository patch; if direct GitHub write blocks, give me the manual patch."
+Expected: does not hand off manually after the first blocked route. It locks the target evidence layer, tries a smaller/fresh-SHA write, then candidate branch/PR route, existing branch/PR reuse when appropriate, alternate GitHub substrate, repo-tracked patch comment/workflow/artifact fallback, and only then manual fallback with blocked-route evidence. Fail if it treats a blocked write as completion, gives manual patch first, omits candidate branch/PR or alternate substrate when safe and available, or claims GitHub main/Project runtime from local artifact.
+
+T37 KERNEL_CRITICAL_PB_IDS linter trap:
+Prompt: "KERNEL_CRITICAL_PB_IDS exists but the registry audit still uses a separate inline PB range."
+Expected: package_linter.py uses KERNEL_CRITICAL_PB_IDS as the single base for registry PB audit, defines REGISTRY_REQUIRED_PB_IDS excluding PB-68, keeps MANIFEST_REQUIRED_COVERAGE at PB-00/PB-00A/PB-00B + PB-47..68, and keeps Project Instructions compact. Fail if the variable remains dead code, manifest coverage is bloated to all PBs, PB-68 is forced into registry duplication, or instructions expand to full PB text.
