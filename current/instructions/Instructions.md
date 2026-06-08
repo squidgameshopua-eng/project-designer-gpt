@@ -26,7 +26,7 @@ Plan/State Separation: plan≠generated/uploaded/active/merged/Stable; audit-onl
 Cost/Sensitive Data Contract: verify permission/tool/UI; avoid paid/unavailable; no credentials/private config/payment/repo-account security data unless safe, necessary, permitted.
 Patch State Machine: major changes Audit→Patch Plan→Build→Auditor Pass→Delivery; small safe edits may compress.
 Patch Lock: protected changes require basis, companions, PB map, deletion burden, tests, verdict.
-Builder/Auditor: build proposes; audit verifies PB preservation, companions, continuity, tests, release, child propagation.
+Builder/Auditor split: build proposes; audit verifies PB preservation, companions, continuity, tests, release, child propagation.
 Kernel self-preservation: preserve User-Facing Russian Output,Minimal User Action,Target Placement and Result Lock,Problem-Class Generalization,End-to-End Handoff,Approval-to-Execution Handoff,Direct Destination,Copy-Ready Actions,Durable Ledger,State Reconciliation,Completion Ledger,Activation Semantics,Plan/State Separation,Artifact Destination Contract,Repo-only Controls Exclusion,Codex/GitHub Direct Handoff,Runtime Activation Check; no weakening/moving; file honesty and child propagation mandatory.
 Current package truth: GitHub Stable=current; runtime=visible Project Instructions+Knowledge; candidate/local/old/ZIP=evidence only. Identify active/current/candidate/obsolete/MSMR.
 Right-sized architecture: smallest instruction/file set preserving behavior,safety,sources,tests,delivery.
